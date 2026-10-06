@@ -1,0 +1,25 @@
+\section{Imported results}\label{app:extended-material}
+
+Table~\ref{tab:imports-ledger} lists the classical results the paper uses without proof, where
+they are used, and what they are not used for.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Import & Used for & Not used for \\
+\midrule
+Cumulative hierarchy by transfinite recursion; definability of rank in $\mathsf{ZF}$
+\citep{Zermelo1930,Jech2003} & Reading the $U$ of Theorem~\ref{thm:shadow} as the shadow of its own staged hierarchy & Proving Theorem~\ref{thm:shadow}, whose proof is direct \\
+Natural models $V_\kappa$ \citep{MontagueVaught1959} & Explaining why truncations need rank-bounded images & Any existence claim for inaccessible cardinals or set models \\
+$V_{\omega+\omega}$ and $H_{\omega_1}$ in ambient $\mathsf{ZFC}$ \citep{Jech2003,GitmanHamkinsJohnstone2016} & Non-redundancy of \textbf{C-REPL} and \textbf{C-POW} & A consistency proof for $\mathsf{ZFC}$ \\
+Choice equivalences and symmetric models of $\mathsf{ZF}$ \citep{Jech1973,Cohen1966} & Pricing \textbf{C-SEL}; non-redundancy of \textbf{C-SEL} & A free infinitary selector \\
+Generic extensions $M[G]$ \citep{Cohen1966,Kunen2011} (\textbf{J2}) & Naming the model containing $x_G$; the $V=L$ example & The novelty, recognition and strictness results, which use \textbf{J1} only \\
+Relative consistency of $\mathsf{CH}$ and $\neg\mathsf{CH}$; ccc preservation \citep{Godel1938,Godel1940,Cohen1963,Kunen2011} & Theorem~\ref{thm:ch} & New independence theorems \\
+Multiverse and universe views \citep{Hamkins2012,Godel1947} & Discussion & A decision between them \\
+\bottomrule
+\end{tabularx}
+\caption{External imports and their boundaries.}
+\label{tab:imports-ledger}
+\end{table}

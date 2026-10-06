@@ -1,0 +1,17 @@
+{
+  "action": "created new-version draft",
+  "concept_record_id": "20712822",
+  "dashboard_url": "https://zenodo.org/uploads/23121590",
+  "doi": "10.5281/zenodo.23121590",
+  "doi_reservation": {
+    "client": "datacite",
+    "identifier": "10.5281/zenodo.23121590",
+    "provider": "datacite",
+    "verified_via": "rdm_pid_table"
+  },
+  "draft_id": 23121590,
+  "recorded_at": "2026-10-03T13:31:39+00:00",
+  "source_doi": "10.5281/zenodo.20712823",
+  "source_record_id": 20712823,
+  "source_title": "To Set a Stone with Six Birds: The Free and Purchased Parts of ZFC"
+}

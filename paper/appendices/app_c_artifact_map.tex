@@ -1,0 +1,35 @@
+\section{Results and their artifacts}\label{app:artifact-map}
+
+Table~\ref{tab:artifact-map} maps the main results to the Lean declarations that verify their
+cores (module \path{formal/SetStone/<Module>.lean}) and to the diagnostics that exhibit them. A
+dash means that the result is proved on paper only; \S\ref{sec:mech} lists what each module does
+and does not cover.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.2\textwidth}@{}}
+\toprule
+Result & Lean module: key declarations & Diagnostic \\
+\midrule
+Thm.~\ref{thm:p5} (packaging) & \texttt{Packaging}: \texttt{fix\_iff\_image}, \texttt{r\_i\_id}, \texttt{i\_r\_eq\_e}, \texttt{collapseFin3\_idem} & --- \\
+Lem.~\ref{lem:L2}, Thm.~\ref{thm:hfclosure} & \texttt{HFClosure}: \texttt{equiv\_iff\_mem}, \texttt{collect\_in\_closed}, \texttt{closed\_contains\_all}; \texttt{HFSets}: \texttt{ext}, \texttt{closed\_family\_all} & \path{hf_slice.py} \\
+Thm.~\ref{thm:hfsat} (selected axioms) & \texttt{HFSets}: \texttt{mem\_pair}, \texttt{mem\_union}, \texttt{mem\_separate}, \texttt{not\_mem\_self}, \texttt{no\_inductive\_set}; \texttt{HFClosure}: \texttt{not\_inductiveHF} & \path{hf_slice.py} \\
+Lem.~\ref{lem:L3}, Thm.~\ref{thm:tfae} & \texttt{HFSets}: \texttt{mem\_rank\_lt}; \texttt{RankAudit}: \texttt{potential\_excludes\_cycle}, \texttt{min\_of\_potential}, \texttt{self\_loop\_is\_cycle} & \path{hf_slice.py} \\
+Thm.~\ref{thm:nonattain}, Thm.~\ref{thm:translation} & --- & --- \\
+Thm.~\ref{thm:choice} (finite part) & \texttt{LiftChoice}: \texttt{finite\_section\_exists}, \texttt{section\_iff\_prototype} & --- \\
+Lem.~\ref{lem:meeting}, Thm.~\ref{thm:densitydefect}, Rem.~\ref{rem:finitegeneric} & \texttt{FiniteCohen}: \texttt{meet\_D\_iff\_neq}, \texttt{meet\_E\_iff\_splits}, \texttt{density\_D\_failure\_iff\_total}, \texttt{density\_E\_failure\_iff\_constant}, \texttt{every\_total\_meets\_dense}, \texttt{disagreement\_not\_dense} & \path{finite_cohen.py} \\
+Thm.~\ref{thm:counting} & --- & \path{definability_rarity.py}, \path{finite_cohen.py} \\
+Cor.~\ref{cor:infinitecontrast} & \texttt{CohenBoundary}: \texttt{disagreement\_dense}, \texttt{disagreement\_meeting\_iff}, \texttt{infinite\_block\_splitting\_dense} & --- \\
+Prop.~\ref{prop:converse} (finite core) & \texttt{CohenBoundary}: \texttt{pairMismatch\_dense}, \texttt{duplicate\_misses\_dense} & --- \\
+Thm.~\ref{thm:recognition} (finite core) & \texttt{CohenRecognition}: \texttt{obstruction\_nowhereDense}, \texttt{meets\_iff\_avoids\_obstruction}, \texttt{generic\_iff\_meets\_complete\_family}, \texttt{registered\_pairMismatch\_excludes\_duplicate}, \texttt{forcing\_repair\_both} & --- \\
+Prop.~\ref{prop:nolens} & \texttt{CohenBoundary}: \texttt{singleton\_visibility\_forces\_injective}, \texttt{singleton\_visibility\_forces\_all} & --- \\
+Thm.~\ref{thm:strict}(1)--(2), finite cores & \texttt{CohenBoundary}: \texttt{adjoining\_strict\_iff\_novel}; \texttt{CohenRecognition}: \texttt{generic\_implies\_novel}, \texttt{generic\_implies\_strict\_extension} & --- \\
+Prop.~\ref{prop:axioms} & \path{formal/AxiomAudit.lean} (all declarations) & --- \\
+\bottomrule
+\end{tabularx}
+\caption{Results, Lean declarations and diagnostics. Lean statements about Cohen conditions concern
+conditions on $\mathbb N$ and explicitly supplied families; their connection to a countable
+transitive model is argued on paper.}
+\label{tab:artifact-map}
+\end{table}

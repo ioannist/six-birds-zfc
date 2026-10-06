@@ -1,0 +1,11 @@
+name = "setstone"
+version = "0.1.0"
+defaultTargets = ["SetStone", "AxiomAudit"]
+
+[[lean_lib]]
+name = "SetStone"
+root = "SetStone"
+
+[[lean_lib]]
+name = "AxiomAudit"
+root = "AxiomAudit"

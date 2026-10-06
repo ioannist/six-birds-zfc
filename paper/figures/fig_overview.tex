@@ -1,0 +1,53 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+    font=\small,
+    box/.style={draw, rounded corners=2pt, align=left, font=\footnotesize,
+                inner sep=4pt, text width=5.4cm, execute at begin node=\raggedright},
+    >={Stealth[length=2mm]}]
+  % the cumulative hierarchy as a cone
+  \coordinate (O) at (0,0);
+  \coordinate (L) at (-2.4,6.0);
+  \coordinate (R) at (2.4,6.0);
+  \coordinate (Lw) at (-0.96,2.4);
+  \coordinate (Rw) at (0.96,2.4);
+  \fill[blue!10] (O) -- (Lw) -- (Rw) -- cycle;
+  \fill[orange!12] (Lw) -- (L) -- (R) -- (Rw) -- cycle;
+  \draw[thick] (L) -- (O) -- (R);
+  \draw[densely dashed, thick] ($(Lw)+(-0.3,0)$) -- ($(Rw)+(0.3,0)$);
+  \node[font=\footnotesize, anchor=west] at ($(Rw)+(0.32,0)$) {$\omega$};
+  \foreach \t in {0.3,0.55,0.78} {
+    \draw[gray!70] ($(O)!\t!(Lw)$) -- ($(O)!\t!(Rw)$);
+  }
+  \node[align=center, font=\footnotesize] at (0,1.25) {$\HF$};
+  \node[align=center, font=\footnotesize] at (0,4.3) {stages $V_\alpha$\\$\alpha\ge\omega$};
+  % left: free column
+  \node[box, fill=blue!7, anchor=east] (F) at (-1.4,1.9) {%
+    \textbf{Free} (Sections~\ref{sec:free}--\ref{sec:shadow})\\[2pt]
+    Extensionality: the lens quotient\\
+    Empty, Pairing, Union: packaging\\
+    Separation: gates (subsets)\\
+    Replacement: finite images\\
+    Power set, Choice: finite forms\\
+    Foundation: the rank audit};
+  \draw[->, gray] (F.east) -- (-0.8,1.9);
+  % right: purchased column
+  \node[box, fill=orange!12, anchor=west] (B) at (2.3,4.4) {%
+    \textbf{Purchased} (Section~\ref{sec:purchases})\\[2pt]
+    \textbf{C-INF}: admit an inductive set\\
+    \textbf{C-POW}: collect all subsets\\
+    \textbf{C-REPL}: unbounded images\\
+    \textbf{C-SEL}: sections of all surjections};
+  \draw[->, gray] (B.west) -- (1.55,4.4);
+  % barrier annotation
+  \node[box, draw=none, anchor=west] (N) at (2.3,1.5) {%
+    No finitely generated rule started\\in $\HF$ crosses the dashed line\\(Theorem~\ref{thm:nonattain})};
+  \draw[->, gray] (N.west) -- (1.15,2.25);
+\end{tikzpicture}
+\caption{The free/purchased picture of the cumulative hierarchy. Below $\omega$ (blue), a finite
+packaging construction supplies $\HF$, in which every axiom except Infinity holds; no finitely
+generated rule iterated inside $\HF$ reaches the dashed line. Above it (orange), four named
+commitments, on top of a structural premise that applies the free clauses at every stage
+(Theorem~\ref{thm:shadow}), yield $\mathsf{ZF}$ and, with \textbf{C-SEL}, $\mathsf{ZFC}$.}
+\label{fig:overview}
+\end{figure}

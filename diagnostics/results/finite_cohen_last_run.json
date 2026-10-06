@@ -1,0 +1,286 @@
+{
+  "all_passed": true,
+  "generator": "diagnostics/finite_cohen.py",
+  "part_A": {
+    "A1_meeting_D_instances": 300381,
+    "A2_meeting_E_instances": 17964,
+    "A3_condition_tests": 2248711,
+    "A3_density_D_instances": 9819,
+    "A4_condition_tests": 133848,
+    "A4_density_E_instances": 596,
+    "all_passed": true,
+    "by_NK": [
+      {
+        "K": 0,
+        "N": 0,
+        "lenses": 1
+      },
+      {
+        "K": 1,
+        "N": 1,
+        "lenses": 1
+      },
+      {
+        "K": 1,
+        "N": 2,
+        "lenses": 1
+      },
+      {
+        "K": 2,
+        "N": 2,
+        "lenses": 2
+      },
+      {
+        "K": 1,
+        "N": 3,
+        "lenses": 1
+      },
+      {
+        "K": 2,
+        "N": 3,
+        "lenses": 6
+      },
+      {
+        "K": 3,
+        "N": 3,
+        "lenses": 6
+      },
+      {
+        "K": 1,
+        "N": 4,
+        "lenses": 1
+      },
+      {
+        "K": 2,
+        "N": 4,
+        "lenses": 14
+      },
+      {
+        "K": 3,
+        "N": 4,
+        "lenses": 36
+      },
+      {
+        "K": 4,
+        "N": 4,
+        "lenses": 24
+      },
+      {
+        "K": 1,
+        "N": 5,
+        "lenses": 1
+      },
+      {
+        "K": 2,
+        "N": 5,
+        "lenses": 30
+      },
+      {
+        "K": 3,
+        "N": 5,
+        "lenses": 150
+      },
+      {
+        "K": 4,
+        "N": 5,
+        "lenses": 240
+      },
+      {
+        "K": 5,
+        "N": 5,
+        "lenses": 120
+      }
+    ],
+    "exact_counting_lenses": 634,
+    "lens_count": 634,
+    "max_N": 5
+  },
+  "part_B": {
+    "fixed_K": 4,
+    "rows": [
+      {
+        "K": 4,
+        "N": 4,
+        "N_minus_K": 0,
+        "abs_error": 0.0,
+        "empirical_meets_all_D_fraction": 0.0,
+        "gate_mode": "exact",
+        "gate_passed": true,
+        "partition": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "predicted_meets_all_D_fraction": 0.0,
+        "samples": 100000,
+        "z_score": 0.0
+      },
+      {
+        "K": 4,
+        "N": 6,
+        "N_minus_K": 2,
+        "abs_error": 0.000140000000000029,
+        "empirical_meets_all_D_fraction": 0.74986,
+        "gate_mode": "z",
+        "gate_passed": true,
+        "partition": [
+          2,
+          2,
+          1,
+          1
+        ],
+        "predicted_meets_all_D_fraction": 0.75,
+        "samples": 100000,
+        "z_score": -0.10224154406765218
+      },
+      {
+        "K": 4,
+        "N": 8,
+        "N_minus_K": 4,
+        "abs_error": 2.999999999997449e-05,
+        "empirical_meets_all_D_fraction": 0.93753,
+        "gate_mode": "z",
+        "gate_passed": true,
+        "partition": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "predicted_meets_all_D_fraction": 0.9375,
+        "samples": 100000,
+        "z_score": 0.03919183588449753
+      },
+      {
+        "K": 4,
+        "N": 10,
+        "N_minus_K": 6,
+        "abs_error": 0.00013499999999999623,
+        "empirical_meets_all_D_fraction": 0.98424,
+        "gate_mode": "z",
+        "gate_passed": true,
+        "partition": [
+          3,
+          3,
+          2,
+          2
+        ],
+        "predicted_meets_all_D_fraction": 0.984375,
+        "samples": 100000,
+        "z_score": -0.34422583948829577
+      },
+      {
+        "K": 4,
+        "N": 12,
+        "N_minus_K": 8,
+        "abs_error": 0.00011625000000003993,
+        "empirical_meets_all_D_fraction": 0.99621,
+        "gate_mode": "z",
+        "gate_passed": true,
+        "partition": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "predicted_meets_all_D_fraction": 0.99609375,
+        "samples": 100000,
+        "z_score": 0.589335817579919
+      },
+      {
+        "K": 4,
+        "N": 14,
+        "N_minus_K": 10,
+        "abs_error": 0.00010656249999996259,
+        "empirical_meets_all_D_fraction": 0.99913,
+        "gate_mode": "z",
+        "gate_passed": true,
+        "partition": [
+          4,
+          4,
+          3,
+          3
+        ],
+        "predicted_meets_all_D_fraction": 0.9990234375,
+        "samples": 100000,
+        "z_score": 1.0788635996574587
+      },
+      {
+        "K": 4,
+        "N": 16,
+        "N_minus_K": 12,
+        "abs_error": 1.4140625000047535e-05,
+        "empirical_meets_all_D_fraction": 0.99977,
+        "gate_mode": "z",
+        "gate_passed": true,
+        "partition": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "predicted_meets_all_D_fraction": 0.999755859375,
+        "samples": 100000,
+        "z_score": 0.2862210694743687
+      },
+      {
+        "K": 4,
+        "N": 18,
+        "N_minus_K": 14,
+        "abs_error": 2.1035156249959996e-05,
+        "empirical_meets_all_D_fraction": 0.99996,
+        "gate_mode": "observational_low_expected",
+        "gate_passed": true,
+        "partition": [
+          5,
+          5,
+          4,
+          4
+        ],
+        "predicted_meets_all_D_fraction": 0.99993896484375,
+        "samples": 100000,
+        "z_score": 0.851469245174436
+      },
+      {
+        "K": 4,
+        "N": 20,
+        "N_minus_K": 16,
+        "abs_error": 1.52587890625e-05,
+        "empirical_meets_all_D_fraction": 1.0,
+        "gate_mode": "observational_low_expected",
+        "gate_passed": true,
+        "partition": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "predicted_meets_all_D_fraction": 0.9999847412109375,
+        "samples": 100000,
+        "z_score": 1.2352741354329582
+      },
+      {
+        "K": 4,
+        "N": 24,
+        "N_minus_K": 20,
+        "abs_error": 9.5367431640625e-07,
+        "empirical_meets_all_D_fraction": 1.0,
+        "gate_mode": "observational_low_expected",
+        "gate_passed": true,
+        "partition": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "predicted_meets_all_D_fraction": 0.9999990463256836,
+        "samples": 100000,
+        "z_score": 0.30881632500595224
+      }
+    ],
+    "samples_per_N": 100000,
+    "seed": 20260611
+  },
+  "schema_version": "1.0"
+}

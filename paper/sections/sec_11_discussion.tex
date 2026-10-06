@@ -1,0 +1,79 @@
+\section{Where the axioms come from}\label{sec:discussion}
+
+This closing section is interpretation (\metag). It contains no theorem; each paragraph draws on a
+result above, but the picture they compose is a reading, not a further result.
+
+\subsection{Two limitative theorems, one pattern}
+
+The foundations of mathematics carry two famous limits. G\"odel's theorems \citep{Godel1931} say
+that a consistent, effectively axiomatized theory containing enough arithmetic does not prove
+every arithmetical truth and, under the usual conditions on provability, does not prove its own
+consistency. Cohen's theorems \citep{Cohen1963} say that natural questions, the continuum
+hypothesis first among them, are not settled by the standard axioms. The two are usually filed
+separately, as a limit on proof and a limit on decision, and usually as bad news.
+
+The construction of this paper suggests filing them together. Its organizing patterns are that a
+fixed rule, iterated, \emph{saturates}---it stays inside a closure it cannot leave---and that
+content outside that closure comes only from \emph{extension}, the adjunction of something the
+current package cannot express. Both patterns appear at the scale of
+set theory. Saturation is Theorem~\ref{thm:nonattain}: the finite packaging rules never leave
+$\HF$, which is why Infinity has to be purchased. Extension is the forcing analysis: a generic real
+lies outside the ground model and strictly enlarges its algebra of coded predicates
+(Theorems~\ref{thm:novelty} and \ref{thm:strict}).
+
+On this reading G\"odel is the saturation face: a fixed, effectively given theory, run as long as
+one likes, does not reach certain truths about itself. Cohen is the extension face: a ground model
+is enlarged by adjoining a real it cannot code, and in suitable extensions old questions, such as
+the size of the continuum, receive different answers. Two cautions keep the reading honest. The
+G\"odel half needs all of its hypotheses: complete consistent theories exist, such as true
+arithmetic, but they are not effectively axiomatized. And an independent \emph{sentence} is not the
+same thing as a missing \emph{predicate}: Theorem~\ref{thm:strict} is about predicates on $\omega$,
+and nothing here identifies the sentences a theory leaves undecided with the reals a model fails to
+contain. The resemblance is one of shape---a closed apparatus run to saturation, and the lawful
+extension beyond it---and it is offered as such.
+
+\subsection{A foundation is an audited ledger}
+
+If this is right, a foundation is neither a revealed truth nor an arbitrary convention, but a
+\emph{ledger}. The distinction it draws, between questions settled inside a chosen framework and
+the external question of which framework to adopt, is Carnap's \citep{Carnap1950}.
+Table~\ref{tab:factorization} is that ledger written out for $\mathsf{ZFC}$. The free entries are
+supplied by a modest packaging instrument and hold in $\HF$, with selected finite cores
+machine-checked; at infinite stages they are carried by a structural premise that applies the same
+clauses everywhere. The purchased entries are four named commitments, each shown to be
+non-redundant, and the first boundary is sharp: $\HF$ satisfies everything except Infinity
+(Proposition~\ref{prop:nonredundancy}(i)).
+
+This is how $\mathsf{ZFC}$ can be a flat list and still be faithful to the staged construction:
+over $\HF$ the staging is recoverable from membership alone (Theorem~\ref{thm:translation}). The
+list is also not arbitrary, since its dependencies are fixed by what packaging supplies and what
+must be bought. One can choose differently---a different lens (\textbf{CM-1}), no Foundation
+(\textbf{CM-2}), no power-set totalization (\textbf{CM-7}), no selection principle
+(\textbf{CM-4})---and the countermodel atlas is a catalogue of such alternative ledgers, in the
+limit the plurality of set-theoretic universes discussed by \citet{Hamkins2012}. On this view
+$\mathsf{ZFC}$ is one audited ledger among several, distinguished not by being true of an
+antecedently given universe of objects \citep{Benacerraf1965} but by which commitments it buys.
+
+\subsection{The open questions are expected}
+
+On this reading the famous open questions lose some of their air of scandal. A foundation that
+grows by lawful extension should have undecided questions: places where different extensions give
+different answers. The continuum hypothesis is the standard example (\S\ref{sec:ch}). Over a
+suitable ground model, one extension keeps it and another refutes it, and the ground's coded
+predicates do not decide between them. Independence, read this way, is the expected signature of a
+foundation that is still being extended, not a defect of one that was supposed to be finished.
+
+\subsection{The answer}
+
+We began with a list and a question: where does the list come from? Not from a pre-existing
+universe of sets that the axioms approximately describe; we built no such universe and needed
+none. Not from arbitrary convention either: the free entries are supplied by the chosen membership
+instrument, the purchases are priced, and the order of dependence is not ours to choose. The list
+comes from the place the framework locates stable objects in general: \emph{packaging under limited
+access}---collecting multiplicities into units seen only through a lens---\emph{audited so that the
+bookkeeping stays honest}, and \emph{extended when it saturates}. Set theory flattens that history
+into a single membership relation; rank-erasure is the flattening; and forcing shows that the
+history can always be continued.\footnote{The question ``where mathematics comes from'' is also
+the title of \citet{LakoffNunez2000}, whose thesis concerns the cognitive origin of mathematical
+ideas. That question is orthogonal to the structural account of where the \emph{axioms} of a
+foundation come from offered here.}

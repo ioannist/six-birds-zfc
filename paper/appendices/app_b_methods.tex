@@ -1,0 +1,37 @@
+\section{Methods and reproducibility}\label{app:methods}
+
+The paper rests on two reproducible support layers, a Lean development and deterministic
+diagnostics. This appendix records how they are run and how they are used. No artifact is promoted
+beyond the grade assigned in the body.
+
+\paragraph{Specification.} The theorem statements, proof obligations, non-claims and grade
+ceilings are recorded in \path{docs/spec/paper-contract.md} and
+\path{docs/spec/theorem-inventory.md}. The mathematical review of all statements, including the
+counterexample and characterization of \S\ref{ssec:converse} and the scope corrections they
+entail, is recorded in \path{docs/review/mathematical-audit.txt}.
+
+\paragraph{Lean.} The development lives in \path{formal/} and builds with \texttt{cd formal \&\&
+lake build} on the pinned toolchain \texttt{leanprover/lean4:4.28.0}, with no external Lean
+dependencies. The axiom audit \path{formal/AxiomAudit.lean} is a default build target, so an
+ordinary build fails if any project declaration depends on an axiom other than
+\textsf{propext} or \textsf{Quot.sound}.
+
+\paragraph{Diagnostics.} The scripts \path{diagnostics/hf_slice.py},
+\path{diagnostics/definability_rarity.py} and \path{diagnostics/finite_cohen.py} run deterministic
+seeded computations under the pinned dependencies in \path{diagnostics/requirements.txt}. Each
+writes a JSON record to \path{diagnostics/results/}, regenerates its tables in
+\path{diagnostics/tables/}, and exits with a counterexample record if a check fails. Statistical
+checks use binomial residual gates where the expected counts are large enough; cases with small
+expected counts are recorded as observations without a pass criterion. The data for
+Figure~\ref{fig:diagnostics} are extracted from the stored JSON records by
+\path{paper/figures/data/make_fig_data.py}, without re-sampling.
+
+\paragraph{Scope.} The Lean build checks selected finite and structural cores; it does not formalize
+the imported infinitary set theory. The diagnostics check bounded cases and the agreement of their
+tables with their records; they do not replace proofs. The classical forcing, cumulative-hierarchy,
+natural-model, choice-equivalence and countermodel results remain external dependencies, cited
+where used.
+
+\paragraph{Availability.} All sources, the Lean development, the diagnostic scripts and their
+generated artifacts are available at \url{https://github.com/ioannist/six-birds-zfc}. No external
+datasets are used.

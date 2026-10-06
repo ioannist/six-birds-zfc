@@ -1,0 +1,128 @@
+\section{The packaging instrument}\label{sec:instrument}
+
+This section fixes the object the rest of the paper studies: set theory read as a Six Birds
+\emph{theory package}~\citep{SBTFoundationsI}. We keep the framework's apparatus to the minimum
+we use. Every presentation below is a finite structure, so the finite-carrier arguments of the
+framework (its regime \textbf{A\_FIN}) apply to each presentation separately. The collection of
+all presentations is infinite, and we never treat it as a finite carrier.
+
+\subsection{Packages, lenses, audits}
+
+\begin{convention}[Theory package]\label{conv:package}
+A \emph{theory package} is a tuple $(Z,\,f,\,E,\,\mathcal A)$ consisting of a carrier $Z$; a
+\emph{lens} $f\colon Z\to X$ recording what an observer sees of a carrier object; a
+\emph{packaging} endomap $E\colon Z\to Z$, typically idempotent, whose fixed points are the
+\emph{objects} the package recognizes; and an \emph{audit} $\mathcal A$, a certificate that
+strictly decreases along the structure being audited. A predicate on $Z$ is \emph{visible} to
+the lens if it is constant on every fiber of $f$.
+\end{convention}
+
+\subsection{The set-theoretic instrument}
+
+\begin{definition}[Finite membership presentations]\label{def:presentation}
+A \emph{finite pointed membership presentation} is a triple $P=(V,\to,v)$ where $V$ is a finite
+set of nodes, ${\to}\subseteq V\times V$ is acyclic, and $v\in V$ is a distinguished
+\emph{point}. We read $u\to w$ as ``$w$ is a member-candidate of $u$'' and write
+$\Ch_P(u):=\{w: u\to w\}$. To keep the carrier a set, node sets are finite subsets of
+$\mathbb N$. The carrier $Z$ is the set of all such presentations; it is countably infinite.
+\end{definition}
+
+In a finite graph, acyclicity is the same as well-foundedness: an infinite descending path in a
+finite graph must repeat a node and therefore contains a cycle. This identification is the seed
+of Foundation, and we return to it in \S\ref{ssec:foundation}.
+
+\begin{definition}[The membership lens]\label{def:lens}
+For $P=(V,\to,v)$ define the \emph{decoration} $\dec_P\colon V\to\HF$ by well-founded
+recursion,
+\[
+  \dec_P(u)\;:=\;\{\dec_P(w): w\in\Ch_P(u)\},
+\]
+and set $f\colon Z\to\HF$, $f(P):=\dec_P(v)$. We call $f$ the \emph{membership-profile
+lens}.\footnote{The term \emph{decoration} follows the graph-decoration viewpoint on membership
+structures of \citet{Aczel1988}; on well-founded graphs it is the map collapsed by the Mostowski
+lemma.}
+\end{definition}
+
+\begin{lemma}[Decoration is well posed; \inhouse]\label{lem:L1}
+For every $P\in Z$ the decoration $\dec_P$ is uniquely defined, and $f(P)\in\HF$.
+\end{lemma}
+
+\begin{proof}
+Finiteness and acyclicity give each node a finite height $h(u)$, the length of the longest
+path starting at $u$, with $h(w)<h(u)$ whenever $u\to w$. Define $\dec_P$ by induction on
+height: nodes of height $0$ are childless and decorate to $\varnothing$, and a node of height $n$
+decorates to the finite set of the decorations of its children, all of lower height. The same
+induction shows that each decoration is hereditarily finite and that the decoration is unique.
+\end{proof}
+
+\begin{definition}[Canonical presentation and packaging map]\label{def:E}
+For $a\in\HF$ let $\TC(\{a\})$ be the least transitive set containing $a$ as an element, and let
+$C(a):=(\TC(\{a\}),\in,a)$ be the \emph{canonical presentation} of $a$: its nodes are the
+elements of $\TC(\{a\})$, named by their Ackermann codes in $\mathbb N$~\citep{Ackermann1937},
+its edges are membership, and its point is $a$. The \emph{packaging map} is
+\[
+  E\colon Z\to Z,\qquad E(P):=C(f(P)).
+\]
+\end{definition}
+
+In words, $E$ reads the membership profile of a presentation, forgets the presentation's
+accidental shape, and presents the profile again in canonical form. Figure~\ref{fig:packaging}
+shows a small example.
+
+\input{figures/fig_packaging}
+
+\begin{definition}[The rank audit]\label{def:rank}
+The audit is $\rho(P):=\rank(f(P))$, and for a node $u$ of $P$, $\rho_P(u):=\rank(\dec_P(u))$,
+where $\rank(a)=\sup\{\rank(b)+1: b\in a\}$.
+\end{definition}
+
+\subsection{Extensionality as a choice of lens}
+
+The membership lens identifies two presentations exactly when they have the same profile. This
+identification is not a theorem about presentations; it is the choice of instrument.
+
+\begin{lemma}[Lens equivalence; \inhouse]\label{lem:L2}
+Define $P\sim Q$ iff $f(P)=f(Q)$. Then $\sim$ is an equivalence relation; each class contains the
+canonical presentation of its profile, since $f(C(a))=a$; and on rooted extensional
+presentations\footnote{Rooted: every node is reachable from the point. Extensional: distinct
+nodes have distinct sets of children.} $P\sim Q$ holds exactly when $P$ and $Q$ are isomorphic as
+pointed graphs.
+\end{lemma}
+
+\begin{proof}
+The first clause is immediate. For $f(C(a))=a$, show $\dec_{C(a)}(s)=s$ for every
+$s\in\TC(\{a\})$ by induction on rank. For the third clause, let $P$ be rooted and extensional.
+The decoration $\dec_P$ is injective: if $\dec_P(u)=\dec_P(u')$, induct on $h(u)+h(u')$; equal
+decorations give a matching between the children of $u$ and of $u'$ with equal decorations, the
+inductive hypothesis identifies matched children, and extensionality then identifies $u$ and
+$u'$. Rootedness makes the image of $\dec_P$ exactly $\TC(\{f(P)\})$, so $\dec_P$ is an
+isomorphism of pointed graphs from $P$ onto $C(f(P))$. Two such presentations with the same
+profile are therefore isomorphic to the same canonical presentation, and the converse is clear.
+\end{proof}
+
+\begin{remark}[What the lens forgets]\label{rem:lens-forgets}
+Lemma~\ref{lem:L2} says that extensional identification is a genuine quotient: node names, the
+multiplicity of routes, and graph shape beyond the profile are invisible to this instrument. In
+Figure~\ref{fig:packaging} the three childless nodes are merged. Extensionality is therefore not
+forced by the presentations themselves; it is the decision to look only through $f$. A different
+instrument may lawfully keep apart what $f$ merges (countermodel \textbf{CM-1},
+\S\ref{sec:atlas}).
+\end{remark}
+
+\subsection{The audit decreases along membership}
+
+\begin{lemma}[Audit monotonicity; \inhouse]\label{lem:L3}
+If $u\to w$ in $P$, then $\rho_P(w)<\rho_P(u)$. Equivalently, for $a\in\HF$ and $b\in a$,
+$\rank(b)<\rank(a)$.
+\end{lemma}
+
+\begin{proof}
+$\dec_P(w)\in\dec_P(u)$ by definition, and $\rank(a)=\sup\{\rank(b)+1: b\in a\}$.
+\end{proof}
+
+\paragraph{Role assignment.} In the framework's numbering of its six roles, the packaging map
+$E$ is the packaging role (P5), whose fixed points are analysed in Theorem~\ref{thm:p5}; the rank
+$\rho$ is the audit role (P6), whose exactness is Theorem~\ref{thm:tfae}; taking subsets of a
+set (gating) is the constraint role (P2); forming images along functions is the descent or
+transport role (P1); and the staging of sets by rank is the staging role (P4). The sixth role,
+the route-mismatch diagnostic (P3), is not used to prove anything here.

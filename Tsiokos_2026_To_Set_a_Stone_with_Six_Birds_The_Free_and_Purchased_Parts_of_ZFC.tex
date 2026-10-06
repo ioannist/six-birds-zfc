@@ -1,0 +1,2121 @@
+
+
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[numbers]{natbib}
+\usepackage{doi}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{orcidlink}
+\usepackage{titling}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing,shapes.geometric,fit,backgrounds}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+
+
+\newcommand{\HF}{\mathrm{HF}}                 \newcommand{\rank}{\operatorname{rank}}
+\newcommand{\TC}{\operatorname{TC}}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Ord}{\mathrm{Ord}}
+\newcommand{\powset}{\mathcal{P}}
+\newcommand{\clF}{\operatorname{cl}_F}
+\newcommand{\dec}{\operatorname{dec}}
+\newcommand{\Ch}{\operatorname{Ch}}
+\newcommand{\Sig}{\Sigma}                      \newcommand{\restr}{\!\upharpoonright\!}
+\newcommand{\Cgen}{\mathbb{P}}                 \newcommand{\Fn}{\operatorname{Fn}}
+\newcommand{\Vfin}{V_{\omega}}
+
+\newcommand{\gradetag}[1]{\textnormal{\textsc{[#1]}}}
+\newcommand{\inhouse}{\gradetag{in-house}}
+\newcommand{\condg}{\gradetag{conditional}}
+\newcommand{\modelg}{\gradetag{model}}
+\newcommand{\guardg}{\gradetag{guard}}
+\newcommand{\metag}{\gradetag{meta}}
+ 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{convention}[theorem]{Convention}
+\urlstyle{same}
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  labelsep=period
+}
+\captionsetup[table]{skip=6pt,position=top}
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
+\setlist[enumerate]{leftmargin=*, itemsep=2pt, topsep=4pt}
+\setlength{\droptitle}{-3.2em}
+\pretitle{\begin{center}\LARGE\bfseries}
+\posttitle{\par\end{center}\vspace{0.5em}}
+\preauthor{\begin{center}\normalsize}
+\postauthor{\par\end{center}\vspace{-0.4em}}
+\predate{\begin{center}\small}
+\postdate{\par\end{center}\vspace{0.6em}}
+\setlength{\emergencystretch}{2em}
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\interfootnotelinepenalty=10000
+\allowdisplaybreaks[2]
+\fancypagestyle{firstpage}{\fancyhf{}
+  \fancyfoot[C]{\scriptsize Automorph Inc., Wilmington, DE, USA \quad \texttt{ioannis@automorph.io} \quad \textcopyright\ 2026 \quad CC-BY 4.0 \quad DOI: \doi{10.5281/zenodo.23121590}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\title{To Set a Stone with Six Birds:\\
+The Free and Purchased Parts of ZFC}
+\author{Ioannis Tsiokos\,\orcidlink{0009-0009-7659-5964}}
+\date{v1: 17 June 2026\quad$\cdot$\quad v2: 3 October 2026}
+\hypersetup{
+  pdftitle={To Set a Stone with Six Birds: The Free and Purchased Parts of ZFC},
+  pdfauthor={Ioannis Tsiokos},
+  hidelinks
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{firstpage}
+
+\begin{abstract}
+The axioms of $\mathsf{ZFC}$ are usually presented as a flat list. We show that the list splits
+into two parts: axioms that a small finite construction supplies for free, and axioms that
+must be bought with explicit commitments. A set is treated as a \emph{package}: a finite
+membership graph is observed only through its membership profile, and a finite Mostowski
+collapse replaces the part of the graph reachable from its distinguished node by a canonical
+representative. On finite graphs this packaging map is
+idempotent with exactly the hereditarily finite sets $\HF$ as its objects; closing the empty
+family under the empty set, pairing, union, subsets and finite images yields exactly $\HF$; and $(\HF,\in)$
+satisfies every axiom of $\mathsf{ZFC}$ except Infinity. Foundation coincides, on finite graphs,
+with the existence of a strictly decreasing rank, and over $\HF$ rank is first-order
+definable from membership, so forgetting the stages loses nothing. No finitely generated rule started from hereditarily finite sets ever produces an
+infinite set: Infinity is a change of rules, not a longer run of the old ones. The infinitary
+axioms then enter through four named commitments---Infinity, Power set, Replacement and
+Choice---on top of a stated structural premise; under them the membership structure satisfies
+$\mathsf{ZF}$, or $\mathsf{ZFC}$, and standard countermodels show that each commitment is needed.
+
+The second theme is forcing. A counting lemma from the Six Birds framework---a random predicate
+on $N$ points is definable from a $K$-block partition with probability $2^{-(N-K)}$---counts
+failures of the same disagreement conditions that Cohen forcing uses. Over $\omega$ these
+conditions become dense, so a Cohen real over a countable transitive model $M$ is new and strictly
+enlarges the Boolean algebra of $M$-coded predicates. Novelty does not suffice for genericity: we
+give a real that is new and splits every infinite $M$-coded set without being generic, and we
+state the exact test---a real is generic exactly when it avoids every $M$-coded closed nowhere
+dense set.
+
+Selected finite cores are verified in Lean without external libraries; an automatic audit of
+all project declarations finds no axioms beyond propositional extensionality and quotient
+soundness, so the finite results used to price Choice do not use Choice. We prove no consistency
+or independence theorems; every infinitary ingredient is a named hypothesis or a cited
+classical result.
+\end{abstract}
+ 
+\medskip
+\noindent\textbf{Keywords.} set theory; ZFC; hereditarily finite sets; closure operators; Mostowski collapse; Cohen forcing; genericity; Boolean algebras of predicates; Six Birds Theory; emergence calculus; Lean.
+
+\section{Introduction}\label{sec:intro}
+
+\subsection{A list, and a question}
+
+The foundations of mathematics are usually met as a list. Extensionality, empty set, pairing,
+union, power set, separation, infinity, replacement, foundation, choice: ten statements about
+membership \citep{Zermelo1908, Fraenkel1922} from which, we are told, the rest of mathematics
+follows. The list is adopted because it works. It carries analysis, algebra and topology, and it
+has not produced a contradiction.
+
+This paper asks where the list comes from. Not whether it is true or consistent, but whether its
+entries are ten independent stipulations, or whether some of them are consequences of something
+simpler, with only a few genuinely \emph{chosen}. Our answer is that the list sorts into two
+columns. Some axioms are \emph{free}: they hold automatically of anything produced by a modest
+finite construction. Others are \emph{purchased}: they mark the exact points at which that
+construction must be told to go on past where it would stop on its own. The free column is
+proved; the purchased column is stated as a small set of named hypotheses, each with a theorem
+or countermodel showing why it cannot be dropped.
+
+\subsection{The idea in brief}
+
+The organizing vocabulary comes from Six Birds Theory (\textsc{SBT})~\citep{SBTFoundationsI}, a
+framework for describing how stable objects arise when a complicated substrate is observed
+through a limited interface. We use only a small part of it, and we use it as an organizing
+instrument, not as a source of new set theory. Three roles matter here.
+\begin{itemize}[itemsep=2pt,topsep=3pt]
+\item A \emph{lens} records what an observer can see. For sets, the substrate is the class of
+finite membership graphs, and the lens records only the membership profile of the distinguished
+node: which sets are its members, which sets are theirs, and so on. Node names and duplicated
+structure are invisible.
+\item A \emph{packaging map} replaces each graph by a canonical representative of what the lens
+sees. For sets it collapses the part of the graph reachable from the distinguished node, as in
+a finite Mostowski collapse, and re-presents it canonically; its objects are exactly the
+hereditarily finite sets. Extensionality is the decision to identify graphs that the lens cannot tell apart.
+\item An \emph{audit} is a certificate that strictly decreases along the structure. For sets it
+is the rank, which decreases along membership. On finite graphs, Foundation says precisely that
+such a certificate exists.
+\end{itemize}
+Two further patterns from the framework organize the rest of the paper. A fixed finite rule,
+iterated, may keep producing new objects, but they stay of the same kind: everything it produces
+is hereditarily finite, and it never leaves $\HF$. In this sense it \emph{saturates}. An object
+of a new kind, such as an infinite set, comes only from \emph{changing the rule}, that is, from
+adjoining something the old rule cannot produce. The free axioms are what the finite rules
+already supply inside $\HF$; the purchased axioms are the named changes of rule. Figure~\ref{fig:overview} shows the resulting picture of the cumulative
+hierarchy.
+
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+    font=\small,
+    box/.style={draw, rounded corners=2pt, align=left, font=\footnotesize,
+                inner sep=4pt, text width=5.4cm, execute at begin node=\raggedright},
+    >={Stealth[length=2mm]}]
+\coordinate (O) at (0,0);
+  \coordinate (L) at (-2.4,6.0);
+  \coordinate (R) at (2.4,6.0);
+  \coordinate (Lw) at (-0.96,2.4);
+  \coordinate (Rw) at (0.96,2.4);
+  \fill[blue!10] (O) -- (Lw) -- (Rw) -- cycle;
+  \fill[orange!12] (Lw) -- (L) -- (R) -- (Rw) -- cycle;
+  \draw[thick] (L) -- (O) -- (R);
+  \draw[densely dashed, thick] ($(Lw)+(-0.3,0)$) -- ($(Rw)+(0.3,0)$);
+  \node[font=\footnotesize, anchor=west] at ($(Rw)+(0.32,0)$) {$\omega$};
+  \foreach \t in {0.3,0.55,0.78} {
+    \draw[gray!70] ($(O)!\t!(Lw)$) -- ($(O)!\t!(Rw)$);
+  }
+  \node[align=center, font=\footnotesize] at (0,1.25) {$\HF$};
+  \node[align=center, font=\footnotesize] at (0,4.3) {stages $V_\alpha$\\$\alpha\ge\omega$};
+\node[box, fill=blue!7, anchor=east] (F) at (-1.4,1.9) {\textbf{Free} (Sections~\ref{sec:free}--\ref{sec:shadow})\\[2pt]
+    Extensionality: the lens quotient\\
+    Empty, Pairing, Union: packaging\\
+    Separation: gates (subsets)\\
+    Replacement: finite images\\
+    Power set, Choice: finite forms\\
+    Foundation: the rank audit};
+  \draw[->, gray] (F.east) -- (-0.8,1.9);
+\node[box, fill=orange!12, anchor=west] (B) at (2.3,4.4) {\textbf{Purchased} (Section~\ref{sec:purchases})\\[2pt]
+    \textbf{C-INF}: admit an inductive set\\
+    \textbf{C-POW}: collect all subsets\\
+    \textbf{C-REPL}: unbounded images\\
+    \textbf{C-SEL}: sections of all surjections};
+  \draw[->, gray] (B.west) -- (1.55,4.4);
+\node[box, draw=none, anchor=west] (N) at (2.3,1.5) {No finitely generated rule started\\in $\HF$ crosses the dashed line\\(Theorem~\ref{thm:nonattain})};
+  \draw[->, gray] (N.west) -- (1.15,2.25);
+\end{tikzpicture}
+\caption{The free/purchased picture of the cumulative hierarchy. Below $\omega$ (blue), a finite
+packaging construction supplies $\HF$, in which every axiom except Infinity holds; no finitely
+generated rule iterated inside $\HF$ reaches the dashed line. Above it (orange), four named
+commitments, on top of a structural premise that applies the free clauses at every stage
+(Theorem~\ref{thm:shadow}), yield $\mathsf{ZF}$ and, with \textbf{C-SEL}, $\mathsf{ZFC}$.}
+\label{fig:overview}
+\end{figure}
+ 
+\subsection{Main results}
+
+We work first over the hereditarily finite sets $\HF$, where everything is finite and can be
+checked, and then pass to the infinite by explicit hypotheses.
+
+\paragraph{The free part (\S\ref{sec:free}).} On finite well-founded membership graphs, the
+packaging map is idempotent and its fixed points correspond bijectively to $\HF$
+(Theorem~\ref{thm:p5}). Closing the empty family under the finite packaging operations---empty
+set, pairing, union, subsets and finite images---gives exactly $\HF$ (Theorem~\ref{thm:hfclosure}),
+and $(\HF,\in)$ satisfies every axiom of $\mathsf{ZFC}$ except Infinity, each witnessed by a
+named clause, by finite selection, or by the rank audit (Theorem~\ref{thm:hfsat}). On finite graphs, Foundation is
+equivalent to the existence of a strictly decreasing rank function (Theorem~\ref{thm:tfae}).
+
+\paragraph{Infinity is a change of rules (\S\ref{sec:infinity}).} No finitely generated
+completion rule, iterated from hereditarily finite sets, ever produces an inductive set
+(Theorem~\ref{thm:nonattain}). An infinite set has to be admitted; it cannot be reached.
+
+\paragraph{Forgetting the stages is lossless (\S\ref{sec:shadow}).} The usual axioms mention
+only membership, while the construction is staged. Over $\HF$ rank is first-order definable from
+membership, and every sentence about the staged structure translates into an equivalent sentence
+about membership alone (Theorem~\ref{thm:translation}).
+
+\paragraph{The purchased part (\S\ref{sec:purchases}).} Infinity, Power set, Replacement and
+Choice enter as four named commitments. Infinity is provably not free
+(Theorem~\ref{thm:nonattain}). Choice is, over $\mathsf{ZF}$, exactly the statement that every
+surjection of sets has a section (Theorem~\ref{thm:choice}); the particular membership lens needs
+no choice, because its sections are given explicitly. Under a stated structural premise and the
+four commitments, the membership structure satisfies $\mathsf{ZF}$, and with Choice $\mathsf{ZFC}$
+(Theorem~\ref{thm:shadow}). Standard countermodels show that none of the four can be omitted
+(Proposition~\ref{prop:nonredundancy}). Table~\ref{tab:factorization} records the resulting
+ledger.
+
+\paragraph{Forcing (\S\ref{sec:forcing}).} The Six Birds framework contains a counting
+lemma---informally called the ``finite forcing lemma''~\citep{SBTFoundationsI}---stating that a
+random predicate on $N$ points is constant on every block of a $K$-block partition with
+probability $2^{-(N-K)}$. We show that this lemma counts the failures of the same disagreement
+conditions that Cohen forcing uses~\citep{Cohen1963, Cohen1966}, and we compute exactly which
+finite conditions have no extension meeting them (Theorem~\ref{thm:densitydefect}). Over
+$\omega$ the failures disappear. As a consequence, a Cohen-generic real over a countable
+transitive model $M$ lies outside $M$ and splits every infinite set coded in $M$
+(Theorem~\ref{thm:novelty}), and adjoining it strictly enlarges the Boolean algebra of
+$M$-coded predicates (Theorem~\ref{thm:strict}). The implication runs one way only: a real can
+be new and split every infinite coded set without being generic
+(Proposition~\ref{prop:converse}). The exact condition is that the real avoid every $M$-coded
+closed nowhere dense set (Theorem~\ref{thm:recognition}). Cohen reals form a comeagre set of
+measure zero, so the finite probability $1-2^{-(N-K)}$ describes novelty, not genericity
+(\S\ref{ssec:category}). The continuum hypothesis appears as a question the ground model does
+not settle (\S\ref{sec:ch}).
+
+\paragraph{Guards and verification (\S\S\ref{sec:atlas}--\ref{sec:mech}).} Eight countermodels
+block the most tempting overstatements, such as ``extensionality is forced'' or ``Foundation is
+free without staging.'' Selected finite cores are verified in Lean~4 without external libraries.
+An automatic audit, run on every build, checks that each of the 371 project declarations depends
+on no axiom other than propositional extensionality and quotient soundness; in particular, the
+finite lift used to price Choice is verified without Choice. Reproducible numerical exhibits
+accompany the counting results.
+
+\subsection{Scope and grades}
+
+We do \emph{not} derive $\mathsf{ZF}$ or $\mathsf{ZFC}$ from finite principles: the infinitary
+content enters only through named hypotheses. We prove no consistency statement beyond the
+classical results we cite, and no new independence result; the forcing section reorganizes
+classical facts and adds finite and structural statements about them. We do not claim that
+$\mathsf{ZFC}$ is the unique or most natural set theory. The interpretive reading in
+\S\ref{sec:discussion} comes after the theorems and is never used to prove them.
+
+Because the paper mixes statements of different strength, every numbered result carries a tag.
+\inhouse{} marks a result proved here without set-theoretic hypotheses beyond the ambient
+metatheory; some of these have Lean-verified cores. \condg{} marks a result proved under named
+hypotheses or cited classical imports. \modelg{} marks a statement about specific models obtained
+from cited results. \guardg{} marks a countermodel. \metag{} marks an interpretive reading that is
+deliberately not a theorem. Section~\ref{sec:scope} collects the boundaries in one place.
+ \section{The packaging instrument}\label{sec:instrument}
+
+This section fixes the object the rest of the paper studies: set theory read as a Six Birds
+\emph{theory package}~\citep{SBTFoundationsI}. We keep the framework's apparatus to the minimum
+we use. Every presentation below is a finite structure, so the finite-carrier arguments of the
+framework (its regime \textbf{A\_FIN}) apply to each presentation separately. The collection of
+all presentations is infinite, and we never treat it as a finite carrier.
+
+\subsection{Packages, lenses, audits}
+
+\begin{convention}[Theory package]\label{conv:package}
+A \emph{theory package} is a tuple $(Z,\,f,\,E,\,\mathcal A)$ consisting of a carrier $Z$; a
+\emph{lens} $f\colon Z\to X$ recording what an observer sees of a carrier object; a
+\emph{packaging} endomap $E\colon Z\to Z$, typically idempotent, whose fixed points are the
+\emph{objects} the package recognizes; and an \emph{audit} $\mathcal A$, a certificate that
+strictly decreases along the structure being audited. A predicate on $Z$ is \emph{visible} to
+the lens if it is constant on every fiber of $f$.
+\end{convention}
+
+\subsection{The set-theoretic instrument}
+
+\begin{definition}[Finite membership presentations]\label{def:presentation}
+A \emph{finite pointed membership presentation} is a triple $P=(V,\to,v)$ where $V$ is a finite
+set of nodes, ${\to}\subseteq V\times V$ is acyclic, and $v\in V$ is a distinguished
+\emph{point}. We read $u\to w$ as ``$w$ is a member-candidate of $u$'' and write
+$\Ch_P(u):=\{w: u\to w\}$. To keep the carrier a set, node sets are finite subsets of
+$\mathbb N$. The carrier $Z$ is the set of all such presentations; it is countably infinite.
+\end{definition}
+
+In a finite graph, acyclicity is the same as well-foundedness: an infinite descending path in a
+finite graph must repeat a node and therefore contains a cycle. This identification is the seed
+of Foundation, and we return to it in \S\ref{ssec:foundation}.
+
+\begin{definition}[The membership lens]\label{def:lens}
+For $P=(V,\to,v)$ define the \emph{decoration} $\dec_P\colon V\to\HF$ by well-founded
+recursion,
+\[
+  \dec_P(u)\;:=\;\{\dec_P(w): w\in\Ch_P(u)\},
+\]
+and set $f\colon Z\to\HF$, $f(P):=\dec_P(v)$. We call $f$ the \emph{membership-profile
+lens}.\footnote{The term \emph{decoration} follows the graph-decoration viewpoint on membership
+structures of \citet{Aczel1988}; on well-founded graphs it is the map collapsed by the Mostowski
+lemma.}
+\end{definition}
+
+\begin{lemma}[Decoration is well posed; \inhouse]\label{lem:L1}
+For every $P\in Z$ the decoration $\dec_P$ is uniquely defined, and $f(P)\in\HF$.
+\end{lemma}
+
+\begin{proof}
+Finiteness and acyclicity give each node a finite height $h(u)$, the length of the longest
+path starting at $u$, with $h(w)<h(u)$ whenever $u\to w$. Define $\dec_P$ by induction on
+height: nodes of height $0$ are childless and decorate to $\varnothing$, and a node of height $n$
+decorates to the finite set of the decorations of its children, all of lower height. The same
+induction shows that each decoration is hereditarily finite and that the decoration is unique.
+\end{proof}
+
+\begin{definition}[Canonical presentation and packaging map]\label{def:E}
+For $a\in\HF$ let $\TC(\{a\})$ be the least transitive set containing $a$ as an element, and let
+$C(a):=(\TC(\{a\}),\in,a)$ be the \emph{canonical presentation} of $a$: its nodes are the
+elements of $\TC(\{a\})$, named by their Ackermann codes in $\mathbb N$~\citep{Ackermann1937},
+its edges are membership, and its point is $a$. The \emph{packaging map} is
+\[
+  E\colon Z\to Z,\qquad E(P):=C(f(P)).
+\]
+\end{definition}
+
+In words, $E$ reads the membership profile of a presentation, forgets the presentation's
+accidental shape, and presents the profile again in canonical form. Figure~\ref{fig:packaging}
+shows a small example.
+
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+    font=\small,
+    nd/.style={circle, draw, fill=white, minimum size=5.5mm, inner sep=0pt},
+    pt/.style={circle, draw, thick, fill=blue!12, minimum size=5.5mm, inner sep=0pt},
+    dl/.style={font=\scriptsize, text=blue!60!black},
+    e/.style={-{Stealth[length=1.8mm]}, thick},
+    >={Stealth[length=2mm]}]
+\begin{scope}
+    \node[pt] (r) at (0,2.4) {$r$};
+    \node[nd] (u1) at (-1.3,1.2) {$u_1$};
+    \node[nd] (u2) at (-0.35,1.2) {$u_2$};
+    \node[nd] (w) at (1.1,1.2) {$w$};
+    \node[nd] (u3) at (1.1,0) {$u_3$};
+    \draw[e] (r) -- (u1); \draw[e] (r) -- (u2); \draw[e] (r) -- (w); \draw[e] (w) -- (u3);
+    \node[dl, left=1pt of u1] {$\varnothing$};
+    \node[dl, below=1pt of u2] {$\varnothing$};
+    \node[dl, right=1pt of w] {$\{\varnothing\}$};
+    \node[dl, right=1pt of u3] {$\varnothing$};
+    \node[dl, right=2pt of r] {$\{\varnothing,\{\varnothing\}\}$};
+    \node[font=\footnotesize] at (0,-0.8) {presentation $P$ (5 nodes)};
+  \end{scope}
+\draw[->, very thick, gray] (2.9,1.3) -- node[above, font=\footnotesize, text=black]
+        {$E=C\circ f$} node[below, font=\scriptsize, text=black, align=center]
+        {read the profile,\\re-present it} (5.0,1.3);
+\begin{scope}[xshift=7.2cm]
+    \node[pt] (two) at (0,2.4) {$2$};
+    \node[nd] (one) at (0.9,1.2) {$1$};
+    \node[nd] (zero) at (0,0) {$0$};
+    \draw[e] (two) -- (one); \draw[e] (two) -- (zero); \draw[e] (one) -- (zero);
+    \node[font=\footnotesize, align=center] at (0,-0.8)
+         {canonical $C(2)=E(P)$ (3 nodes)};
+    \draw[->, gray, thick] (-0.25,2.75) arc (200:-20:0.32);
+    \node[font=\scriptsize, anchor=south] at (0.05,3.05) {$E(E(P))=E(P)$};
+  \end{scope}
+\end{tikzpicture}
+\caption{The packaging map on a small example. The point $r$ of $P$ (shaded) decorates to
+$2=\{\varnothing,\{\varnothing\}\}$; the blue labels are the decorations $\dec_P$. The lens $f$ keeps only
+this profile, and $E$ re-presents it as the canonical graph $C(2)$ on the transitive closure
+$\TC(\{2\})=\{0,1,2\}$. The three childless nodes $u_1,u_2,u_3$ merge into the single node $0$.
+Applying $E$ again changes nothing (Theorem~\ref{thm:p5}).}
+\label{fig:packaging}
+\end{figure}
+ 
+\begin{definition}[The rank audit]\label{def:rank}
+The audit is $\rho(P):=\rank(f(P))$, and for a node $u$ of $P$, $\rho_P(u):=\rank(\dec_P(u))$,
+where $\rank(a)=\sup\{\rank(b)+1: b\in a\}$.
+\end{definition}
+
+\subsection{Extensionality as a choice of lens}
+
+The membership lens identifies two presentations exactly when they have the same profile. This
+identification is not a theorem about presentations; it is the choice of instrument.
+
+\begin{lemma}[Lens equivalence; \inhouse]\label{lem:L2}
+Define $P\sim Q$ iff $f(P)=f(Q)$. Then $\sim$ is an equivalence relation; each class contains the
+canonical presentation of its profile, since $f(C(a))=a$; and on rooted extensional
+presentations\footnote{Rooted: every node is reachable from the point. Extensional: distinct
+nodes have distinct sets of children.} $P\sim Q$ holds exactly when $P$ and $Q$ are isomorphic as
+pointed graphs.
+\end{lemma}
+
+\begin{proof}
+The first clause is immediate. For $f(C(a))=a$, show $\dec_{C(a)}(s)=s$ for every
+$s\in\TC(\{a\})$ by induction on rank. For the third clause, let $P$ be rooted and extensional.
+The decoration $\dec_P$ is injective: if $\dec_P(u)=\dec_P(u')$, induct on $h(u)+h(u')$; equal
+decorations give a matching between the children of $u$ and of $u'$ with equal decorations, the
+inductive hypothesis identifies matched children, and extensionality then identifies $u$ and
+$u'$. Rootedness makes the image of $\dec_P$ exactly $\TC(\{f(P)\})$, so $\dec_P$ is an
+isomorphism of pointed graphs from $P$ onto $C(f(P))$. Two such presentations with the same
+profile are therefore isomorphic to the same canonical presentation, and the converse is clear.
+\end{proof}
+
+\begin{remark}[What the lens forgets]\label{rem:lens-forgets}
+Lemma~\ref{lem:L2} says that extensional identification is a genuine quotient: node names, the
+multiplicity of routes, and graph shape beyond the profile are invisible to this instrument. In
+Figure~\ref{fig:packaging} the three childless nodes are merged. Extensionality is therefore not
+forced by the presentations themselves; it is the decision to look only through $f$. A different
+instrument may lawfully keep apart what $f$ merges (countermodel \textbf{CM-1},
+\S\ref{sec:atlas}).
+\end{remark}
+
+\subsection{The audit decreases along membership}
+
+\begin{lemma}[Audit monotonicity; \inhouse]\label{lem:L3}
+If $u\to w$ in $P$, then $\rho_P(w)<\rho_P(u)$. Equivalently, for $a\in\HF$ and $b\in a$,
+$\rank(b)<\rank(a)$.
+\end{lemma}
+
+\begin{proof}
+$\dec_P(w)\in\dec_P(u)$ by definition, and $\rank(a)=\sup\{\rank(b)+1: b\in a\}$.
+\end{proof}
+
+\paragraph{Role assignment.} In the framework's numbering of its six roles, the packaging map
+$E$ is the packaging role (P5), whose fixed points are analysed in Theorem~\ref{thm:p5}; the rank
+$\rho$ is the audit role (P6), whose exactness is Theorem~\ref{thm:tfae}; taking subsets of a
+set (gating) is the constraint role (P2); forming images along functions is the descent or
+transport role (P1); and the staging of sets by rank is the staging role (P4). The sixth role,
+the route-mismatch diagnostic (P3), is not used to prove anything here.
+ \section{The free part: \texorpdfstring{$\HF$}{HF} and the auditable axioms}\label{sec:free}
+
+We now run the instrument from nothing and read off what it supplies. Three results carry the
+section: the packaging map is an idempotent whose objects are the hereditarily finite sets
+(\S\ref{ssec:p5}); closing the empty family under the finite packaging operations gives exactly
+$\HF$, which satisfies every axiom of $\mathsf{ZFC}$ except Infinity (\S\ref{ssec:hf}); and on
+finite graphs Foundation is the same as the existence of a rank audit (\S\ref{ssec:foundation}).
+Table~\ref{tab:freepart} summarizes the outcome.
+
+\subsection{The set universe as a packaging quotient}\label{ssec:p5}
+
+\begin{theorem}[Mostowski collapse is packaging; \inhouse]\label{thm:p5}
+The packaging map $E\colon Z\to Z$ of Definition~\ref{def:E} is idempotent, and
+\[
+  \Fix(E)\;=\;\im(E)\;=\;\{C(a): a\in\HF\}.
+\]
+The restricted lens $f\restr\Fix(E)\colon \Fix(E)\to\HF$ is a bijection with inverse $a\mapsto
+C(a)$. With $i\colon\Fix(E)\hookrightarrow Z$ the inclusion and $r\colon Z\to\Fix(E)$,
+$r(P):=E(P)$,
+\[
+  r\circ i=\mathrm{id}_{\Fix(E)},\qquad i\circ r=E,
+\]
+so $\Fix(E)$ is a system of representatives for the lens quotient $Z/{\sim}$.
+\end{theorem}
+
+\begin{proof}
+Since $f(C(a))=a$ (Lemma~\ref{lem:L2}), $E(E(P))=C(f(C(f(P))))=C(f(P))=E(P)$. Idempotence gives
+$\im(E)\subseteq\Fix(E)$, the reverse inclusion is trivial, and $\im(E)=\{C(a):a\in\HF\}$ by
+definition. The restricted lens is surjective because $f(C(a))=a$ and injective because $P=E(P)=
+C(f(P))$ on $\Fix(E)$. The splitting equations are immediate, and $[P]\mapsto E(P)$ is a
+bijection from $Z/{\sim}$ onto $\Fix(E)$ because $E(P)\sim P$. This is the framework's
+``idempotents split'' lemma~\citep{SBTFoundationsI} for the membership instrument; the
+underlying collapse of a well-founded extensional relation onto a transitive set is the Mostowski
+lemma~\citep{Mostowski1949}.
+\end{proof}
+
+\begin{remark}[The construction already in use]\label{rem:mathlib}
+Theorem~\ref{thm:p5} describes how the universe of sets is commonly built in proof assistants.
+The \texttt{PSet}/\texttt{ZFSet} development of \citet{Mathlib2020} defines a pre-set as a
+type-indexed family of pre-sets---a well-founded membership tree with arbitrary branching---and a
+set as a class of pre-sets under extensional equivalence. That is the quotient of presentations
+by the lens relation $\sim$, and Theorem~\ref{thm:p5} is its finite, well-founded instance. The
+Lean development accompanying this paper builds the finite version from scratch, as a quotient of
+finite membership trees, without choosing representatives (\S\ref{sec:mech}).
+\end{remark}
+
+\begin{remark}[Finite Mostowski collapse]\label{rem:finitemostowski}
+On rooted extensional presentations $E$ is an isomorphism (Lemma~\ref{lem:L2}); in general it
+collapses. In Figure~\ref{fig:packaging} a five-node presentation is packaged to the three-node
+canonical presentation of $2$. Nodes that cannot be reached from the point do not affect its
+decoration and are discarded by $E$; on the part reachable from the point, $E$ is the finite case
+of the Mostowski collapse. The infinitary statement is classical and is neither reproved nor used
+here.
+\end{remark}
+
+\subsection{Closing from nothing yields exactly \texorpdfstring{$\HF$}{HF}}\label{ssec:hf}
+
+By Theorem~\ref{thm:p5} we may work directly with the packaged objects, the elements of $\HF$. We
+write the basic operations on $\HF$ as packaging clauses and show that closing the empty family
+under them produces all of $\HF$.
+
+\begin{definition}[The finite packaging operator]\label{def:F}
+For $A\subseteq\HF$ let
+\[
+  \begin{aligned}
+  F(A):={}&\{\varnothing\}\cup A
+  \;\cup\;\underbrace{\{\{a,b\}:a,b\in A\}}_{\text{pairing (P5)}}
+  \;\cup\;\underbrace{\{\textstyle\bigcup a:a\in A\}}_{\text{union (P5)}}\\
+  &\cup\;\underbrace{\{S:S\subseteq a,\ a\in A\}}_{\text{gating (P2)}}
+  \;\cup\;\underbrace{\{h[a]:a\in A,\ h\colon a\to A\}}_{\text{transport (P1)}},
+  \end{aligned}
+\]
+where $h[a]=\{h(t):t\in a\}$. Because every $a\in\HF$ is finite, every subset $S\subseteq a$ and
+every function $h\colon a\to A$ is admitted; no definability restriction is needed at this level.
+Definability restrictions reappear, and matter, in the forcing section (\S\ref{sec:forcing}).
+\end{definition}
+
+\begin{lemma}[$\clF$ is a closure operator; \inhouse]\label{lem:closure}
+$F$ is extensive and monotone, and $\HF$ is $F$-closed. Hence for each $A\subseteq\HF$ the least
+$F$-closed superset $\clF(A)=\bigcap\{B: A\subseteq B\subseteq\HF,\ F(B)\subseteq B\}$ exists,
+and $\clF$ is a closure operator: extensive, monotone and idempotent
+\citep{DaveyPriestley2002,Tarski1955}.
+\end{lemma}
+
+\begin{proof}
+Extensivity is built in. For monotonicity, if $A\subseteq B$ then every output of a clause applied
+to $A$ is an output of the same clause applied to $B$; in particular a map $h\colon a\to A$ is
+also a map into $B$. $\HF$ is closed clause by clause, since each clause outputs a finite set of
+hereditarily finite sets. The intersection of $F$-closed families containing $A$ is again
+$F$-closed, by monotonicity, and the closure properties follow.
+\end{proof}
+
+\noindent Although $\HF$ is countable, the lattice $\powset(\HF)$ in which this intersection is
+taken is uncountable. Forming the intersection uses the ambient set-theoretic metatheory (with no
+choice principle), not a finite computation. The same is true of every statement below about
+$\HF$ as a whole: each object and each operation is finite, but the global statements are
+statements of the metatheory.
+
+\begin{lemma}[Finite collection; \inhouse]\label{lem:collection}
+If $A$ is $F$-closed and $a_1,\dots,a_n\in A$, then $\{a_1,\dots,a_n\}\in A$.
+\end{lemma}
+
+\begin{proof}
+Induction on $n$, using $x\cup\{y\}=\bigcup\{x,\{y\}\}$: the cases $n\le 1$ use the empty-set
+and pairing clauses, and the inductive step pairs $\{a_1,\dots,a_n\}$ with $\{a_{n+1}\}$ and takes
+the union.
+\end{proof}
+
+\noindent Finite collection is thus \emph{derived} from pairing and union, not assumed.
+
+\begin{theorem}[$\HF$ is the saturation point of finite packaging; \inhouse]\label{thm:hfclosure}
+$\clF(\varnothing)=\HF$.
+\end{theorem}
+
+\begin{proof}
+$\clF(\varnothing)\subseteq\HF$ because $\HF$ is $F$-closed. For the reverse inclusion, let
+$C=\clF(\varnothing)$ and induct on rank: $\varnothing\in C$, and if every member of $a\in\HF$ lies
+in $C$, then $a=\{t_1,\dots,t_n\}$ is a finite collection of elements of $C$, so $a\in C$ by
+Lemma~\ref{lem:collection}.
+\end{proof}
+
+\begin{corollary}[Finite power sets are reachable; \inhouse]\label{cor:finpow}
+For $a\in\HF$, $\powset(a)\in\clF(\varnothing)$: each $S\subseteq a$ enters by the gate clause,
+and $\powset(a)$, a finite collection of such sets, enters by Lemma~\ref{lem:collection}.
+\end{corollary}
+
+\noindent Corollary~\ref{cor:finpow} marks the boundary on which the paper turns. \emph{Finite}
+power sets are free, a consequence of gating and finite collection. Collecting \emph{all}
+subsets of an infinite set into one object is a different act, and it must be purchased
+(\S\ref{sec:purchases}).
+
+\begin{theorem}[$(\HF,\in)$ satisfies $\mathsf{ZFC}$ without Infinity; \inhouse]\label{thm:hfsat}
+The structure $(\HF,\in)$ satisfies Extensionality, Empty set, Pairing, Union, Power set, every
+instance of the Separation and Replacement schemas, Foundation and Choice, and it satisfies the
+negation of Infinity.
+\end{theorem}
+
+\begin{proof}
+$\HF$ is transitive, so for $a,b\in\HF$ the statements ``$a\in b$'' and ``$a\subseteq b$'' mean
+the same inside $(\HF,\in)$ as outside, and every subset of an element of $\HF$ is again in
+$\HF$. Extensionality follows from transitivity. Empty set, Pairing, Union and Power set are
+supplied by the corresponding clauses of $F$ and by Corollary~\ref{cor:finpow}.
+\emph{Separation:} for $a\in\HF$ and a formula $\varphi$ with parameters in $\HF$, the set
+$\{x\in a:(\HF,\in)\models\varphi(x)\}$ is a subset of the finite set $a$, hence in $\HF$ by the
+gate clause. Only truth in $(\HF,\in)$ is used; no absoluteness of unbounded formulas is needed.
+\emph{Replacement:} if $\varphi$ defines in $(\HF,\in)$ a function on $a\in\HF$, its unique values
+form a finite function $h\colon a\to\HF$, and $h[a]\in\HF$ by the transport clause.
+\emph{Foundation:} a nonempty $a\in\HF$ is finite, so it has an element of minimal rank, which is
+$\in$-minimal by Lemma~\ref{lem:L3}. \emph{Choice:} a finite family of nonempty sets in $\HF$ has
+a choice function in $\HF$; picking the member with the least Ackermann code is one explicit
+choice, and the resulting finite set of ordered pairs is in $\HF$. \emph{Infinity fails:} let
+$a\in\HF$ contain $\varnothing$, and let $x\in a$ have maximal rank. Then $x\cup\{x\}$ has rank
+$\rank(x)+1$, so it is not in $a$, and $a$ is not inductive.
+\end{proof}
+
+\begin{remark}[Arithmetic]\label{rem:ackermann}
+$(\HF,\in)$ is the classical model $\Vfin$ of $\mathsf{ZF}$ with Infinity replaced by its
+negation \citep{Kunen2011}. Ackermann's coding \citep{Ackermann1937} gives mutually
+inverse interpretations between $(\HF,\in)$ and the standard model of arithmetic. At the level of
+theories, bi-interpretability with Peano arithmetic requires finite set theory to include, besides
+the negation of Infinity, the statement that every set has a transitive closure
+\citep{KayeWong2007}; $\HF$ satisfies that statement, so the remark applies to the model
+studied here.
+\end{remark}
+
+\subsection{Foundation is rank-audit exactness}\label{ssec:foundation}
+
+The axiom of Foundation goes back to the well-foundedness analyses of \citet{Mirimanoff1917} and
+\citet{VonNeumann1928}. On finite graphs it is equivalent to the existence of an audit.
+
+\begin{theorem}[Finite rank-audit equivalence; \inhouse]\label{thm:tfae}
+For a finite directed graph $G=(V,\to)$ the following are equivalent:
+\begin{enumerate}\itemsep0pt
+  \item $G$ is acyclic (it has no directed cycle, and in particular no self-loop);
+  \item there is an audit $\rho\colon V\to\mathbb N$ that strictly decreases along edges:
+  $u\to w$ implies $\rho(w)<\rho(u)$;
+  \item every nonempty $S\subseteq V$ has a $\to$-minimal element.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$(1)\Rightarrow(2)$: in an acyclic graph every path has at most $|V|-1$ edges, so the height
+of Lemma~\ref{lem:L1} (the length of the longest path from a node) is defined and strictly
+decreases along edges. $(2)\Rightarrow(1)$: a cycle $u_0\to\cdots\to u_{k-1}\to u_0$ would give
+$\rho(u_0)<\rho(u_0)$; a self-loop is the case $k=1$. $(2)\Rightarrow(3)$: an element of $S$
+with least $\rho$-value is $\to$-minimal. $(3)\Rightarrow(1)$: the node set of a cycle is a
+nonempty set without a $\to$-minimal element.
+\end{proof}
+
+\noindent Natural-number ranks always suffice for finite acyclic graphs. Infinite well-founded
+relations may require ordinal-valued ranks.
+
+\begin{corollary}[\inhouse]\label{cor:foundation}
+On a canonical presentation $C(a)$ the rank is a strictly decreasing audit (Lemma~\ref{lem:L3}),
+so by Theorem~\ref{thm:tfae} every nonempty $b\subseteq\TC(\{a\})$ has an $\in$-minimal element.
+Conversely, any finite presentation that admits a strictly decreasing audit is acyclic.
+\end{corollary}
+
+\begin{remark}[Foundation as a certificate]\label{rem:foundation}
+Theorem~\ref{thm:tfae} reads the prohibition of membership cycles as a certificate that a
+staging discipline is in force. Membership graphs with cycles---the self-loop $x=\{x\}$, the
+two-cycle $x=\{y\}$, $y=\{x\}$---are perfectly coherent finite objects. They are excluded by
+\emph{this} instrument because they carry no audit; anti-foundation \citep{Aczel1988} admits them.
+This is countermodel \textbf{CM-2} (\S\ref{sec:atlas}).
+\end{remark}
+
+\subsection{The free-part ledger}
+
+\begin{table}[tbp]\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Axiom in $(\HF,\in)$ & Supplier & Role \\
+\midrule
+Extensionality & lens quotient (Theorem~\ref{thm:p5}) & packaging boundary \\
+Empty set & seed clause $\{\varnothing\}$ & P5 \\
+Pairing & pairing clause & P5 \\
+Union & union clause & P5 \\
+Separation & gate clause & P2 \\
+Power set (of finite sets) & gates $+$ finite collection (Corollary~\ref{cor:finpow}) & P2 $+$ P5 \\
+Replacement (on finite domains) & transport clause & P1 \\
+Choice (for finite families) & least-code selection & --- \\
+Foundation & rank audit (Theorem~\ref{thm:tfae}) & P6 \\
+$\neg\,$Infinity & every element is finite (Theorem~\ref{thm:hfsat}) & boundary \\
+\bottomrule
+\end{tabular}
+\caption{The free part. Each axiom holds in $(\HF,\in)$ and is witnessed by a named clause of the
+finite packaging operator $F$, by finite selection, or by the rank audit; the closure of the
+empty family under these clauses is exactly $\HF$ (Theorem~\ref{thm:hfclosure}). All objects and
+operations are finite; global statements about $\HF$ are made in the ambient metatheory.}
+\label{tab:freepart}
+\end{table}
+
+Every entry of Table~\ref{tab:freepart} is proved here, and several finite cores behind the
+entries are verified in Lean; the schema-level satisfaction statements remain on paper
+(\S\ref{sec:mech}). The next two sections show that the boundary of this column is sharp:
+Infinity cannot be reached from inside it (\S\ref{sec:infinity}), and forgetting the staging
+loses nothing (\S\ref{sec:shadow}).
+ \section{Infinity as a change of rules}\label{sec:infinity}
+
+Theorem~\ref{thm:hfsat} left one axiom out of the free column: Infinity. This section shows that
+the omission is forced. No fixed finite packaging rule, however often it is iterated from
+hereditarily finite sets, produces an infinite set. Infinity is therefore the first place where
+the construction must be told to continue: it is a change of rule, not a longer use of the old
+one.
+
+\subsection{Finite packaging rules}
+
+The result is informative only if the class of excluded rules is broad enough to contain the
+operations of \S\ref{sec:free}. Those operations draw new members not just from the current
+family $A$ but also from inside its elements (the union and gate clauses). The right class is
+therefore the following.
+
+\begin{definition}[Finitely generated completion rule]\label{def:fg}
+An operator $G$ on families of sets is a \emph{completion rule} if $A\subseteq G(A)$ for every
+$A$. It is \emph{finitely generated} if every $x\in G(A)\setminus A$ is a \emph{finite} set with
+\[
+  x\;\subseteq\;A\cup\bigcup_{a\in A}\TC(a).
+\]
+\end{definition}
+
+\begin{lemma}[The packaging operator is finitely generated; \inhouse]\label{lem:Ffg}
+Extend $F$ (Definition~\ref{def:F}) to arbitrary families by requiring the union, gate and
+transport outputs to be finite. The extended operator is finitely generated and agrees with $F$
+on every $A\subseteq\HF$, where the finiteness requirement holds automatically.
+\end{lemma}
+
+The finiteness requirement is essential. Without it, the extension could form the union of an
+infinite set, or one of its infinite subsets, and nothing would confine it to $\HF$.
+
+\begin{lemma}[$\HF$-stability; \inhouse]\label{lem:hfstable}
+If $G$ is finitely generated and $A\subseteq\HF$, then $G(A)\subseteq\HF$. Hence every finite
+iterate $G^n(A_0)$ of a seed $A_0\subseteq\HF$ stays inside $\HF$.
+\end{lemma}
+
+\begin{proof}
+A new element $x$ is a finite set whose members lie in $A$ or in the transitive closure of a
+member of $A$. The transitive closure of a set in $\HF$ consists of sets in $\HF$, so every member
+of $x$ is in $\HF$, and so is $x$. Induct on $n$.
+\end{proof}
+
+\subsection{Non-attainment}
+
+\begin{theorem}[No finitely generated iteration reaches an inductive set;
+\inhouse]\label{thm:nonattain}
+Let $G$ be a finitely generated completion rule and $A_0\subseteq\HF$. Put $A_{n+1}=G(A_n)$ and
+$A_\omega=\bigcup_n A_n$. Then:
+\begin{enumerate}\itemsep0pt
+  \item no $A_n$ contains an inductive set as an element;
+  \item $A_\omega\subseteq\HF$, so $A_\omega$ does not contain $\omega$ or any other inductive
+  set either; admitting $\omega$ requires a step outside the finitely generated class;
+  \item if $G$ is moreover idempotent, the iteration stabilizes after one step:
+  $A_n=A_1$ for all $n\ge1$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:hfstable} every $A_n$ is a subfamily of $\HF$, and no element of $\HF$ is
+inductive (Theorem~\ref{thm:hfsat}). This gives (1), and (2) follows because a union of
+subfamilies of $\HF$ is a subfamily of $\HF$; a step that added $\omega$ would add an infinite
+set, which Definition~\ref{def:fg} forbids. (3) is immediate from $G(G(A_0))=G(A_0)$.
+\end{proof}
+
+Theorem~\ref{thm:nonattain} is a statement about objects produced by rules. It does not say that
+finite axiom systems, or formal theories in general, cannot prove that an infinite set exists;
+that is a different question, about syntax rather than construction.
+
+\subsection{Infinity is a package change}
+
+\begin{corollary}[The first purchase; \inhouse]\label{cor:packagechange}
+Passing from $\HF$ to a family that contains an inductive set cannot be achieved by iterating any
+finitely generated completion rule from any seed inside $\HF$. In the framework's terms, admitting
+$\omega$ is a \emph{package change}: the new object is not produced by running the fixed package
+longer.
+\end{corollary}
+
+We call the corresponding commitment \textbf{C-INF}: the admission of a completed infinite
+collection, in the package-change sense of \citet{SBTIncompleteness}. We do not assert, derive
+or evaluate \textbf{C-INF} here. We have shown only that it cannot be avoided by iteration.
+
+\begin{remark}[Saturation and incompleteness; \metag]\label{rem:saturation}
+Corollary~\ref{cor:packagechange} is one instance of a general pattern: a fixed completion rule
+that adds only finite objects may keep adding them forever, but by iterating itself it cannot
+produce an object of a new kind, here an infinite set. There
+is a deliberate resonance with incompleteness. G\"odel's theorems \citep{Godel1931} say that a
+consistent, effectively axiomatized theory containing enough arithmetic does not prove every
+arithmetical truth, and (under the usual provability conditions) does not prove its own
+consistency. Theorem~\ref{thm:nonattain} says that a fixed finite packaging rule does not reach
+the infinite. Both describe a closed apparatus, run to saturation, with something deliberately out
+of reach. The other half of the picture---what adjoining new content does---is the subject of
+\S\ref{sec:forcing}. The resemblance between the two halves is a reading, not a metatheorem.
+\end{remark}
+ \section{The rank-erased shadow}\label{sec:shadow}
+
+The construction so far carries two kinds of data: sets, and the stages at which they appear.
+This is the \emph{iterative conception} of set in explicitly staged form
+\citep{Boolos1971,Scott1974,Potter2004}. The axioms of $\mathsf{ZFC}$, by contrast, speak of a
+single relation $\in$ and never mention stages. A natural worry is that the flat presentation
+forgets the staging on which our reading of the axioms rests. This section shows that, over
+$\HF$, nothing is forgotten: the stages are recoverable from membership alone.
+
+\subsection{The staged structure and its shadow}
+
+\begin{definition}[Staged structure and rank-erasure]\label{def:staged}
+Let $L_2$ be the two-sorted language with sorts $\mathrm{SET}$ and $\mathrm{STAGE}$, a relation
+$\in$ on sets, a relation $<$ on stages, and a function symbol $\mathrm{st}\colon\mathrm{SET}\to
+\mathrm{STAGE}$. The canonical finite staged structure is
+\[
+  M_2:=(\HF;\ \Ord_{\mathrm{fin}};\ \in;\ <;\ \mathrm{st}=\rank),
+\]
+where $\Ord_{\mathrm{fin}}$ is the set of finite von Neumann ordinals, $<$ is membership between
+ordinals, and $\mathrm{st}(x)=\rank(x)$. Its \emph{rank-erasure} is the one-sorted structure
+$M_1:=(\HF,\in)$.
+\end{definition}
+
+\subsection{Rank is first-order recoverable}
+
+\begin{lemma}[Finite ordinals are definable; \inhouse]\label{lem:orddef}
+The formula $\mathrm{Ord}(u):\equiv\mathrm{Trans}(u)\wedge\mathrm{Lin}_\in(u)$, stating that $u$
+is transitive and that any two distinct elements of $u$ are $\in$-comparable, defines over
+$(\HF,\in)$ exactly the finite von Neumann ordinals.
+\end{lemma}
+
+\begin{proof}
+Every finite ordinal is transitive and $\in$-linear. Conversely, induct on $|u|$. Because $\HF$ has
+no membership cycles (Theorem~\ref{thm:tfae}), $\in$ is irreflexive on $u$, and it is transitive
+on $u$: if $x\in y\in z$ in $u$, linearity leaves $x\in z$, $x=z$ or $z\in x$, and the last two
+would create a cycle. So $\in$ is a strict linear order on the finite set $u$. If $u\ne\varnothing$,
+let $m$ be its largest element. Every other element of $u$ lies in $m$, and $m\subseteq u$ by
+transitivity of $u$, so $u=m\cup\{m\}$. Moreover $m$ is transitive (if $y\in x\in m$, then $y\in
+u$ and $y\in m$ by transitivity of the order) and $\in$-linear, so by induction $m$ is a finite
+ordinal and so is $u$.
+\end{proof}
+
+\begin{theorem}[Rank is definable; \inhouse]\label{thm:rankdef}
+There is an $\{\in\}$-formula $R(x,r)$ such that, over $(\HF,\in)$, $R(x,r)$ holds iff
+$r=\rank(x)$.
+\end{theorem}
+
+\begin{proof}
+The witnesses of a rank computation are themselves hereditarily finite, so the recursion can be
+quantified inside $\HF$. Write, as $\{\in\}$-formulas, Kuratowski pairs, functions and domains.
+Call $(T,g)$ a \emph{rank attestation} for $x$ if $T$ is a transitive set with $x\in T$, $g$ is a
+function with domain $T$, and
+\[
+  g(y)=\textstyle\bigcup_{z\in y}\bigl(g(z)\cup\{g(z)\}\bigr)\qquad\text{for all }y\in T.
+\]
+Let $R(x,r):\equiv\exists T\,\exists g\,\bigl((T,g)\text{ is a rank attestation for }x\wedge
+g(x)=r\bigr)$. For existence take $T=\TC(\{x\})$ and $g=\rank\restr T$, both in $\HF$; an empty $y$
+gets rank $0$. For uniqueness, any attestation satisfies $g(y)=\rank(y)$ for all $y\in T$, by
+induction on rank. Hence $R(x,r)$ holds exactly when $r=\rank(x)$.
+\end{proof}
+
+\subsection{Lossless erasure}
+
+\begin{theorem}[Rank-erasure translation; \inhouse]\label{thm:translation}
+There is an effective translation $\Phi\mapsto\Phi^\flat$ from $L_2$-sentences to
+$\{\in\}$-sentences such that
+\[
+  M_2\models\Phi\quad\Longleftrightarrow\quad M_1\models\Phi^\flat.
+\]
+Consequently the shadow $(\HF,\in)$ determines the stage sort, the stage order and the rank map.
+\end{theorem}
+
+\begin{proof}
+First unnest locally at atoms: an atomic formula $\psi$ containing a term $\mathrm{st}(x)$ is
+replaced by $\exists\alpha\,(\mathrm{st}(x)=\alpha\wedge\psi[\alpha/\mathrm{st}(x)])$ with $\alpha$
+fresh. Because $\mathrm{st}$ is total and single-valued, this is equivalent to the atom, and since
+the replacement happens inside each atom it commutes with negation and the other connectives. On
+unnested formulas translate by recursion: $\mathrm{SET}$ variables and $\in$ are kept,
+$\mathrm{STAGE}$ quantifiers are relativized to $\mathrm{Ord}$ (Lemma~\ref{lem:orddef}),
+$(\alpha<\beta)^\flat:\equiv\alpha\in\beta$, $(\alpha=\beta)^\flat:\equiv\alpha=\beta$, and
+$(\mathrm{st}(x)=\alpha)^\flat:\equiv R(x,\alpha)$ (Theorem~\ref{thm:rankdef}). An induction on
+formulas, carrying variable assignments, shows that each formula and its translation agree; the
+atomic cases are the two lemmas, and $\mathrm{STAGE}$ quantifiers range over the finite ordinals on
+both sides.
+\end{proof}
+
+\begin{remark}[Scope of losslessness]\label{rem:translation}
+Theorem~\ref{thm:translation} licenses the one-sorted bookkeeping of the rest of the paper: when
+we say that the membership structure ``satisfies $\mathsf{ZF}$,'' no staging content has been
+silently dropped. The infinitary analogue, the definability of the von Neumann rank in
+$\mathsf{ZF}$, is standard \citep[Ch.~6]{Jech2003}, and deriving the axioms from the stage picture
+is the classical complement of this recovery \citep{Scott1974,Boolos1971}.
+
+Losslessness is a property of the canonical rank labeling, not of arbitrary stage labelings.
+There are only countably many formulas, even with finitely many parameters from $\HF$, but
+uncountably many maps $\HF\to\Ord_{\mathrm{fin}}$, so most labelings are not definable and would
+be lost under erasure. The set-theoretic staging is exactly one that is not.
+\end{remark}
+ \section{The four commitments and the conditional shadow}\label{sec:purchases}
+
+The free part stops at $\HF$. To obtain the usual universe of sets, and with it the full list of
+$\mathsf{ZFC}$ axioms, the construction must be told to continue in four places. This section
+states those four places as an explicit \emph{assumption box}, explains what each one costs, and
+proves that under the box the membership structure satisfies $\mathsf{ZF}$, or $\mathsf{ZFC}$.
+Everything infinitary enters through stated hypotheses; nothing in this section is presented as
+derived from the finite construction. This follows the practice, used elsewhere in the series, of
+stating a source of new content as a named hypothesis rather than building it into a definition
+\citep{SBTRecognition,SBTIncompleteness}.
+
+\subsection{The setting and the assumption box}\label{ssec:box}
+
+We work in an ambient metatheory satisfying $\mathsf{ZF}$ (with Choice only where stated), and
+consider a transitive class $U$, the \emph{admitted universe}. Statements ``in $U$'' are
+relativized to $U$; for a proper class $U$ this is done separately for each fixed formula, without
+a truth predicate. The \emph{structural premise} asks that the free clauses of $F$ be applied at
+every stage:
+
+\begin{description}[leftmargin=1.2em]
+\item[\textbf{(S)} Structural premise.] $U$ is transitive, $\varnothing\in U$, and for all
+$x,y\in U$ the sets $\{x,y\}$ and $\bigcup x$ belong to $U$. Moreover, for every formula $\varphi$
+with parameters in $U$ and every $x\in U$, the set $\{t\in x: (U,\in)\models\varphi(t)\}$ belongs
+to $U$.
+\end{description}
+
+The last clause is the Separation schema read as a gate at every stage. It is the infinitary form
+of the gate clause, but it is not a consequence of it: finite gates do not prove infinitary
+Separation, so (S) is assumed, not derived. The four commitments are:
+
+\begin{description}[leftmargin=1.2em]
+\item[\textbf{C-INF} (inductive-stage completion).] Some $I\in U$ is inductive: $\varnothing\in
+  I$, and $x\cup\{x\}\in I$ whenever $x\in I$. \emph{Package reading:} the limit of the successor
+  process is admitted as a completed object. \emph{Classical name:} Infinity.
+\item[\textbf{C-POW} (full subpackage completion).] For every $x\in U$ there is $p\in U$ whose
+  elements are exactly the $y\in U$ with $y\subseteq x$. \emph{Package reading:} all gates over
+  $x$ are collected into one object at the next stage. \emph{Classical name:} Power set.
+\item[\textbf{C-REPL} (unbounded transport).] For every formula $\varphi$ with parameters in $U$
+  and every $x\in U$: if each $t\in x$ has exactly one $y\in U$ with $(U,\in)\models\varphi(t,y)$,
+  then the set of these $y$ belongs to $U$. \emph{Package reading:} transport along definable maps
+  is allowed at every scale. \emph{Classical name:} Replacement.
+\item[\textbf{C-SEL} (prototype selection).] Every surjection in $U$ between elements of $U$ has
+  a section in $U$; equivalently, every partition of a set in $U$ into nonempty fibers has a
+  family of fiber representatives (\emph{prototypes}) in $U$. \emph{Classical name:} Choice.
+\end{description}
+
+Two readings deserve care. \textbf{C-POW} asks for the subsets of $x$ that lie in $U$; asking for
+every ambient subset is a stronger, separate demand. And \textbf{C-INF} asks for some inductive
+set; the least one, $\omega$, is then obtained inside $U$ by Separation.
+
+\subsection{What each commitment costs}
+
+\paragraph{C-INF is provably not free.} By Theorem~\ref{thm:nonattain}, no finitely generated
+rule reaches an inductive set. Its non-freeness is a theorem.
+
+\paragraph{C-POW exceeds its finite form.} Corollary~\ref{cor:finpow} gives power sets of finite
+sets for free. \textbf{C-POW} adds the collection of all subsets of an infinite set into one
+object, which no finite clause does.
+
+\paragraph{C-REPL exceeds its finite form.} The transport clause of $F$ gives Replacement on
+finite domains (Theorem~\ref{thm:hfsat}). \textbf{C-REPL} allows images of infinite sets under
+definable maps, with no bound on the ranks of the values.
+
+\paragraph{C-SEL is the price of sections for all surjections.} A lens is a surjection onto what
+it sees, and a choice of prototype in each fiber is a section of it. For the membership lens of
+\S\ref{sec:instrument} no choice is needed: $a\mapsto C(a)$ is an explicitly defined section.
+More generally, a surjection whose source is well-ordered has a section in $\mathsf{ZF}$, namely
+the least preimage. What \textbf{C-SEL} buys is a section for \emph{every} surjection of sets,
+with no such structure given. The resulting prototypes are ``canonical'' only in the sense that
+they are supplied; Choice provides no natural or symmetry-invariant selection.
+
+\begin{theorem}[Choice is the price of sections; finite part \inhouse, ZF equivalence standard]\label{thm:choice}
+\emph{(Finite part.)} Every surjection $f\colon Z\to X$ with $Z$ finite has a section, obtained
+without any choice principle. \emph{(Equivalence.)} Over $\mathsf{ZF}$, the following are
+equivalent: \textup{(1)} the Axiom of Choice; \textup{(2)} every surjection between sets has a
+section; \textup{(3)} every partition of a set into nonempty fibers has a family of prototypes;
+\textup{(4)} every product of a set-indexed family of nonempty sets is nonempty.
+\end{theorem}
+
+\begin{proof}
+Finite part: a finite set $Z$ admits an enumeration $z_1,\dots,z_n$; asserting that one exists and
+fixing it for this one set uses no choice principle. Let $s(x)$ be the member of $f^{-1}(x)$ with
+least index. Equivalence: $(1)\Rightarrow(2)$ by choosing from the fibers; $(2)\Rightarrow(1)$
+because, for nonempty sets $(A_i)_{i\in I}$, the projection $\{(i,a):a\in A_i\}\to I$ is a
+surjection and a section is a choice function; $(2)\Leftrightarrow(3)$ because a section is the
+same thing as a family of fiber representatives; $(1)\Leftrightarrow(4)$ is standard
+\citep{Jech1973}.
+\end{proof}
+
+\begin{corollary}[Price of C-SEL; \condg]\label{cor:choice}
+If $U$ satisfies $\mathsf{ZF}$, then \textbf{C-SEL} holds in $U$ if and only if $U$ satisfies the
+Axiom of Choice. Choice is thus the license to select prototypes for arbitrary lenses: free for
+finite lenses and for lenses that come with a well-ordering or an explicit section, and purchased
+in general.
+\end{corollary}
+
+The equivalence concerns surjections between \emph{sets}. It says nothing about surjections whose
+source or fibers are proper classes, and it is not used for them.
+
+\subsection{The conditional shadow theorem}
+
+\begin{theorem}[Conditional $\mathsf{ZF(C)}$ shadow; \condg]\label{thm:shadow}
+Work in an ambient $\mathsf{ZF}$ and let $U$ be a transitive class satisfying \textup{(S)},
+\textbf{C-INF}, \textbf{C-POW} and \textbf{C-REPL}. Then $(U,\in)$ satisfies every axiom of
+$\mathsf{ZF}$, each schema instance by instance. If $U$ also satisfies \textbf{C-SEL}, then
+$(U,\in)$ satisfies $\mathsf{ZFC}$.
+\end{theorem}
+
+\begin{proof}
+\emph{Free suppliers.} Extensionality holds because $U$ is transitive. Empty set, Pairing, Union
+and each instance of Separation are the clauses of (S). Foundation holds because a nonempty
+$x\in U$ has an $\in$-minimal element in the ambient universe, and that element lies in $U$ by
+transitivity; this uses the well-foundedness of the ambient membership relation, the infinitary
+counterpart of the rank audit. \emph{Purchased suppliers.} Because $U$ is transitive and closed
+under pairs and unions, ``$x\cup\{x\}$'' and ``inductive'' mean the same in $U$ as outside, so
+\textbf{C-INF} gives Infinity. \textbf{C-POW} gives Power set, read in $U$, and \textbf{C-REPL}
+gives each instance of Replacement. For Choice, let $x\in U$ be a set of nonempty sets. The set
+$\{(i,a): i\in x,\ a\in i\}$ is in $U$, being a definable subset of $x\times\bigcup x$, which is
+available from Power set and Separation. Its projection to $x$ is a surjection in $U$, and a
+section supplied by \textbf{C-SEL} is a choice function.
+\end{proof}
+
+Inside such a $U$, the cumulative hierarchy $V_0=\varnothing$, $V_{\alpha+1}=\powset(V_\alpha)$,
+$V_\lambda=\bigcup_{\beta<\lambda}V_\beta$ is defined by transfinite recursion \citep{Zermelo1930}
+and every set has a definable rank \citep[Ch.~6]{Jech2003}. So $(U,\in)$ is the rank-erased
+membership structure of its own staged hierarchy, the infinitary analogue of
+Theorem~\ref{thm:translation}. These classical facts are imported, not reproved.
+
+Theorem~\ref{thm:shadow} is a conditional statement about a given $U$; it does not produce one.
+In particular, nothing here implies the existence of an inaccessible cardinal, of a transitive set
+model of $\mathsf{ZF}$, or the consistency of $\mathsf{ZFC}$. For a truncated universe $V_\kappa$,
+for instance, Replacement holds only if definable images of sets in $V_\kappa$ stay of rank below
+$\kappa$, which an arbitrary cutoff does not guarantee \citep{MontagueVaught1959}.
+
+\begin{table}[tbp]\centering
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Axiom & In $\HF$ (free) & At infinite stages & Why needed \\
+\midrule
+Extensionality & lens quotient (Thm.~\ref{thm:p5}) & transitivity of $U$ & --- \\
+Empty, Pairing, Union & packaging clauses & premise (S) & --- \\
+Separation & gate clause & premise (S) & --- \\
+Foundation & rank audit (Thm.~\ref{thm:tfae}) & ambient well-foundedness & --- \\
+\midrule
+Infinity & fails (Thm.~\ref{thm:hfsat}) & \textbf{C-INF} & $\HF$; Thm.~\ref{thm:nonattain} \\
+Power set & finite sets (Cor.~\ref{cor:finpow}) & \textbf{C-POW} & $H_{\omega_1}$ \\
+Replacement & finite domains & \textbf{C-REPL} & $V_{\omega+\omega}$ \\
+Choice & finite families & \textbf{C-SEL} & symmetric models of $\mathsf{ZF}$ \\
+\bottomrule
+\end{tabular}
+\caption{The free/purchased ledger. The upper block holds in $\HF$ by finite clauses and holds at
+infinite stages by the structural premise (S), which applies the same clauses at every stage, or
+by ambient well-foundedness. The lower block is supplied at infinite stages only by the four named
+commitments; the last column names the countermodel or theorem showing that the commitment cannot
+be dropped (Proposition~\ref{prop:nonredundancy}).}
+\label{tab:factorization}
+\end{table}
+
+\subsection{Non-redundancy}\label{ssec:nonredundancy}
+
+The ledger is only meaningful if each purchase buys something the others do not.
+
+\begin{proposition}[Each commitment is needed; mixed grades]\label{prop:nonredundancy}
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Dropping \textbf{C-INF}} \inhouse. $U=\HF$ satisfies (S), \textbf{C-POW},
+\textbf{C-REPL} and \textbf{C-SEL}, and contains no inductive set (Theorem~\ref{thm:hfsat}).
+\item \emph{Dropping \textbf{C-REPL}} \condg, in ambient $\mathsf{ZFC}$. $U=V_{\omega+\omega}$
+satisfies (S), \textbf{C-INF}, \textbf{C-POW} and \textbf{C-SEL}, so it is a model of Zermelo set
+theory with Choice. \textbf{C-REPL} fails: the map $n\mapsto\omega+n$ is definable in $U$ on the
+domain $\omega\in U$, with each value in $U$, but its image has rank $\omega+\omega$ and is not an
+element of $U$ \citep[Ch.~12]{Jech2003}.
+\item \emph{Dropping \textbf{C-POW}} \condg, in ambient $\mathsf{ZFC}$. Let $U=H_{\omega_1}$, the
+hereditarily countable sets. It satisfies (S), \textbf{C-INF}, \textbf{C-REPL} (indeed the stronger
+Collection schema) and \textbf{C-SEL} \citep{GitmanHamkinsJohnstone2016}. \textbf{C-POW} fails for
+$x=\omega$: every subset of $\omega$ is hereditarily countable and hence in $U$, so a power set of
+$\omega$ in $U$ would contain all of the uncountably many reals, while every element of $U$ is
+countable.
+\item \emph{Dropping \textbf{C-SEL}} \condg, relative consistency. If $\mathsf{ZF}$ is consistent,
+so is $\mathsf{ZF}$ together with the existence of a surjection that has no section; Cohen's
+symmetric models give such models of $\mathsf{ZF}$ without atoms \citep{Cohen1966,Jech1973}. By
+Corollary~\ref{cor:choice}, \textbf{C-SEL} fails in them.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof notes]
+(i) $\HF$ is transitive and closed under the clauses of (S) by Theorem~\ref{thm:hfsat}; it
+satisfies Power set, Replacement and Choice internally by the same theorem, and these are exactly
+\textbf{C-POW}, \textbf{C-REPL} and \textbf{C-SEL} read in $U=\HF$. (ii) Finite rank increments of
+sets in $V_{\omega+\omega}$ stay below the limit $\omega+\omega$, which gives the closure
+properties; a choice function of a set in $V_{\omega+\omega}$ has only finitely larger rank. (iii)
+For Collection over a countable domain, pick one hereditarily countable witness per element using
+ambient Choice; the countable union of their countable transitive closures is countable, by the
+regularity of $\omega_1$. Each set in $U$ has a countable well-order in $U$, which gives internal
+sections.
+\end{proof}
+
+The witness in (i) matters most for the paper's claim, because it is the boundary of the free
+column itself: drop the first purchase and the remaining three are still satisfied, by $\HF$. The
+other witnesses are classical; they are recalled here, not reproved.
+ \section{Forcing as strict extension}\label{sec:forcing}
+
+The Six Birds framework proves, in its finite setting, a counting lemma about how rarely a random
+predicate is definable from a coarse partition. It was called, half in jest, the ``finite forcing
+lemma''~\citep{SBTFoundationsI}, with an explicit warning that its kinship with Cohen's forcing
+\citep{Cohen1963,Cohen1966} was only an analogy. This section makes the kinship precise and marks
+where it stops.
+
+The finite lemma counts the failures of the same \emph{disagreement} and \emph{splitting}
+conditions that Cohen forcing uses (\S\ref{ssec:finitebridge}). Over $\omega$ those failures
+disappear (\S\ref{ssec:vanish}), and as a consequence a Cohen-generic real over a countable
+transitive model is new, splits every infinite set the model can code, and strictly enlarges the
+algebra of predicates the model can express (\S\S\ref{ssec:genericity}--\ref{ssec:strict}). The
+implication runs in one direction only. Novelty and splitting do not make a real generic; we give
+an explicit counterexample and the exact test that does characterize genericity
+(\S\ref{ssec:converse}). Finally, the finite probabilities measure novelty, not genericity:
+Cohen reals form a set that is large in the sense of category but has measure zero
+(\S\ref{ssec:category}).
+
+\subsection{The finite Cohen bridge}\label{ssec:finitebridge}
+
+Fix a finite index set $Z$ of size $N$ and a lens $f\colon Z\to X$ with $K$ nonempty blocks
+$B_x=f^{-1}(x)$; the degenerate case $N=K=0$ is allowed. A \emph{predicate} is a total map
+$h\colon Z\to\{0,1\}$. It is \emph{definable from $f$}, or visible to $f$, if it is constant on
+every block. This is the paper's observational convention, not formula definability in a
+specified language \citep[for which see][]{Libkin2004}. Equivalently, $h$ is definable from $f$
+if the refined lens $z\mapsto(f(z),h(z))$ induces the same partition as $f$.
+
+The \emph{finite Cohen poset} $\Cgen_Z$ consists of the partial functions $p\colon
+Z\rightharpoonup\{0,1\}$, with $q\le p$ when $q$ extends $p$. A total predicate $h$ determines the
+\emph{restriction filter} $G_h=\{p:p\subseteq h\}$. For a definable $g$, and for a block $B_x$ with
+at least two elements, consider
+\[
+\begin{aligned}
+  D_g&=\{p:\ p(z)\ne g(z)\text{ for some }z\in\dom p\},\\
+  E_x&=\{p:\ p(z)\ne p(z')\text{ for some }z,z'\in B_x\cap\dom p\}.
+\end{aligned}
+\]
+
+\begin{lemma}[Meeting equivalences; \inhouse]\label{lem:meeting}
+For every total $h$:
+\begin{enumerate}\itemsep0pt
+\item $G_h$ meets $D_g$ iff $h\ne g$. Hence $h$ is not definable from $f$ iff $G_h$ meets $D_g$
+for every definable $g$.
+\item $G_h$ meets $E_x$ iff $h$ is not constant on $B_x$. Hence $h$ splits every block with at
+least two elements iff $G_h$ meets every $E_x$.
+\end{enumerate}
+\end{lemma}
+
+The two conditions in the lemma are different. A non-definable $h$ need only split \emph{some}
+block; splitting \emph{every} non-singleton block is stronger.
+
+\begin{theorem}[Density defects; \inhouse]\label{thm:densitydefect}
+For a family $\mathcal D$ of conditions, let $F(\mathcal D)=\{p:\text{no }q\le p\text{ lies in
+}\mathcal D\}$ be the set of conditions that have no extension in $\mathcal D$. Then
+\[
+  F(D_g)=\{g\},\qquad
+  F(E_x)=\{p:\ B_x\subseteq\dom p\text{ and }p\restr B_x\text{ is constant}\}.
+\]
+So the only condition with no extension in $D_g$ is the total condition $g$ itself, and the
+conditions with no extension in $E_x$ are exactly those that have already fixed the whole block to
+a constant.
+\end{theorem}
+
+\begin{proof}
+For $D_g$: a condition that is not a restriction of $g$ already disagrees with $g$ somewhere, so
+it lies in $D_g$. A proper restriction of $g$ leaves some coordinate $z$ free, and setting it to
+$1-g(z)$ gives an extension in $D_g$. The total condition $g$ has no extension but itself, which
+is not in $D_g$. For $E_x$: if $p$ fixes $B_x$ to a constant, no extension splits the block.
+Otherwise, either $p$ already splits $B_x$; or $p$ assigns at least one bit on $B_x$ and leaves
+another coordinate of $B_x$ free, which can be set to the opposite value; or $p$ assigns no bit on
+$B_x$, and two free coordinates of $B_x$ can be set to $0$ and $1$.
+\end{proof}
+
+\begin{remark}[Genericity in the finite poset is trivial]\label{rem:finitegeneric}
+In $\Cgen_Z$ a total condition has no proper extension, so a genuinely dense family contains
+every total condition, and every restriction filter $G_h$ meets every dense family. The families
+$D_g$ are not dense: $g$ has no extension in $D_g$. The finite statements in this subsection are therefore about meeting
+these particular \emph{defective} families, not about genericity in the finite poset.
+\end{remark}
+
+\begin{theorem}[The counting lemma; \inhouse]\label{thm:counting}
+Let $h$ be a uniformly random total predicate. Then
+\begin{enumerate}\itemsep0pt
+\item $h$ is definable from $f$, equivalently $G_h$ misses some $D_g$, with probability exactly
+$2^{-(N-K)}$;
+\item $h$ splits every block with at least two elements, equivalently $G_h$ meets every $E_x$, with
+probability exactly $\prod_{|B_x|\ge2}\bigl(1-2^{1-|B_x|}\bigr)$, and hence with probability at
+least $1-\sum_{|B_x|\ge2}2^{1-|B_x|}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) By Lemma~\ref{lem:meeting}, $G_h$ misses $D_g$ exactly when $h=g$. There are $2^K$ definable
+predicates, one bit per block, among $2^N$ predicates in all, giving $2^K/2^N$. (2) The blocks are
+disjoint, so the events ``$h$ is constant on $B_x$'' are independent, each with probability
+$2\cdot2^{-|B_x|}$. The product and the union bound follow.
+\end{proof}
+
+When $K=N$ every block is a singleton: every predicate is definable, and splitting every
+non-singleton block holds vacuously. Theorem~\ref{thm:counting}(1) \emph{is} the framework's
+finite forcing lemma. Its rarity $2^{-(N-K)}$ is the probability that $h$ lands exactly on the
+defect $F(D_g)=\{g\}$ of one of the disagreement families. The lemma is therefore the statistics of
+the density families that forcing uses, at a finite size where those families are defective.
+
+\subsection{Over \texorpdfstring{$\omega$}{omega} the defects vanish}\label{ssec:vanish}
+
+Let $\Cgen=\Fn(\omega,2)$ be the poset of finite partial functions $p\colon\omega
+\rightharpoonup\{0,1\}$, ordered by extension: the finite Cohen poset over the infinite index
+$\omega$. Define $D_g$ for any total $g\colon\omega\to\{0,1\}$, and $E_A$ for any $A\subseteq\omega$,
+exactly as above.
+
+\begin{corollary}[Infinite-index contrast; \inhouse]\label{cor:infinitecontrast}
+In $\Fn(\omega,2)$, $D_g$ is dense for every total $g$, and $E_A$ is dense for every
+\emph{infinite} $A\subseteq\omega$. A finite $A$ with at least two elements keeps its defect.
+\end{corollary}
+
+\begin{proof}
+A finite condition leaves infinitely many coordinates free. One of them can be set against $g$,
+and an infinite $A$ contains two free coordinates, which can be set to $0$ and $1$. A condition
+that fixes a finite $A$ to a constant has no extension splitting $A$.
+\end{proof}
+
+The finite defect $\{g\}$ disappears because no finite condition is total over $\omega$, and the
+splitting defect disappears because no finite condition fixes an infinite block. What was rare in
+the finite count becomes dense, and density is what genericity meets.
+
+\subsection{Generic reals are new}\label{ssec:genericity}
+
+We use two named hypotheses.
+\begin{description}[leftmargin=1.2em]
+\item[\textbf{J1}.] There is a countable transitive model $M$ of $\mathsf{ZFC}$. Its countability
+is external: inside $M$, the set of reals is uncountable.
+\item[\textbf{J2}.] The classical generic-extension machinery \citep{Cohen1966,Kunen2011}: if $G$
+is $\Cgen$-generic over $M$, there is a transitive model $M[G]$ of $\mathsf{ZFC}$ with
+$M\subseteq M[G]$, $G\in M[G]$, and the same ordinals as $M$.
+\end{description}
+The results of this subsection and the next use \textbf{J1} only; \textbf{J2} is used only to name
+the model in which the new real lives.
+
+\begin{definition}[Coded predicates]\label{def:groundlens}
+Let $\mathcal B_M:=\powset(\omega)\cap M$, the subsets of $\omega$ that belong to $M$; we identify
+each with its characteristic function, an \emph{$M$-coded predicate} on $\omega$. Since $M$ is a
+transitive model, $\mathcal B_M$ contains $\varnothing$ and $\omega$ and is closed under finite
+Boolean operations; it is a Boolean algebra of predicates on $\omega$.
+\end{definition}
+
+\begin{lemma}[Few coded predicates; \condg, under \textbf{J1}]\label{lem:countable}
+$\mathcal B_M$ is countable, while $2^\omega$ is uncountable.
+\end{lemma}
+
+This is the infinitary counterpart of $2^K$ visible predicates among $2^N$. The analogy has a
+limit, discussed in \S\ref{ssec:strict}: $\mathcal B_M$ is not the family of predicates visible to
+any partition of $\omega$.
+
+\begin{lemma}[Generics exist; \condg, under \textbf{J1}]\label{lem:RS}
+For every $p\in\Cgen$ there is a filter $G\ni p$ that meets every dense subset of $\Cgen$ lying in
+$M$.
+\end{lemma}
+
+\begin{proof}
+Since $M$ is transitive and computes $\omega$ correctly, the poset $\Cgen$ as computed in $M$ is
+the actual poset, and density of a set in $M$ means the same inside $M$ as outside. Because $M$ is
+countable, enumerate its dense subsets of $\Cgen$ as $D_0,D_1,\dots$ and fix an enumeration of
+$\Cgen$. Build $p=p_0\ge p_1\ge\cdots$, with $p_{n+1}$ the first extension of $p_n$ in $D_n$ in that
+enumeration, so that no choice principle is used. The upward closure of the chain is a filter
+containing $p$ and meeting every $D_n$. This is the Rasiowa--Sikorski lemma
+\citep{RasiowaSikorski1950}.
+\end{proof}
+
+\begin{theorem}[Generic reals are new; \condg, under \textbf{J1}]\label{thm:novelty}
+Let $G$ be $\Cgen$-generic over $M$ and $x_G:=\bigcup G$. Then $x_G\colon\omega\to\{0,1\}$ is
+total, $G$ is exactly the restriction filter $\{p:p\subseteq x_G\}$, and:
+\begin{enumerate}\itemsep0pt
+\item $x_G\ne y$ for every $y\in\mathcal B_M$; in particular $x_G\notin M$;
+\item $x_G$ splits every infinite $A\in\mathcal B_M$: there are $m,n\in A$ with $x_G(m)\ne x_G(n)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Conditions in a filter are compatible, so $x_G$ is a function. The sets $T_n=\{p:n\in\dom p\}$ are
+dense and lie in $M$, so $G$ meets each of them and $x_G$ is total. Every $p\in G$ is a
+restriction of $x_G$; conversely, a finite restriction of $x_G$ is contained in a common extension
+of finitely many members of $G$, which lies in $G$, so it lies in $G$ by upward closure. For (1),
+let $y\in\mathcal B_M$. The family $D_y$ is dense (Corollary~\ref{cor:infinitecontrast}) and lies in
+$M$, being defined there from $y$. So $G$ meets $D_y$, and $x_G$ disagrees with $y$ somewhere. Every
+real in $M$ is such a $y$, so $x_G\notin M$. For (2), let $A\in M$ be infinite. Then $E_A$ is dense
+(Corollary~\ref{cor:infinitecontrast}) and lies in $M$, so $G$ meets it.
+\end{proof}
+
+The generic real thus escapes the ground model through the same disagreement families $D_y$ that
+appear in the finite lemma, now dense because the index set is infinite.
+
+\subsection{Novelty is not genericity}\label{ssec:converse}
+
+The finite lemma suggests a converse: perhaps a real that is new and splits every infinite coded
+set is already generic. It is not.
+
+\begin{proposition}[The converse fails; \condg, under \textbf{J1}]\label{prop:converse}
+There is a total $x\colon\omega\to\{0,1\}$ such that $x\notin M$ and $x$ splits every infinite
+$A\in\mathcal B_M$, but the restriction filter of $x$ is not generic over $M$.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:RS} take a generic $G$ and let $r=x_G$. Define the \emph{duplicated} real
+$x(2n)=x(2n+1)=r(n)$. If $x$ were in $M$, so would be $r(n)=x(2n)$; hence $x\notin M$. Let $A\in M$
+be infinite, and let $B=\{\lfloor a/2\rfloor:a\in A\}$. Then $B\in M$, and $B$ is infinite, since the
+preimage of a finite $B$ would have at most $2|B|$ elements. By Theorem~\ref{thm:novelty}(2), $r$
+splits $B$: there are $b,b'\in B$ with $r(b)\ne r(b')$. Choosing $a,a'\in A$ with $\lfloor
+a/2\rfloor=b$ and $\lfloor a'/2\rfloor=b'$ gives $x(a)=r(b)\ne r(b')=x(a')$, so $x$ splits $A$.
+Now consider
+\[
+  D^\ast=\{p:\ \text{for some }n,\ 2n,2n+1\in\dom p\text{ and }p(2n)\ne p(2n+1)\}.
+\]
+$D^\ast$ is defined without parameters, so it lies in $M$, and it is dense: above any condition,
+choose a pair $2n,2n+1$ beyond its domain and assign $0$ and $1$. No restriction of $x$ lies in
+$D^\ast$, so the restriction filter of $x$ misses a dense set in $M$.
+\end{proof}
+
+Genericity therefore asks for more than novelty and splitting. The exact requirement is meeting
+\emph{every} dense set coded in $M$, and it has a clean topological form. Give $2^\omega$ the
+product topology, whose basic open sets are the cylinders $[p]=\{x: p\subseteq x\}$. A \emph{tree} is a
+set $T$ of conditions closed under restriction. A closed set $F\subseteq2^\omega$ is \emph{coded in
+$M$} if $F=[T]$ for a tree $T\in M$, where $x\in[T]$ iff every finite restriction of $x$ lies in
+$T$. The code is in $M$; its branches are computed outside $M$ and may include reals that are not
+in $M$. Because the tree is finitely branching, emptiness of $[p]\cap[T]$ is decided at a finite
+level:
+\[
+  [p]\cap[T]=\varnothing\iff\exists n\ \bigl(\dom p\subseteq n\ \wedge\ \forall s\in2^n\
+  (p\subseteq s\Rightarrow s\notin T)\bigr).
+\]
+This criterion is arithmetic in $p$ and $T$, hence absolute for the transitive model $M$, and so
+are the statements that $[T]$ is nowhere dense and that a family of conditions in $M$ is dense
+(since $M$ contains exactly the actual finite conditions).
+
+\begin{theorem}[Exact recognition of genericity; \condg, under \textbf{J1}]\label{thm:recognition}
+For a total $x\colon\omega\to\{0,1\}$, the restriction filter $G_x=\{p:p\subseteq x\}$ is generic
+over $M$ if and only if $x$ lies in no closed nowhere dense subset of $2^\omega$ coded in $M$.
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) Let $F=[T]$ be closed nowhere dense with $T\in M$. By the arithmetic criterion
+above and Separation in $M$, the conditions $p$ with $[p]\cap F=\varnothing$ form a family in $M$,
+and it is dense because $F$ is nowhere dense. A
+generic $G_x$ meets it, so some $p\subseteq x$ has $[p]\cap F=\varnothing$, and $x\notin F$.
+($\Leftarrow$) Let $D\in M$ be dense. Let $T_D$ be the set of conditions none of whose restrictions
+lies in $D$; it is a tree, and it belongs to $M$ by Separation from $D$; and its branch set $F_D=[T_D]$ is the complement of the open set
+$\bigcup_{p\in D}[p]$. Density of $D$ makes that open set dense, so $F_D$ is closed nowhere dense
+and coded in $M$. If $x\notin F_D$, some restriction of $x$ lies in $D$, so $G_x$ meets $D$.
+\end{proof}
+
+The tests used in Theorem~\ref{thm:novelty} are special cases: avoiding the singleton $\{y\}$ for
+$y\in M$ is meeting $D_y$, and avoiding the closed set of reals constant on an infinite $A\in M$ is
+meeting $E_A$. They form a proper subfamily of all coded closed nowhere dense tests. The
+duplicated real of Proposition~\ref{prop:converse} passes all of them and fails the test
+belonging to $D^\ast$: it lies in the coded closed nowhere dense set of reals that are constant on
+every pair $\{2n,2n+1\}$. Figure~\ref{fig:genericity} summarizes the relations. The density of
+$D^\ast$, the fact that every duplicated real misses it, and the construction of the obstruction
+trees $T_D$ with their nowhere density are verified in Lean (\S\ref{sec:mech}); the existence of $M$
+and of generic reals is not.
+
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+    font=\footnotesize,
+    reg/.style={draw, rounded corners=8pt, thick},
+    dot/.style={circle, fill, inner sep=1.5pt}]
+\draw[reg, fill=gray!6] (0,0) rectangle (14.2,6.4);
+  \node[anchor=north west] at (0.15,6.35) {\textbf{all reals} $2^\omega$};
+\draw[reg, fill=gray!22] (0.35,0.35) rectangle (2.75,5.3);
+  \node[align=center] at (1.55,4.7) {reals in $M$\\(countable)};
+  \node[dot] at (1.55,2.6) {};
+  \node[anchor=north, align=center] at (1.55,2.45) {$y\in\mathcal B_M$\\fails its own\\test $D_y$};
+\draw[reg, fill=orange!10] (3.05,0.35) rectangle (13.85,5.85);
+  \node[anchor=north west] at (3.15,5.8) {\textbf{new}: outside $M$};
+  \node[anchor=north east] at (13.75,5.8) {\emph{measure one}};
+\draw[reg, fill=orange!22] (3.4,0.65) rectangle (13.5,5.1);
+  \node[anchor=north west] at (3.5,5.05) {\textbf{new and splitting} every infinite
+    $A\in\mathcal B_M$};
+  \node[anchor=north east] at (13.4,5.05) {\emph{measure one}};
+\draw[reg, fill=blue!12] (8.6,0.95) rectangle (13.2,4.2);
+  \node[anchor=north west, align=left, text width=4.3cm] at (8.7,4.1)
+       {\textbf{Cohen generic over $M$}\\[2pt]avoids every $M$-coded closed nowhere
+        dense set (Thm.~\ref{thm:recognition})\\[4pt]\emph{comeagre, measure zero}};
+\node[dot, red!70!black] at (4.2,2.4) {};
+  \node[anchor=west, align=left, text=red!70!black] at (4.4,2.4)
+       {duplicated real\\$x(2n)=x(2n+1)=r(n)$:\\new and splitting,\\but fails $D^\ast$
+        (Prop.~\ref{prop:converse})};
+\end{tikzpicture}
+\caption{Where Cohen reals sit. Every generic real is new and splits every infinite coded set
+(Theorem~\ref{thm:novelty}), so the blue region lies inside both orange ones. The converse
+fails: the duplicated real (red) is new and splitting but misses the dense set $D^\ast$
+(Proposition~\ref{prop:converse}). Genericity is characterized exactly by avoiding all coded closed
+nowhere dense sets (Theorem~\ref{thm:recognition}). In measure the orange regions are full and the
+blue region is null; in category the blue region is comeagre (Proposition~\ref{prop:category}).
+Region sizes are schematic.}
+\label{fig:genericity}
+\end{figure}
+ 
+\subsection{Strict extension of the coded predicates}\label{ssec:strict}
+
+In the finite bridge, ``definable'' meant constant on the blocks of a partition. That picture
+does not transfer literally to $\omega$.
+
+\begin{proposition}[The coded predicates are not a partition lens; \inhouse, last sentence under \textbf{J1}]\label{prop:nolens}
+Let $f\colon\omega\to X$ be any map. If every singleton predicate $\{k\}$ is constant on the fibers
+of $f$, then $f$ is injective and \emph{every} predicate on $\omega$ is constant on its fibers. In
+particular, under \textbf{J1}, $\mathcal B_M$ is not the family of predicates visible to any map on
+$\omega$.
+\end{proposition}
+
+\begin{proof}
+If $f(m)=f(n)$, the predicate $\{m\}$ takes the same value at $m$ and $n$, so $m=n$. An injective
+map has singleton fibers, on which every predicate is constant. Under \textbf{J1},
+$\mathcal B_M$ contains every singleton (each finite subset of $\omega$ is in $M$) but, being
+countable, not every predicate.
+\end{proof}
+
+The right infinitary counterpart of the finite visible predicates is therefore the Boolean algebra
+$\mathcal B_M$ itself, closed under the unions that $M$ can code but not under arbitrary external
+countable unions. For a predicate $x$, let $\mathcal B_M[x]$ denote the Boolean algebra generated by
+$\mathcal B_M\cup\{x\}$.
+
+\begin{theorem}[Adjoining a generic is a strict extension; \condg]\label{thm:strict}
+\begin{enumerate}\itemsep0pt
+\item \inhouse. For any predicate $x$ on $\omega$, $\mathcal B_M\subseteq\mathcal B_M[x]$, and the
+inclusion is strict iff $x\notin\mathcal B_M$.
+\item Under \textbf{J1}, if $G$ is generic over $M$, then $\mathcal B_M\subsetneq\mathcal
+B_M[x_G]$. Under \textbf{J2} in addition, $\mathcal B_M[x_G]\subseteq\powset(\omega)\cap M[G]$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) If $x\in\mathcal B_M$, every Boolean combination of $x$ with elements of $\mathcal B_M$ is
+already in $\mathcal B_M$, so the two algebras coincide. If $x\notin\mathcal B_M$, then $x$ itself
+is a new element. (2) The first claim is (1) together with Theorem~\ref{thm:novelty}(1). For the
+second, $M[G]$ contains $x_G$ and every element of $\mathcal B_M$, and it is closed under finite
+Boolean operations.
+\end{proof}
+
+The extension is strict on the same domain $\omega$: no new points are added, but the algebra of
+expressible predicates grows. The framework's own formulation of strict extension is a failure of
+factorization \citep{SBTCantorShell}, and Cohen forcing also satisfies that formulation, in a
+deliberately coarse form.
+
+\begin{theorem}[Non-factorization; \condg, under \textbf{J1}]\label{thm:nonfactor}
+Let $\Gamma_M$ be the set of $\Cgen$-generic filters over $M$, and define $\pi_0(G):=M$ and
+$\pi_1(G):=x_G$. Then $\pi_1$ does not factor through $\pi_0$: there is no $\varphi$ with
+$\pi_1=\varphi\circ\pi_0$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:RS} take generics $G^0\ni(0\mapsto0)$ and $G^1\ni(0\mapsto1)$. Then
+$\pi_0(G^0)=\pi_0(G^1)$, while $x_{G^0}(0)=0\ne1=x_{G^1}(0)$. A map through the constant $\pi_0$
+would be constant.
+\end{proof}
+
+Theorem~\ref{thm:nonfactor} uses a constant ground readout and so says little by itself; it does not
+show that every observation available in $M$ fails to distinguish generics. The substantive
+statement is Theorem~\ref{thm:strict}. Note also that strict extension of the predicate algebra is
+not inclusion of first-order theories: $M$ and $M[G]$ can disagree about sentences of the old
+language. If $M$ satisfies $V=L$, for example, then by \textbf{J2} $M[G]$ does not: $M[G]$ has the
+same ordinals and hence the same constructible sets as $M$, and $x_G\notin M$.
+
+\begin{corollary}[Cohen extension as a package change; \condg]\label{cor:strictcohen}
+Adjoining a Cohen-generic real strictly enlarges the ground model's algebra of coded predicates
+(Theorem~\ref{thm:strict}) by a predicate that no Boolean combination of ground predicates
+produces; by \textbf{J2}, $M[G]$ is the model in which it lives. In the framework's terms this is a
+package change \citep{SBTIncompleteness,SBTCantorShell}: new content obtained by adjoining
+something the fixed package cannot express, the infinitary counterpart of the strict refinement
+$(f,h)$ of a finite lens.
+\end{corollary}
+
+\subsection{Category, measure, and the counting lemma}\label{ssec:category}
+
+The finite lemma is a statement about probability, while genericity is a statement about
+category. Over $\omega$ the two come apart sharply.
+
+\begin{proposition}[Cohen reals are comeagre but null; \condg, under \textbf{J1}]\label{prop:category}
+Give $2^\omega$ the fair-coin measure. The reals $x$ with $G_x$ generic over $M$ form a comeagre set
+of measure zero. By contrast, the reals outside $M$, and the reals that split every infinite
+$A\in\mathcal B_M$, each form a set of measure one.
+\end{proposition}
+
+\begin{proof}
+Genericity means lying in each of the countably many dense open sets $\bigcup_{p\in D}[p]$, for $D$
+dense in $M$; their intersection is comeagre. For measure zero, enumerate the finite binary strings
+as $s_0,s_1,\dots$ by a fixed arithmetic enumeration, and for $k,i\in\omega$ let $t_{k,i}$ be $s_i$
+padded with zeros to length $\max(|s_i|,k+i+1)$. The open set $U_k=\bigcup_i[t_{k,i}]$ is dense and
+has measure at most $\sum_i2^{-(k+i+1)}=2^{-k}$. The conditions extending some $t_{k,i}$ form a
+dense family defined in $M$ without choice, so every generic real lies in every $U_k$, and the
+generic reals form a null set. On the other side, $M$ contains only countably many reals, and for
+each infinite $A$ the reals constant on $A$ form a null set; a countable union of null sets is
+null.
+\end{proof}
+
+So the finite probability $1-2^{-(N-K)}\to1$ of meeting every disagreement family, which the
+diagnostics of \S\ref{sec:mech} display, is the finite counterpart of novelty, which has measure
+one, and not of full genericity, which has measure zero. Measure and category are dual notions of
+largeness that disagree here, as they classically can \citep{Oxtoby1980}.
+
+\begin{table}[tbp]\centering
+\small
+\begin{tabular}{@{}p{0.44\textwidth}p{0.50\textwidth}@{}}
+\toprule
+Finite bridge (\S\ref{ssec:finitebridge}) & Cohen forcing over a countable $M$ (\S\S\ref{ssec:vanish}--\ref{ssec:category}) \\
+\midrule
+finite index $Z$, $|Z|=N$ & infinite index $\omega$ \\
+visible predicates: $2^K$ of $2^N$ & coded predicates $\mathcal B_M$: countably many of $2^{\aleph_0}$; a Boolean algebra, not a partition lens (Prop.~\ref{prop:nolens}) \\
+predicate $h$, restriction filter $G_h$ & real $x_G$, generic filter $G=G_{x_G}$ \\
+$D_g$ with defect $F(D_g)=\{g\}$ & $D_y$ dense for every $y$ (Cor.~\ref{cor:infinitecontrast}) \\
+$E_x$ with defect at constant blocks & $E_A$ dense for every infinite $A$ \\
+$h$ meets all $D_g$ iff $h$ is not definable & generic $\Rightarrow$ new and splitting (Thm.~\ref{thm:novelty}); not conversely (Prop.~\ref{prop:converse}) \\
+every total $h$ meets every dense set (Rem.~\ref{rem:finitegeneric}) & generic $\Leftrightarrow$ avoids every coded closed nowhere dense set (Thm.~\ref{thm:recognition}) \\
+$\Pr(\text{meets all }D_g)=1-2^{-(N-K)}$ & new reals: measure one; generic reals: comeagre, measure zero (Prop.~\ref{prop:category}) \\
+strict refinement $(f,h)$ when $h$ is not definable & strict extension $\mathcal B_M\subsetneq\mathcal B_M[x_G]$ (Thm.~\ref{thm:strict}) \\
+package change at $\omega$ (Thm.~\ref{thm:nonattain}) & generic adjunction (Cor.~\ref{cor:strictcohen}) \\
+\bottomrule
+\end{tabular}
+\caption{The finite bridge and Cohen forcing side by side. Each row is backed by the indicated
+result; rows 6--8 record where the finite picture does not transfer.}\label{tab:correspondence}
+\end{table}
+
+\subsection{The continuum hypothesis}\label{sec:ch}
+
+\begin{theorem}[CH is not settled by the ground; \modelg]\label{thm:ch}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item If $\mathsf{ZF}$ is consistent, so is $\mathsf{ZFC}+\mathsf{CH}$
+\citep{Godel1938,Godel1940}, and so is $\mathsf{ZFC}+\neg\mathsf{CH}$ \citep{Cohen1963}.
+\item Assume, as a separate hypothesis, a countable transitive model $M$ of
+$\mathsf{ZFC}+\mathsf{GCH}$. Adding $\aleph_2^M$ Cohen reals, with the poset
+$\Fn(\aleph_2^M\times\omega,2)$, gives a generic extension $M[G]$ with the same ordinals and,
+by the countable chain condition, the same cardinals as $M$; it has at least $\aleph_2$ distinct
+reals, so $M\models\mathsf{CH}$ while $M[G]\models\neg\mathsf{CH}$
+\citep{Kunen2011}.
+\end{enumerate}
+\end{theorem}
+
+Part (a) is a pair of relative consistency results; it produces no countable transitive model and
+places no two models on a common domain. Part (b) supplies such a picture under its own
+hypothesis: the ground and the extension share their ordinals, though not their sets. Adding a
+single Cohen real, as in the previous subsections, does not change the truth value of
+$\mathsf{CH}$; many are needed. In the language of this paper, the predicates a ground model can
+code do not determine the size of the continuum: the answer depends on which extension is taken.
+
+\begin{remark}[The set layer is not a unique package]\label{rem:notunique}
+Theorem~\ref{thm:ch} is the positive form of one of our non-claims: we do not claim that
+$\mathsf{ZFC}$ is the unique or canonical set theory. Reading such disagreements as distinct and
+equally legitimate universes is the set-theoretic multiverse view of \citet{Hamkins2012}; the
+universe view (e.g.\ \citealp{Godel1947}) holds that one of them is correct. We construct no
+model, reprove no independence result, and take no position between these views. On the reading
+offered here, independence is what one expects of a foundation that grows by lawful extension.
+\end{remark}
+ \section{Guards: a countermodel atlas}\label{sec:atlas}
+
+The claims of this paper are easy to overstate by a single word, and the overstatements are the
+ones a reader is most tempted to supply: ``extensionality is forced,'' ``Foundation is free,''
+``Choice falls out,'' ``a new real is a generic real.'' Each is false, and each is blocked by a
+specific countermodel. A free/purchased reading is meaningful only if, for each claim that
+something is free, one can exhibit the alternative under which it fails. Each entry below is
+\guardg{}; none proves a positive theorem, and most of the witnesses already appear above.
+
+\begin{description}[leftmargin=1.2em, itemsep=4pt]
+
+\item[\textbf{CM-1}: Extensionality is a choice of lens.] The membership lens is not injective on
+presentations (Lemma~\ref{lem:L2}): the two-node and three-node presentations of
+$\{\varnothing\}$, the latter with a duplicated childless node, have the same profile and are
+identified. A different instrument keeps them apart. For example, the lens $f'(P)=(f(P),|V(P)|)$,
+which also records the number of nodes, distinguishes the two presentations, and the identity map
+serves as its packaging; so does the lens that records the full pointed-graph isomorphism type.
+This blocks the reading that the framework \emph{forces} extensionality, while agreeing that the
+canonical instrument satisfies it. (Anti-foundation is not an example here: Aczel's theory keeps
+Extensionality and also identifies the duplicated childless nodes; what it changes is Foundation,
+\textbf{CM-2}.)
+
+\item[\textbf{CM-2}: Foundation needs staging.] The self-loop $x=\{x\}$ and the two-cycle
+$x=\{y\}$, $y=\{x\}$ are coherent finite membership graphs that admit \emph{no} strictly
+decreasing audit (Theorem~\ref{thm:tfae}). They are excluded only because the present instrument
+was staged acyclic. This blocks ``Foundation is free without staging''; anti-foundation
+\citep{Aczel1988} is the classical theory that admits such graphs.
+
+\item[\textbf{CM-3}: Infinity does not emerge from iteration.] $\HF$ is the witness: no finitely
+generated rule started inside $\HF$ leaves it (Theorem~\ref{thm:nonattain}). An infinite completed
+object may be \emph{admitted}, but it is not \emph{reached}.
+
+\item[\textbf{CM-4}: Sections are not free infinitarily.] If $\mathsf{ZF}$ is consistent, there
+are models of $\mathsf{ZF}$ in which some surjection has no section; Cohen's symmetric models are
+examples \citep{Cohen1966,Jech1973}. This blocks ``\textbf{C-SEL} is derivable in $\mathsf{ZF}$.''
+Finite sections, and sections of lenses that come with an explicit section or a well-ordered
+source, remain free (Theorem~\ref{thm:choice}).
+
+\item[\textbf{CM-5}: Replacement is not supplied by the other commitments.] In ambient
+$\mathsf{ZFC}$, $V_{\omega+\omega}$ satisfies (S), \textbf{C-INF}, \textbf{C-POW} and
+\textbf{C-SEL} but not Replacement: the image of $n\mapsto\omega+n$ is not an element
+(Proposition~\ref{prop:nonredundancy}(ii)).
+
+\item[\textbf{CM-6}: Not every predicate extension is strict.] If $g$ is already definable from
+$f$, the refined lens $(f,g)$ induces the same partition as $f$, and $G_g$ misses $D_g$
+(Lemma~\ref{lem:meeting}). Likewise, adjoining a real that is already in $M$ leaves
+$\mathcal B_M$ unchanged (Theorem~\ref{thm:strict}(1)). Strictness needs non-definability, which
+the counting lemma (Theorem~\ref{thm:counting}) shows is typical but not universal.
+
+\item[\textbf{CM-7}: Power set is not supplied by the other commitments.] In ambient
+$\mathsf{ZFC}$, $H_{\omega_1}$ satisfies (S), \textbf{C-INF}, \textbf{C-REPL} and \textbf{C-SEL}
+but has no power set of $\omega$ (Proposition~\ref{prop:nonredundancy}(iii)).
+
+\item[\textbf{CM-8}: A new real need not be generic.] The duplicated real $x(2n)=x(2n+1)=r(n)$,
+with $r$ generic, is outside $M$ and splits every infinite coded set, yet misses the dense set
+$D^\ast$ (Proposition~\ref{prop:converse}). This blocks ``Cohen genericity is
+non-definability''; only the forward implication holds (Theorem~\ref{thm:novelty}), and the exact
+test is Theorem~\ref{thm:recognition}.
+
+\end{description}
+
+\noindent By provenance, \textbf{CM-1}, \textbf{CM-2} and the finite part of \textbf{CM-6} are
+finite witnesses; \textbf{CM-3} is the in-house non-attainment theorem, a statement about the
+infinite family $\HF$ made in the ambient metatheory; the ground-model part of \textbf{CM-6} and
+\textbf{CM-8} are proved under \textbf{J1}; and \textbf{CM-4}, \textbf{CM-5} and \textbf{CM-7}
+are classical, recalled in relative-consistency form or inside ambient $\mathsf{ZFC}$. Together they delimit what the
+free/purchased reading does, and does not, assert.
+ \section{Mechanization and computational evidence}\label{sec:mech}
+
+Selected finite and structural cores of the paper are verified in Lean, and the counting results
+are checked against reproducible numerical exhibits. This section states what is covered, what is
+not, and what the axiom audit shows.
+
+\subsection{A Lean development without external libraries}
+
+The development uses Lean~4 \citep{deMouraUllrich2021}, version 4.28.0, and imports no external
+mathematical library---in particular not \textsf{mathlib} \citep{Mathlib2020}, whose
+\texttt{ZFSet} construction it conceptually mirrors (Remark~\ref{rem:mathlib}). Membership trees,
+extensional equality, the Cohen posets, rank and the idempotent-split structure are all defined
+from first principles. Eight modules carry the verified core:
+\begin{description}[leftmargin=1.2em, itemsep=2pt]
+\item[\texttt{Packaging}.] Idempotents split and have fixed points equal to their image, with a
+finite collapse witness. This is the abstract pattern of Theorem~\ref{thm:p5}; the construction
+of canonical presentations from graphs is not mechanized.
+\item[\texttt{HFClosure}.] Finite membership trees with recursive extensional equality:
+extensional equality holds iff the members agree; pairing, union and filtering respect it;
+finite collection is derived; every family that respects equality and is closed under empty set,
+pairing and union contains every tree (the core of Theorem~\ref{thm:hfclosure}); and no tree is
+inductive.
+\item[\texttt{HFSets}.] The quotient of finite trees by extensional equality, formed without
+choosing representatives: Extensionality, Empty set, Pairing, Union, Separation for decidable
+(Boolean-valued) predicates, rank decrease along membership, no self-membership, and no inductive
+set. Separation is verified for Boolean predicates on the quotient, not for the full formula
+schema of Theorem~\ref{thm:hfsat}.
+\item[\texttt{RankAudit}.] A strictly decreasing audit excludes cycles and yields minimal
+elements of nonempty node lists; the self-loop and two-cycle of \textbf{CM-2} are cycles and so
+admit no audit. The implication from acyclicity to an audit is left on paper.
+\item[\texttt{FiniteCohen}.] The meeting equivalences of Lemma~\ref{lem:meeting}, the density
+defects of Theorem~\ref{thm:densitydefect}, and Remark~\ref{rem:finitegeneric}: in the finite poset
+every total predicate meets every dense family, and $D_g$ is not dense.
+\item[\texttt{CohenBoundary}.] Conditions on $\mathbb N$ with finite support: $D_g$ is dense and is
+met exactly when a disagreement witness exists; $E_A$ is dense for unbounded $A$
+(Corollary~\ref{cor:infinitecontrast}); $D^\ast$ is dense and every duplicated real misses it
+(Proposition~\ref{prop:converse}); visible singletons force injectivity
+(Proposition~\ref{prop:nolens}); and adjoining $x$ to a Boolean-closed family is strict iff $x$ is
+new (Theorem~\ref{thm:strict}(1)).
+\item[\texttt{CohenRecognition}.] The obstruction trees of Theorem~\ref{thm:recognition}: for a dense
+family $D$, the tree $T_D$ is downward closed and nowhere dense, and a real meets $D$ iff it is not
+a branch of $T_D$. Genericity is formalized relative to an explicitly supplied register of coded
+families. It is equivalent to avoiding the obstructions of an indexed list of families provided
+every listed family is coded and dense and every coded dense family is listed. It implies novelty
+with respect to a family $\mathcal B$ of ground predicates provided the disagreement family $D_g$ of
+every $g\in\mathcal B$ is registered, and strict extension provided in addition that $\mathcal B$ is
+Boolean-closed. Once $D^\ast$ is registered, duplicated reals are excluded. With an empty register
+every real would count as generic, so these premises are essential.
+\item[\texttt{LiftChoice}.] Choice-free sections of surjections with finite source, and the
+identity between sections and prototype families (Theorem~\ref{thm:choice}, finite part).
+\end{description}
+
+Several things are deliberately left on paper: the isomorphism between rooted extensional graphs
+and canonical presentations; satisfaction of the full Separation and Replacement schemas in
+$(\HF,\in)$; non-attainment for general finitely generated rules; the rank-erasure translation;
+the counting lemma; the $\mathsf{ZF}$ equivalences of Choice; and everything about countable
+transitive models, generic filters over them and $M[G]$. In particular, \texttt{CohenRecognition}
+takes the register of coded dense families as an input; that this register consists of exactly
+the dense sets belonging to a model $M$ is the mathematical bridge argued in \S\ref{sec:forcing},
+not a Lean theorem.
+
+\begin{proposition}[Axiom base; \inhouse]\label{prop:axioms}
+Every declaration of the Lean development, including compiler-generated auxiliary declarations,
+depends on no axiom other than propositional extensionality and quotient soundness
+\citep{Carneiro2019}. In particular, \texttt{Classical.choice}, the third axiom of Lean's standard
+classical setup, is used nowhere, and no declaration uses an unfinished proof or a project axiom.
+\end{proposition}
+
+The proposition is checked mechanically, not by inspection: an audit file, built as a default
+target of every \texttt{lake build}, selects declarations by their defining module, so that private auxiliary declarations are
+included, and traverses all 371 of them (194 theorems, 9 private declarations) with Lean's
+transitive axiom collector; it fails the build if any other axiom appears. As negative controls,
+temporary files that inject a project axiom, an unfinished proof, or a use of
+\texttt{Classical.choice} are each rejected by the same check. Where a proof needs classical reasoning, as in the
+converse direction of the recognition theorem, the relevant instance of excluded middle is stated
+as an explicit hypothesis rather than imported through \texttt{Classical.choice}.
+
+This matters for the argument of \S\ref{sec:purchases}. The paper prices Choice as the cost of
+sections for arbitrary surjections; a verification of the finite, free case that relied on Choice
+would be circular. The mechanized finite sections set that price to zero without Choice, while the
+equivalence with $\mathsf{AC}$ for arbitrary sets is proved on paper in $\mathsf{ZF}$.
+
+\subsection{Reproducible numerical exhibits}
+
+Three deterministic, seeded scripts check the quantitative predictions on finite data. Each
+asserts a prediction that could fail and reports the residual; every reported number is
+regenerated from a stored run rather than transcribed. The exhibits illustrate the theorems and
+check the encodings; they prove nothing beyond the bounded cases they examine.
+
+\paragraph{The $\HF$ tower.} The sets of rank at most $n$ form $V_{n+1}$, so the enumeration gives
+$|V_1|,\dots,|V_5|=1,2,4,16,65536$. Over all $65{,}536$ elements of $V_5$ the exhibit checks
+that Ackermann coding and decoding round-trip, that rank strictly decreases along all
+$524{,}288$ membership edges (Theorem~\ref{thm:tfae}), and that no element is inductive
+(Theorem~\ref{thm:hfsat}). It also computes the power sets of all $16$ elements of $V_4$ and the
+images of all $625$ maps from those sets into $V_3$, and samples pairing, union, separation and
+finite collection.
+
+\paragraph{Definability rarity.} For nine lens configurations with $N-K$ between $0$ and $20$, the
+fraction of $2\times10^5$ sampled predicates that are definable matches $2^{-(N-K)}$ within a
+statistical gate wherever the expected count is large enough to test, and the fraction that
+splits every non-singleton block matches the exact product formula of Theorem~\ref{thm:counting}
+(Figure~\ref{fig:diagnostics}).
+
+\paragraph{Finite Cohen bridge.} An exhaustive enumeration over the empty lens and all
+surjective labelled lenses on at most five points ($634$ lenses) confirms the meeting equivalences
+and density defects of Lemma~\ref{lem:meeting} and Theorem~\ref{thm:densitydefect} on every
+instance, together with the counts $2^K$ and the splitting product. A scaling experiment confirms
+that the probability of meeting every disagreement family is $1-2^{-(N-K)}$. As explained in
+\S\ref{ssec:category}, this is a finite picture of novelty, not of Cohen genericity.
+
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    name=left,
+    width=0.47\textwidth, height=0.36\textwidth,
+    ymode=log, xmin=-1, xmax=21, ymin=3e-7, ymax=3,
+    xlabel={$N-K$}, ylabel={fraction definable from $f$},
+    label style={font=\small}, tick label style={font=\scriptsize},
+    legend style={font=\scriptsize, at={(0.97,0.97)}, anchor=north east, draw=none,
+                  fill=white, fill opacity=0.8, text opacity=1},
+    title={\small (a) definability rarity}, title style={yshift=-4pt}]
+  \addplot[domain=0:20, samples=41, thick, blue!60!black] {2^(-x)};
+  \addlegendentry{exact $2^{-(N-K)}$}
+  \addplot[only marks, mark=x, mark size=3pt, thick, orange!85!black,
+           unbounded coords=discard]
+    table[x=nk, y=emp] {figures/data/rarity.dat};
+  \addlegendentry{empirical ($2\times10^5$ samples)}
+\end{axis}
+\begin{axis}[
+    at={(left.east)}, anchor=west, xshift=1.6cm,
+    width=0.40\textwidth, height=0.36\textwidth,
+    xmin=0, xmax=1.02, ymin=0, ymax=1.02,
+    xlabel={exact $\prod_{|B|\ge2}(1-2^{1-|B|})$}, ylabel={empirical},
+    label style={font=\small}, tick label style={font=\scriptsize},
+    title={\small (b) splitting every block}, title style={yshift=-4pt}]
+  \addplot[domain=0:1, gray, dashed] {x};
+  \addplot[only marks, mark=*, mark size=1.8pt, blue!60!black]
+    table[x=split_exact, y=split_emp] {figures/data/rarity.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{Finite counting checks (Theorem~\ref{thm:counting}) on the nine lens configurations of
+the definability-rarity exhibit. (a) Fraction of sampled predicates that are constant on every
+block, against the exact $2^{-(N-K)}$. The two configurations with $N-K=8$ have different block
+sizes but the same theoretical value, and both empirical values pass the statistical gate. At
+$N-K=20$ the expected number of definable samples is about $0.2$ and none was observed, so no point
+is drawn in (a); that definability measurement is recorded as an observation, not a statistical
+test. (b)
+Fraction of predicates that split every block of size at least two, against the exact product
+formula. The plotted values are read from the stored diagnostic runs, not re-sampled.}
+\label{fig:diagnostics}
+\end{figure}
+  \section{Scope and non-claims}\label{sec:scope}
+
+The results of this paper differ sharply in strength, and their value depends on keeping them
+apart. This section collects the boundaries.
+
+\paragraph{Proved here (\inhouse).} The finite tier: the packaging quotient and its
+identification with $\HF$ (Theorem~\ref{thm:p5}); the closure theorem and the satisfaction of
+every $\mathsf{ZFC}$ axiom except Infinity by $(\HF,\in)$ (Theorems~\ref{thm:hfclosure},
+\ref{thm:hfsat}); the rank-audit equivalence (Theorem~\ref{thm:tfae}); non-attainment of
+inductive sets by finitely generated rules (Theorem~\ref{thm:nonattain}); the rank-erasure
+translation (Theorem~\ref{thm:translation}); the finite Cohen bridge, its density defects and the
+counting lemma (Lemma~\ref{lem:meeting}, Theorems~\ref{thm:densitydefect} and \ref{thm:counting});
+the infinite-index density facts (Corollary~\ref{cor:infinitecontrast}); the fact that a map on
+$\omega$ under which all singletons are visible is injective (Proposition~\ref{prop:nolens}, whose
+consequence for $\mathcal B_M$ uses \textbf{J1}); the algebraic strictness
+criterion (Theorem~\ref{thm:strict}(1)); and the finite sections together with the standard
+$\mathsf{ZF}$ equivalences used to price Choice (Theorem~\ref{thm:choice}). Global statements about
+$\HF$ are made in the ambient set-theoretic metatheory. The Lean development verifies selected
+cores of these results, listed in \S\ref{sec:mech}.
+
+\paragraph{Proved under named hypotheses (\condg).} The shadow theorem
+(Theorem~\ref{thm:shadow}) assumes the structural premise (S) and the commitments
+\textbf{C-INF}, \textbf{C-POW}, \textbf{C-REPL} and, for Choice, \textbf{C-SEL}. The forcing
+results (Theorems~\ref{thm:novelty}, \ref{thm:recognition}, \ref{thm:strict}(2),
+\ref{thm:nonfactor}, Propositions~\ref{prop:converse} and \ref{prop:category}) assume \textbf{J1};
+\textbf{J2} is used only to identify the extension $M[G]$. The non-redundancy witnesses
+(Proposition~\ref{prop:nonredundancy}(ii)--(iv)) are classical and are used in ambient
+$\mathsf{ZFC}$ or in relative-consistency form. Removing these hypotheses removes precisely the
+conditional results and leaves the free part standing.
+
+\paragraph{Statements about specific models (\modelg).} The continuum-hypothesis statements
+(Theorem~\ref{thm:ch}) are cited classical facts; part (b) needs its own hypothesis of a countable
+transitive model of $\mathsf{ZFC}+\mathsf{GCH}$.
+
+\paragraph{What we do \emph{not} claim.}
+\begin{enumerate}\itemsep1pt
+  \item We do not derive $\mathsf{ZF}$ or $\mathsf{ZFC}$ from finite principles. The infinitary
+  content enters through the structural premise and the four commitments, which are hypotheses.
+  \item We prove no consistency statement beyond the classical results cited. Nothing here
+  implies the existence of a countable transitive model, of an inaccessible cardinal, or the
+  consistency of $\mathsf{ZFC}$.
+  \item We claim no new independence result. The forcing section reorganizes classical facts and
+  adds finite and structural statements about them.
+  \item We do not claim that Cohen genericity is the same as non-definability from the ground
+  model. Genericity implies novelty and splitting; the converse is false
+  (Proposition~\ref{prop:converse}), and genericity is characterized only by the full family of
+  coded closed nowhere dense tests (Theorem~\ref{thm:recognition}).
+  \item We do not claim that the finite probabilities measure Cohen genericity. They describe
+  novelty; Cohen reals have measure zero (Proposition~\ref{prop:category}).
+  \item We do not claim that $\mathsf{ZFC}$ is the unique or most natural set theory; the
+  continuum-hypothesis statements point the other way.
+  \item We make no metaphysical claim about a universe of sets. ``Set'' is used as a package and
+  ``$\in$'' as a lens; the readings are structural.
+  \item The reading of all this as an account of where the axioms come from
+  (\S\ref{sec:discussion}) is interpretation (\metag). It comes after the theorems and is never a
+  premise for any of them.
+\end{enumerate}
+
+\paragraph{On the G\"odel--Cohen comparison.} The recurring reading of incompleteness and
+independence as the saturation and extension faces of one discipline
+(Remarks~\ref{rem:saturation} and \ref{rem:notunique}, \S\ref{sec:discussion}) is structural
+framing, marked \metag. Each half is backed by theorems---saturation by
+Theorem~\ref{thm:nonattain}, extension by Theorems~\ref{thm:novelty} and \ref{thm:strict}---but
+the unification of the two is a way of seeing, not a further theorem.
+ \section{Where the axioms come from}\label{sec:discussion}
+
+This closing section is interpretation (\metag). It contains no theorem; each paragraph draws on a
+result above, but the picture they compose is a reading, not a further result.
+
+\subsection{Two limitative theorems, one pattern}
+
+The foundations of mathematics carry two famous limits. G\"odel's theorems \citep{Godel1931} say
+that a consistent, effectively axiomatized theory containing enough arithmetic does not prove
+every arithmetical truth and, under the usual conditions on provability, does not prove its own
+consistency. Cohen's theorems \citep{Cohen1963} say that natural questions, the continuum
+hypothesis first among them, are not settled by the standard axioms. The two are usually filed
+separately, as a limit on proof and a limit on decision, and usually as bad news.
+
+The construction of this paper suggests filing them together. Its organizing patterns are that a
+fixed rule, iterated, \emph{saturates}---it stays inside a closure it cannot leave---and that
+content outside that closure comes only from \emph{extension}, the adjunction of something the
+current package cannot express. Both patterns appear at the scale of
+set theory. Saturation is Theorem~\ref{thm:nonattain}: the finite packaging rules never leave
+$\HF$, which is why Infinity has to be purchased. Extension is the forcing analysis: a generic real
+lies outside the ground model and strictly enlarges its algebra of coded predicates
+(Theorems~\ref{thm:novelty} and \ref{thm:strict}).
+
+On this reading G\"odel is the saturation face: a fixed, effectively given theory, run as long as
+one likes, does not reach certain truths about itself. Cohen is the extension face: a ground model
+is enlarged by adjoining a real it cannot code, and in suitable extensions old questions, such as
+the size of the continuum, receive different answers. Two cautions keep the reading honest. The
+G\"odel half needs all of its hypotheses: complete consistent theories exist, such as true
+arithmetic, but they are not effectively axiomatized. And an independent \emph{sentence} is not the
+same thing as a missing \emph{predicate}: Theorem~\ref{thm:strict} is about predicates on $\omega$,
+and nothing here identifies the sentences a theory leaves undecided with the reals a model fails to
+contain. The resemblance is one of shape---a closed apparatus run to saturation, and the lawful
+extension beyond it---and it is offered as such.
+
+\subsection{A foundation is an audited ledger}
+
+If this is right, a foundation is neither a revealed truth nor an arbitrary convention, but a
+\emph{ledger}. The distinction it draws, between questions settled inside a chosen framework and
+the external question of which framework to adopt, is Carnap's \citep{Carnap1950}.
+Table~\ref{tab:factorization} is that ledger written out for $\mathsf{ZFC}$. The free entries are
+supplied by a modest packaging instrument and hold in $\HF$, with selected finite cores
+machine-checked; at infinite stages they are carried by a structural premise that applies the same
+clauses everywhere. The purchased entries are four named commitments, each shown to be
+non-redundant, and the first boundary is sharp: $\HF$ satisfies everything except Infinity
+(Proposition~\ref{prop:nonredundancy}(i)).
+
+This is how $\mathsf{ZFC}$ can be a flat list and still be faithful to the staged construction:
+over $\HF$ the staging is recoverable from membership alone (Theorem~\ref{thm:translation}). The
+list is also not arbitrary, since its dependencies are fixed by what packaging supplies and what
+must be bought. One can choose differently---a different lens (\textbf{CM-1}), no Foundation
+(\textbf{CM-2}), no power-set totalization (\textbf{CM-7}), no selection principle
+(\textbf{CM-4})---and the countermodel atlas is a catalogue of such alternative ledgers, in the
+limit the plurality of set-theoretic universes discussed by \citet{Hamkins2012}. On this view
+$\mathsf{ZFC}$ is one audited ledger among several, distinguished not by being true of an
+antecedently given universe of objects \citep{Benacerraf1965} but by which commitments it buys.
+
+\subsection{The open questions are expected}
+
+On this reading the famous open questions lose some of their air of scandal. A foundation that
+grows by lawful extension should have undecided questions: places where different extensions give
+different answers. The continuum hypothesis is the standard example (\S\ref{sec:ch}). Over a
+suitable ground model, one extension keeps it and another refutes it, and the ground's coded
+predicates do not decide between them. Independence, read this way, is the expected signature of a
+foundation that is still being extended, not a defect of one that was supposed to be finished.
+
+\subsection{The answer}
+
+We began with a list and a question: where does the list come from? Not from a pre-existing
+universe of sets that the axioms approximately describe; we built no such universe and needed
+none. Not from arbitrary convention either: the free entries are supplied by the chosen membership
+instrument, the purchases are priced, and the order of dependence is not ours to choose. The list
+comes from the place the framework locates stable objects in general: \emph{packaging under limited
+access}---collecting multiplicities into units seen only through a lens---\emph{audited so that the
+bookkeeping stays honest}, and \emph{extended when it saturates}. Set theory flattens that history
+into a single membership relation; rank-erasure is the flattening; and forcing shows that the
+history can always be continued.\footnote{The question ``where mathematics comes from'' is also
+the title of \citet{LakoffNunez2000}, whose thesis concerns the cognitive origin of mathematical
+ideas. That question is orthogonal to the structural account of where the \emph{axioms} of a
+foundation come from offered here.}
+ 
+\appendix
+\section{Glossary of terms and hypotheses}\label{app:definitions}
+
+This appendix collects terms used across several sections. It introduces no new mathematics; the
+controlling definitions are the ones cited.
+
+\subsection{Terms}\label{subsec:definitions-list}
+
+\begin{description}[style=multiline,leftmargin=!,labelwidth=0.27\textwidth,labelsep=0.8em,itemsep=3pt]
+\item[Theory package.] A carrier, lens, packaging map and audit $(Z,f,E,\mathcal A)$
+(Convention~\ref{conv:package}), used here as an organizing instrument.
+\item[Presentation.] A finite pointed acyclic graph $(V,\to,v)$ with $V\subseteq\mathbb N$ finite,
+read as a membership presentation (Definition~\ref{def:presentation}). The set $Z$ of all
+presentations is countably infinite.
+\item[Membership-profile lens.] The map $f\colon Z\to\HF$ sending a presentation to the decoration
+of its point (Definition~\ref{def:lens}).
+\item[Packaging map.] $E(P)=C(f(P))$, which forgets the shape of a presentation and re-presents its
+profile canonically (Definition~\ref{def:E}).
+\item[Rank audit.] $\rho(P)=\rank(f(P))$, strictly decreasing along membership
+(Definition~\ref{def:rank}, Lemma~\ref{lem:L3}).
+\item[Finite packaging operator.] The operator $F$ on subfamilies of $\HF$ generated by the empty
+set, pairing, union, subsets (gates) and finite images (transport) (Definition~\ref{def:F}).
+\item[Finitely generated rule.] A completion rule adding only finite sets whose members come from
+the current family and the transitive closures of its members (Definition~\ref{def:fg}).
+\item[Rank-erasure.] Passing from the two-sorted staged structure to the one-sorted membership
+structure (Definition~\ref{def:staged}).
+\item[Coded predicates $\mathcal B_M$.] $\powset(\omega)\cap M$, a countable Boolean algebra of
+predicates on $\omega$ (Definition~\ref{def:groundlens}); not the visible-predicate family of any
+map on $\omega$ (Proposition~\ref{prop:nolens}). $\mathcal B_M[x]$ is the Boolean algebra generated
+by $\mathcal B_M$ and $x$.
+\item[Restriction filter.] For a total $x$, $G_x=\{p:p\subseteq x\}$.
+\item[$D_g$, $E_A$, $D^\ast$.] Disagreement with $g$; splitting of $A$; disagreement within some pair
+$\{2n,2n+1\}$ (\S\S\ref{ssec:finitebridge}, \ref{ssec:converse}).
+\item[Coded closed set.] The branch set $[T]$ of a tree of conditions $T\in M$, computed outside
+$M$ (\S\ref{ssec:converse}).
+\item[Strict extension.] An enlargement of the algebra of expressible predicates on the same
+domain, $\mathcal B_M\subsetneq\mathcal B_M[x]$ (Theorem~\ref{thm:strict}); in the framework's
+coarser formulation, a failure of factorization (Theorem~\ref{thm:nonfactor}). It is not an
+inclusion of first-order theories.
+\item[Package change.] New content obtained by adjoining something the fixed package cannot produce
+or express (Corollaries~\ref{cor:packagechange} and \ref{cor:strictcohen}).
+\end{description}
+
+\subsection{Hypotheses and regimes}\label{subsec:gate-predicates-list}
+
+\begin{description}[style=multiline,leftmargin=!,labelwidth=0.27\textwidth,labelsep=0.8em,itemsep=3pt]
+\item[\textbf{A\_FIN}.] The framework's finite-carrier regime. Here it applies to each
+presentation and each element of $\HF$ separately: finite gates, finite transport, least-index
+sections and finite diagnostics. It does not license any infinitary commitment.
+\item[\textbf{(S)}.] The structural premise: a transitive admitted universe $U$ closed under empty
+set, pairs, unions and relatively definable subsets (\S\ref{ssec:box}).
+\item[\textbf{C-INF}.] An inductive set in $U$; priced by Theorem~\ref{thm:nonattain}.
+\item[\textbf{C-POW}.] For each $x\in U$, an element of $U$ whose members are exactly the subsets of
+$x$ lying in $U$; its finite form is Corollary~\ref{cor:finpow}.
+\item[\textbf{C-REPL}.] Images in $U$ of sets in $U$ under maps definable in $U$; its finite form
+is the transport clause.
+\item[\textbf{C-SEL}.] Sections in $U$ for all surjections in $U$; equivalent to Choice in $U$ when
+$U$ satisfies $\mathsf{ZF}$ (Corollary~\ref{cor:choice}).
+\item[\textbf{J1}.] A countable transitive model $M$ of $\mathsf{ZFC}$, countable externally.
+\item[\textbf{J2}.] The classical generic-extension machinery for Cohen forcing, used only to
+identify $M[G]$.
+\item[Diagnostic gates.] Pass/fail criteria in the computational exhibits. They test encodings and
+numerical predictions on bounded cases and do not raise any statement to theorem grade.
+\end{description}
+ \section{Methods and reproducibility}\label{app:methods}
+
+The paper rests on two reproducible support layers, a Lean development and deterministic
+diagnostics. This appendix records how they are run and how they are used. No artifact is promoted
+beyond the grade assigned in the body.
+
+\paragraph{Specification.} The theorem statements, proof obligations, non-claims and grade
+ceilings are recorded in \path{docs/spec/paper-contract.md} and
+\path{docs/spec/theorem-inventory.md}. The mathematical review of all statements, including the
+counterexample and characterization of \S\ref{ssec:converse} and the scope corrections they
+entail, is recorded in \path{docs/review/mathematical-audit.txt}.
+
+\paragraph{Lean.} The development lives in \path{formal/} and builds with \texttt{cd formal \&\&
+lake build} on the pinned toolchain \texttt{leanprover/lean4:4.28.0}, with no external Lean
+dependencies. The axiom audit \path{formal/AxiomAudit.lean} is a default build target, so an
+ordinary build fails if any project declaration depends on an axiom other than
+\textsf{propext} or \textsf{Quot.sound}.
+
+\paragraph{Diagnostics.} The scripts \path{diagnostics/hf_slice.py},
+\path{diagnostics/definability_rarity.py} and \path{diagnostics/finite_cohen.py} run deterministic
+seeded computations under the pinned dependencies in \path{diagnostics/requirements.txt}. Each
+writes a JSON record to \path{diagnostics/results/}, regenerates its tables in
+\path{diagnostics/tables/}, and exits with a counterexample record if a check fails. Statistical
+checks use binomial residual gates where the expected counts are large enough; cases with small
+expected counts are recorded as observations without a pass criterion. The data for
+Figure~\ref{fig:diagnostics} are extracted from the stored JSON records by
+\path{paper/figures/data/make_fig_data.py}, without re-sampling.
+
+\paragraph{Scope.} The Lean build checks selected finite and structural cores; it does not formalize
+the imported infinitary set theory. The diagnostics check bounded cases and the agreement of their
+tables with their records; they do not replace proofs. The classical forcing, cumulative-hierarchy,
+natural-model, choice-equivalence and countermodel results remain external dependencies, cited
+where used.
+
+\paragraph{Availability.} All sources, the Lean development, the diagnostic scripts and their
+generated artifacts are available at \url{https://github.com/ioannist/six-birds-zfc}. No external
+datasets are used.
+ \section{Results and their artifacts}\label{app:artifact-map}
+
+Table~\ref{tab:artifact-map} maps the main results to the Lean declarations that verify their
+cores (module \path{formal/SetStone/<Module>.lean}) and to the diagnostics that exhibit them. A
+dash means that the result is proved on paper only; \S\ref{sec:mech} lists what each module does
+and does not cover.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.2\textwidth}@{}}
+\toprule
+Result & Lean module: key declarations & Diagnostic \\
+\midrule
+Thm.~\ref{thm:p5} (packaging) & \texttt{Packaging}: \texttt{fix\_iff\_image}, \texttt{r\_i\_id}, \texttt{i\_r\_eq\_e}, \texttt{collapseFin3\_idem} & --- \\
+Lem.~\ref{lem:L2}, Thm.~\ref{thm:hfclosure} & \texttt{HFClosure}: \texttt{equiv\_iff\_mem}, \texttt{collect\_in\_closed}, \texttt{closed\_contains\_all}; \texttt{HFSets}: \texttt{ext}, \texttt{closed\_family\_all} & \path{hf_slice.py} \\
+Thm.~\ref{thm:hfsat} (selected axioms) & \texttt{HFSets}: \texttt{mem\_pair}, \texttt{mem\_union}, \texttt{mem\_separate}, \texttt{not\_mem\_self}, \texttt{no\_inductive\_set}; \texttt{HFClosure}: \texttt{not\_inductiveHF} & \path{hf_slice.py} \\
+Lem.~\ref{lem:L3}, Thm.~\ref{thm:tfae} & \texttt{HFSets}: \texttt{mem\_rank\_lt}; \texttt{RankAudit}: \texttt{potential\_excludes\_cycle}, \texttt{min\_of\_potential}, \texttt{self\_loop\_is\_cycle} & \path{hf_slice.py} \\
+Thm.~\ref{thm:nonattain}, Thm.~\ref{thm:translation} & --- & --- \\
+Thm.~\ref{thm:choice} (finite part) & \texttt{LiftChoice}: \texttt{finite\_section\_exists}, \texttt{section\_iff\_prototype} & --- \\
+Lem.~\ref{lem:meeting}, Thm.~\ref{thm:densitydefect}, Rem.~\ref{rem:finitegeneric} & \texttt{FiniteCohen}: \texttt{meet\_D\_iff\_neq}, \texttt{meet\_E\_iff\_splits}, \texttt{density\_D\_failure\_iff\_total}, \texttt{density\_E\_failure\_iff\_constant}, \texttt{every\_total\_meets\_dense}, \texttt{disagreement\_not\_dense} & \path{finite_cohen.py} \\
+Thm.~\ref{thm:counting} & --- & \path{definability_rarity.py}, \path{finite_cohen.py} \\
+Cor.~\ref{cor:infinitecontrast} & \texttt{CohenBoundary}: \texttt{disagreement\_dense}, \texttt{disagreement\_meeting\_iff}, \texttt{infinite\_block\_splitting\_dense} & --- \\
+Prop.~\ref{prop:converse} (finite core) & \texttt{CohenBoundary}: \texttt{pairMismatch\_dense}, \texttt{duplicate\_misses\_dense} & --- \\
+Thm.~\ref{thm:recognition} (finite core) & \texttt{CohenRecognition}: \texttt{obstruction\_nowhereDense}, \texttt{meets\_iff\_avoids\_obstruction}, \texttt{generic\_iff\_meets\_complete\_family}, \texttt{registered\_pairMismatch\_excludes\_duplicate}, \texttt{forcing\_repair\_both} & --- \\
+Prop.~\ref{prop:nolens} & \texttt{CohenBoundary}: \texttt{singleton\_visibility\_forces\_injective}, \texttt{singleton\_visibility\_forces\_all} & --- \\
+Thm.~\ref{thm:strict}(1)--(2), finite cores & \texttt{CohenBoundary}: \texttt{adjoining\_strict\_iff\_novel}; \texttt{CohenRecognition}: \texttt{generic\_implies\_novel}, \texttt{generic\_implies\_strict\_extension} & --- \\
+Prop.~\ref{prop:axioms} & \path{formal/AxiomAudit.lean} (all declarations) & --- \\
+\bottomrule
+\end{tabularx}
+\caption{Results, Lean declarations and diagnostics. Lean statements about Cohen conditions concern
+conditions on $\mathbb N$ and explicitly supplied families; their connection to a countable
+transitive model is argued on paper.}
+\label{tab:artifact-map}
+\end{table}
+ \section{Imported results}\label{app:extended-material}
+
+Table~\ref{tab:imports-ledger} lists the classical results the paper uses without proof, where
+they are used, and what they are not used for.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+Import & Used for & Not used for \\
+\midrule
+Cumulative hierarchy by transfinite recursion; definability of rank in $\mathsf{ZF}$
+\citep{Zermelo1930,Jech2003} & Reading the $U$ of Theorem~\ref{thm:shadow} as the shadow of its own staged hierarchy & Proving Theorem~\ref{thm:shadow}, whose proof is direct \\
+Natural models $V_\kappa$ \citep{MontagueVaught1959} & Explaining why truncations need rank-bounded images & Any existence claim for inaccessible cardinals or set models \\
+$V_{\omega+\omega}$ and $H_{\omega_1}$ in ambient $\mathsf{ZFC}$ \citep{Jech2003,GitmanHamkinsJohnstone2016} & Non-redundancy of \textbf{C-REPL} and \textbf{C-POW} & A consistency proof for $\mathsf{ZFC}$ \\
+Choice equivalences and symmetric models of $\mathsf{ZF}$ \citep{Jech1973,Cohen1966} & Pricing \textbf{C-SEL}; non-redundancy of \textbf{C-SEL} & A free infinitary selector \\
+Generic extensions $M[G]$ \citep{Cohen1966,Kunen2011} (\textbf{J2}) & Naming the model containing $x_G$; the $V=L$ example & The novelty, recognition and strictness results, which use \textbf{J1} only \\
+Relative consistency of $\mathsf{CH}$ and $\neg\mathsf{CH}$; ccc preservation \citep{Godel1938,Godel1940,Cohen1963,Kunen2011} & Theorem~\ref{thm:ch} & New independence theorems \\
+Multiverse and universe views \citep{Hamkins2012,Godel1947} & Discussion & A decision between them \\
+\bottomrule
+\end{tabularx}
+\caption{External imports and their boundaries.}
+\label{tab:imports-ledger}
+\end{table}
+ \section{Version history}\label{app:versions}
+
+\paragraph{v2 (3 October 2026).} The forcing section states the relation between genericity and
+novelty as a one-way implication (Theorem~\ref{thm:novelty}), adds an explicit real that is new and
+splits every infinite coded set without being generic (Proposition~\ref{prop:converse}), and adds
+the exact characterization of genericity by coded closed nowhere dense sets
+(Theorem~\ref{thm:recognition}); version~1 had presented genericity as characterized by
+non-definability. The ground model's predicates are treated as a Boolean algebra rather than a
+partition lens (Proposition~\ref{prop:nolens}, Theorem~\ref{thm:strict}), and the distinction
+between category and measure is made explicit (Proposition~\ref{prop:category}). The shadow theorem
+states its structural premise (S) explicitly; the non-redundancy witnesses now include
+$H_{\omega_1}$ for Power set; countermodel \textbf{CM-1} uses a node-counting lens; and the
+continuum-hypothesis statements separate relative consistency from the host-model picture. Smaller
+corrections concern the countability of the carrier and of $\powset(\HF)$, the indexing of the
+$\HF$ tower, sections of the membership lens, and the hypotheses of G\"odel's theorems. The Lean
+development grew from five to eight modules, with an automatic axiom audit over all declarations,
+and the diagnostics gained exact-count and statistical gates. The exposition was rewritten
+throughout, and figures were added.
+
+\paragraph{v1 (17 June 2026).} First public version.
+ 
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

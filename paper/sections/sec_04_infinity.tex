@@ -1,0 +1,94 @@
+\section{Infinity as a change of rules}\label{sec:infinity}
+
+Theorem~\ref{thm:hfsat} left one axiom out of the free column: Infinity. This section shows that
+the omission is forced. No fixed finite packaging rule, however often it is iterated from
+hereditarily finite sets, produces an infinite set. Infinity is therefore the first place where
+the construction must be told to continue: it is a change of rule, not a longer use of the old
+one.
+
+\subsection{Finite packaging rules}
+
+The result is informative only if the class of excluded rules is broad enough to contain the
+operations of \S\ref{sec:free}. Those operations draw new members not just from the current
+family $A$ but also from inside its elements (the union and gate clauses). The right class is
+therefore the following.
+
+\begin{definition}[Finitely generated completion rule]\label{def:fg}
+An operator $G$ on families of sets is a \emph{completion rule} if $A\subseteq G(A)$ for every
+$A$. It is \emph{finitely generated} if every $x\in G(A)\setminus A$ is a \emph{finite} set with
+\[
+  x\;\subseteq\;A\cup\bigcup_{a\in A}\TC(a).
+\]
+\end{definition}
+
+\begin{lemma}[The packaging operator is finitely generated; \inhouse]\label{lem:Ffg}
+Extend $F$ (Definition~\ref{def:F}) to arbitrary families by requiring the union, gate and
+transport outputs to be finite. The extended operator is finitely generated and agrees with $F$
+on every $A\subseteq\HF$, where the finiteness requirement holds automatically.
+\end{lemma}
+
+The finiteness requirement is essential. Without it, the extension could form the union of an
+infinite set, or one of its infinite subsets, and nothing would confine it to $\HF$.
+
+\begin{lemma}[$\HF$-stability; \inhouse]\label{lem:hfstable}
+If $G$ is finitely generated and $A\subseteq\HF$, then $G(A)\subseteq\HF$. Hence every finite
+iterate $G^n(A_0)$ of a seed $A_0\subseteq\HF$ stays inside $\HF$.
+\end{lemma}
+
+\begin{proof}
+A new element $x$ is a finite set whose members lie in $A$ or in the transitive closure of a
+member of $A$. The transitive closure of a set in $\HF$ consists of sets in $\HF$, so every member
+of $x$ is in $\HF$, and so is $x$. Induct on $n$.
+\end{proof}
+
+\subsection{Non-attainment}
+
+\begin{theorem}[No finitely generated iteration reaches an inductive set;
+\inhouse]\label{thm:nonattain}
+Let $G$ be a finitely generated completion rule and $A_0\subseteq\HF$. Put $A_{n+1}=G(A_n)$ and
+$A_\omega=\bigcup_n A_n$. Then:
+\begin{enumerate}\itemsep0pt
+  \item no $A_n$ contains an inductive set as an element;
+  \item $A_\omega\subseteq\HF$, so $A_\omega$ does not contain $\omega$ or any other inductive
+  set either; admitting $\omega$ requires a step outside the finitely generated class;
+  \item if $G$ is moreover idempotent, the iteration stabilizes after one step:
+  $A_n=A_1$ for all $n\ge1$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:hfstable} every $A_n$ is a subfamily of $\HF$, and no element of $\HF$ is
+inductive (Theorem~\ref{thm:hfsat}). This gives (1), and (2) follows because a union of
+subfamilies of $\HF$ is a subfamily of $\HF$; a step that added $\omega$ would add an infinite
+set, which Definition~\ref{def:fg} forbids. (3) is immediate from $G(G(A_0))=G(A_0)$.
+\end{proof}
+
+Theorem~\ref{thm:nonattain} is a statement about objects produced by rules. It does not say that
+finite axiom systems, or formal theories in general, cannot prove that an infinite set exists;
+that is a different question, about syntax rather than construction.
+
+\subsection{Infinity is a package change}
+
+\begin{corollary}[The first purchase; \inhouse]\label{cor:packagechange}
+Passing from $\HF$ to a family that contains an inductive set cannot be achieved by iterating any
+finitely generated completion rule from any seed inside $\HF$. In the framework's terms, admitting
+$\omega$ is a \emph{package change}: the new object is not produced by running the fixed package
+longer.
+\end{corollary}
+
+We call the corresponding commitment \textbf{C-INF}: the admission of a completed infinite
+collection, in the package-change sense of \citet{SBTIncompleteness}. We do not assert, derive
+or evaluate \textbf{C-INF} here. We have shown only that it cannot be avoided by iteration.
+
+\begin{remark}[Saturation and incompleteness; \metag]\label{rem:saturation}
+Corollary~\ref{cor:packagechange} is one instance of a general pattern: a fixed completion rule
+that adds only finite objects may keep adding them forever, but by iterating itself it cannot
+produce an object of a new kind, here an infinite set. There
+is a deliberate resonance with incompleteness. G\"odel's theorems \citep{Godel1931} say that a
+consistent, effectively axiomatized theory containing enough arithmetic does not prove every
+arithmetical truth, and (under the usual provability conditions) does not prove its own
+consistency. Theorem~\ref{thm:nonattain} says that a fixed finite packaging rule does not reach
+the infinite. Both describe a closed apparatus, run to saturation, with something deliberately out
+of reach. The other half of the picture---what adjoining new content does---is the subject of
+\S\ref{sec:forcing}. The resemblance between the two halves is a reading, not a metatheorem.
+\end{remark}

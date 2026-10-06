@@ -1,0 +1,67 @@
+\section{Guards: a countermodel atlas}\label{sec:atlas}
+
+The claims of this paper are easy to overstate by a single word, and the overstatements are the
+ones a reader is most tempted to supply: ``extensionality is forced,'' ``Foundation is free,''
+``Choice falls out,'' ``a new real is a generic real.'' Each is false, and each is blocked by a
+specific countermodel. A free/purchased reading is meaningful only if, for each claim that
+something is free, one can exhibit the alternative under which it fails. Each entry below is
+\guardg{}; none proves a positive theorem, and most of the witnesses already appear above.
+
+\begin{description}[leftmargin=1.2em, itemsep=4pt]
+
+\item[\textbf{CM-1}: Extensionality is a choice of lens.] The membership lens is not injective on
+presentations (Lemma~\ref{lem:L2}): the two-node and three-node presentations of
+$\{\varnothing\}$, the latter with a duplicated childless node, have the same profile and are
+identified. A different instrument keeps them apart. For example, the lens $f'(P)=(f(P),|V(P)|)$,
+which also records the number of nodes, distinguishes the two presentations, and the identity map
+serves as its packaging; so does the lens that records the full pointed-graph isomorphism type.
+This blocks the reading that the framework \emph{forces} extensionality, while agreeing that the
+canonical instrument satisfies it. (Anti-foundation is not an example here: Aczel's theory keeps
+Extensionality and also identifies the duplicated childless nodes; what it changes is Foundation,
+\textbf{CM-2}.)
+
+\item[\textbf{CM-2}: Foundation needs staging.] The self-loop $x=\{x\}$ and the two-cycle
+$x=\{y\}$, $y=\{x\}$ are coherent finite membership graphs that admit \emph{no} strictly
+decreasing audit (Theorem~\ref{thm:tfae}). They are excluded only because the present instrument
+was staged acyclic. This blocks ``Foundation is free without staging''; anti-foundation
+\citep{Aczel1988} is the classical theory that admits such graphs.
+
+\item[\textbf{CM-3}: Infinity does not emerge from iteration.] $\HF$ is the witness: no finitely
+generated rule started inside $\HF$ leaves it (Theorem~\ref{thm:nonattain}). An infinite completed
+object may be \emph{admitted}, but it is not \emph{reached}.
+
+\item[\textbf{CM-4}: Sections are not free infinitarily.] If $\mathsf{ZF}$ is consistent, there
+are models of $\mathsf{ZF}$ in which some surjection has no section; Cohen's symmetric models are
+examples \citep{Cohen1966,Jech1973}. This blocks ``\textbf{C-SEL} is derivable in $\mathsf{ZF}$.''
+Finite sections, and sections of lenses that come with an explicit section or a well-ordered
+source, remain free (Theorem~\ref{thm:choice}).
+
+\item[\textbf{CM-5}: Replacement is not supplied by the other commitments.] In ambient
+$\mathsf{ZFC}$, $V_{\omega+\omega}$ satisfies (S), \textbf{C-INF}, \textbf{C-POW} and
+\textbf{C-SEL} but not Replacement: the image of $n\mapsto\omega+n$ is not an element
+(Proposition~\ref{prop:nonredundancy}(ii)).
+
+\item[\textbf{CM-6}: Not every predicate extension is strict.] If $g$ is already definable from
+$f$, the refined lens $(f,g)$ induces the same partition as $f$, and $G_g$ misses $D_g$
+(Lemma~\ref{lem:meeting}). Likewise, adjoining a real that is already in $M$ leaves
+$\mathcal B_M$ unchanged (Theorem~\ref{thm:strict}(1)). Strictness needs non-definability, which
+the counting lemma (Theorem~\ref{thm:counting}) shows is typical but not universal.
+
+\item[\textbf{CM-7}: Power set is not supplied by the other commitments.] In ambient
+$\mathsf{ZFC}$, $H_{\omega_1}$ satisfies (S), \textbf{C-INF}, \textbf{C-REPL} and \textbf{C-SEL}
+but has no power set of $\omega$ (Proposition~\ref{prop:nonredundancy}(iii)).
+
+\item[\textbf{CM-8}: A new real need not be generic.] The duplicated real $x(2n)=x(2n+1)=r(n)$,
+with $r$ generic, is outside $M$ and splits every infinite coded set, yet misses the dense set
+$D^\ast$ (Proposition~\ref{prop:converse}). This blocks ``Cohen genericity is
+non-definability''; only the forward implication holds (Theorem~\ref{thm:novelty}), and the exact
+test is Theorem~\ref{thm:recognition}.
+
+\end{description}
+
+\noindent By provenance, \textbf{CM-1}, \textbf{CM-2} and the finite part of \textbf{CM-6} are
+finite witnesses; \textbf{CM-3} is the in-house non-attainment theorem, a statement about the
+infinite family $\HF$ made in the ambient metatheory; the ground-model part of \textbf{CM-6} and
+\textbf{CM-8} are proved under \textbf{J1}; and \textbf{CM-4}, \textbf{CM-5} and \textbf{CM-7}
+are classical, recalled in relative-consistency form or inside ambient $\mathsf{ZFC}$. Together they delimit what the
+free/purchased reading does, and does not, assert.

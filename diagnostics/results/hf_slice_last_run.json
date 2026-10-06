@@ -1,0 +1,110 @@
+{
+  "checks": {
+    "C1_extensionality": {
+      "passed": true,
+      "residual": 0,
+      "samples": 65536,
+      "witness": {
+        "Ackermann_round_trips": 65536,
+        "duplicates": 0
+      }
+    },
+    "C2_pairing": {
+      "passed": true,
+      "residual": 0,
+      "samples": 200,
+      "witness": {
+        "sampled_pairs": 200
+      }
+    },
+    "C3_union": {
+      "passed": true,
+      "residual": 0,
+      "samples": 200,
+      "witness": {
+        "sampled_unions": 200
+      }
+    },
+    "C4_separation": {
+      "passed": true,
+      "residual": 0,
+      "samples": 200,
+      "witness": {
+        "sampled_gates": 200
+      }
+    },
+    "C5_finite_collection": {
+      "passed": true,
+      "residual": 0,
+      "samples": 200,
+      "witness": {
+        "sampled_lists": 200
+      }
+    },
+    "C6_foundation_rank_audit": {
+      "passed": true,
+      "residual": 0,
+      "samples": 524288,
+      "witness": {
+        "membership_edges": 524288,
+        "self_members": 0
+      }
+    },
+    "C7_no_inductive_set": {
+      "passed": true,
+      "residual": 0,
+      "samples": 65536,
+      "witness": {
+        "inductive_candidates": 0
+      }
+    },
+    "C8_power_set": {
+      "passed": true,
+      "residual": 0,
+      "samples": 16,
+      "witness": {
+        "exhaustive_source": "rank <= 3"
+      }
+    },
+    "C9_transport": {
+      "passed": true,
+      "residual": 0,
+      "samples": 625,
+      "witness": {
+        "exhaustive_domains": "rank <= 3",
+        "target_count": 4
+      }
+    }
+  },
+  "generator": "diagnostics/hf_slice.py",
+  "rank_bound": 4,
+  "rank_sizes": [
+    {
+      "cumulative_size": 1,
+      "cumulative_stage": 1,
+      "rank_bound": 0
+    },
+    {
+      "cumulative_size": 2,
+      "cumulative_stage": 2,
+      "rank_bound": 1
+    },
+    {
+      "cumulative_size": 4,
+      "cumulative_stage": 3,
+      "rank_bound": 2
+    },
+    {
+      "cumulative_size": 16,
+      "cumulative_stage": 4,
+      "rank_bound": 3
+    },
+    {
+      "cumulative_size": 65536,
+      "cumulative_stage": 5,
+      "rank_bound": 4
+    }
+  ],
+  "schema_version": "1.0",
+  "seed": 20260611
+}

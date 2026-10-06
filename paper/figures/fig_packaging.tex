@@ -1,0 +1,47 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+    font=\small,
+    nd/.style={circle, draw, fill=white, minimum size=5.5mm, inner sep=0pt},
+    pt/.style={circle, draw, thick, fill=blue!12, minimum size=5.5mm, inner sep=0pt},
+    dl/.style={font=\scriptsize, text=blue!60!black},
+    e/.style={-{Stealth[length=1.8mm]}, thick},
+    >={Stealth[length=2mm]}]
+  % --- left: an arbitrary presentation P ---
+  \begin{scope}
+    \node[pt] (r) at (0,2.4) {$r$};
+    \node[nd] (u1) at (-1.3,1.2) {$u_1$};
+    \node[nd] (u2) at (-0.35,1.2) {$u_2$};
+    \node[nd] (w) at (1.1,1.2) {$w$};
+    \node[nd] (u3) at (1.1,0) {$u_3$};
+    \draw[e] (r) -- (u1); \draw[e] (r) -- (u2); \draw[e] (r) -- (w); \draw[e] (w) -- (u3);
+    \node[dl, left=1pt of u1] {$\varnothing$};
+    \node[dl, below=1pt of u2] {$\varnothing$};
+    \node[dl, right=1pt of w] {$\{\varnothing\}$};
+    \node[dl, right=1pt of u3] {$\varnothing$};
+    \node[dl, right=2pt of r] {$\{\varnothing,\{\varnothing\}\}$};
+    \node[font=\footnotesize] at (0,-0.8) {presentation $P$ (5 nodes)};
+  \end{scope}
+  % --- arrow ---
+  \draw[->, very thick, gray] (2.9,1.3) -- node[above, font=\footnotesize, text=black]
+        {$E=C\circ f$} node[below, font=\scriptsize, text=black, align=center]
+        {read the profile,\\re-present it} (5.0,1.3);
+  % --- right: canonical presentation C(2) ---
+  \begin{scope}[xshift=7.2cm]
+    \node[pt] (two) at (0,2.4) {$2$};
+    \node[nd] (one) at (0.9,1.2) {$1$};
+    \node[nd] (zero) at (0,0) {$0$};
+    \draw[e] (two) -- (one); \draw[e] (two) -- (zero); \draw[e] (one) -- (zero);
+    \node[font=\footnotesize, align=center] at (0,-0.8)
+         {canonical $C(2)=E(P)$ (3 nodes)};
+    \draw[->, gray, thick] (-0.25,2.75) arc (200:-20:0.32);
+    \node[font=\scriptsize, anchor=south] at (0.05,3.05) {$E(E(P))=E(P)$};
+  \end{scope}
+\end{tikzpicture}
+\caption{The packaging map on a small example. The point $r$ of $P$ (shaded) decorates to
+$2=\{\varnothing,\{\varnothing\}\}$; the blue labels are the decorations $\dec_P$. The lens $f$ keeps only
+this profile, and $E$ re-presents it as the canonical graph $C(2)$ on the transitive closure
+$\TC(\{2\})=\{0,1,2\}$. The three childless nodes $u_1,u_2,u_3$ merge into the single node $0$.
+Applying $E$ again changes nothing (Theorem~\ref{thm:p5}).}
+\label{fig:packaging}
+\end{figure}

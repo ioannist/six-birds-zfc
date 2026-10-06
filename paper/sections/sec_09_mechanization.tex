@@ -1,0 +1,111 @@
+\section{Mechanization and computational evidence}\label{sec:mech}
+
+Selected finite and structural cores of the paper are verified in Lean, and the counting results
+are checked against reproducible numerical exhibits. This section states what is covered, what is
+not, and what the axiom audit shows.
+
+\subsection{A Lean development without external libraries}
+
+The development uses Lean~4 \citep{deMouraUllrich2021}, version 4.28.0, and imports no external
+mathematical library---in particular not \textsf{mathlib} \citep{Mathlib2020}, whose
+\texttt{ZFSet} construction it conceptually mirrors (Remark~\ref{rem:mathlib}). Membership trees,
+extensional equality, the Cohen posets, rank and the idempotent-split structure are all defined
+from first principles. Eight modules carry the verified core:
+\begin{description}[leftmargin=1.2em, itemsep=2pt]
+\item[\texttt{Packaging}.] Idempotents split and have fixed points equal to their image, with a
+finite collapse witness. This is the abstract pattern of Theorem~\ref{thm:p5}; the construction
+of canonical presentations from graphs is not mechanized.
+\item[\texttt{HFClosure}.] Finite membership trees with recursive extensional equality:
+extensional equality holds iff the members agree; pairing, union and filtering respect it;
+finite collection is derived; every family that respects equality and is closed under empty set,
+pairing and union contains every tree (the core of Theorem~\ref{thm:hfclosure}); and no tree is
+inductive.
+\item[\texttt{HFSets}.] The quotient of finite trees by extensional equality, formed without
+choosing representatives: Extensionality, Empty set, Pairing, Union, Separation for decidable
+(Boolean-valued) predicates, rank decrease along membership, no self-membership, and no inductive
+set. Separation is verified for Boolean predicates on the quotient, not for the full formula
+schema of Theorem~\ref{thm:hfsat}.
+\item[\texttt{RankAudit}.] A strictly decreasing audit excludes cycles and yields minimal
+elements of nonempty node lists; the self-loop and two-cycle of \textbf{CM-2} are cycles and so
+admit no audit. The implication from acyclicity to an audit is left on paper.
+\item[\texttt{FiniteCohen}.] The meeting equivalences of Lemma~\ref{lem:meeting}, the density
+defects of Theorem~\ref{thm:densitydefect}, and Remark~\ref{rem:finitegeneric}: in the finite poset
+every total predicate meets every dense family, and $D_g$ is not dense.
+\item[\texttt{CohenBoundary}.] Conditions on $\mathbb N$ with finite support: $D_g$ is dense and is
+met exactly when a disagreement witness exists; $E_A$ is dense for unbounded $A$
+(Corollary~\ref{cor:infinitecontrast}); $D^\ast$ is dense and every duplicated real misses it
+(Proposition~\ref{prop:converse}); visible singletons force injectivity
+(Proposition~\ref{prop:nolens}); and adjoining $x$ to a Boolean-closed family is strict iff $x$ is
+new (Theorem~\ref{thm:strict}(1)).
+\item[\texttt{CohenRecognition}.] The obstruction trees of Theorem~\ref{thm:recognition}: for a dense
+family $D$, the tree $T_D$ is downward closed and nowhere dense, and a real meets $D$ iff it is not
+a branch of $T_D$. Genericity is formalized relative to an explicitly supplied register of coded
+families. It is equivalent to avoiding the obstructions of an indexed list of families provided
+every listed family is coded and dense and every coded dense family is listed. It implies novelty
+with respect to a family $\mathcal B$ of ground predicates provided the disagreement family $D_g$ of
+every $g\in\mathcal B$ is registered, and strict extension provided in addition that $\mathcal B$ is
+Boolean-closed. Once $D^\ast$ is registered, duplicated reals are excluded. With an empty register
+every real would count as generic, so these premises are essential.
+\item[\texttt{LiftChoice}.] Choice-free sections of surjections with finite source, and the
+identity between sections and prototype families (Theorem~\ref{thm:choice}, finite part).
+\end{description}
+
+Several things are deliberately left on paper: the isomorphism between rooted extensional graphs
+and canonical presentations; satisfaction of the full Separation and Replacement schemas in
+$(\HF,\in)$; non-attainment for general finitely generated rules; the rank-erasure translation;
+the counting lemma; the $\mathsf{ZF}$ equivalences of Choice; and everything about countable
+transitive models, generic filters over them and $M[G]$. In particular, \texttt{CohenRecognition}
+takes the register of coded dense families as an input; that this register consists of exactly
+the dense sets belonging to a model $M$ is the mathematical bridge argued in \S\ref{sec:forcing},
+not a Lean theorem.
+
+\begin{proposition}[Axiom base; \inhouse]\label{prop:axioms}
+Every declaration of the Lean development, including compiler-generated auxiliary declarations,
+depends on no axiom other than propositional extensionality and quotient soundness
+\citep{Carneiro2019}. In particular, \texttt{Classical.choice}, the third axiom of Lean's standard
+classical setup, is used nowhere, and no declaration uses an unfinished proof or a project axiom.
+\end{proposition}
+
+The proposition is checked mechanically, not by inspection: an audit file, built as a default
+target of every \texttt{lake build}, selects declarations by their defining module, so that private auxiliary declarations are
+included, and traverses all 371 of them (194 theorems, 9 private declarations) with Lean's
+transitive axiom collector; it fails the build if any other axiom appears. As negative controls,
+temporary files that inject a project axiom, an unfinished proof, or a use of
+\texttt{Classical.choice} are each rejected by the same check. Where a proof needs classical reasoning, as in the
+converse direction of the recognition theorem, the relevant instance of excluded middle is stated
+as an explicit hypothesis rather than imported through \texttt{Classical.choice}.
+
+This matters for the argument of \S\ref{sec:purchases}. The paper prices Choice as the cost of
+sections for arbitrary surjections; a verification of the finite, free case that relied on Choice
+would be circular. The mechanized finite sections set that price to zero without Choice, while the
+equivalence with $\mathsf{AC}$ for arbitrary sets is proved on paper in $\mathsf{ZF}$.
+
+\subsection{Reproducible numerical exhibits}
+
+Three deterministic, seeded scripts check the quantitative predictions on finite data. Each
+asserts a prediction that could fail and reports the residual; every reported number is
+regenerated from a stored run rather than transcribed. The exhibits illustrate the theorems and
+check the encodings; they prove nothing beyond the bounded cases they examine.
+
+\paragraph{The $\HF$ tower.} The sets of rank at most $n$ form $V_{n+1}$, so the enumeration gives
+$|V_1|,\dots,|V_5|=1,2,4,16,65536$. Over all $65{,}536$ elements of $V_5$ the exhibit checks
+that Ackermann coding and decoding round-trip, that rank strictly decreases along all
+$524{,}288$ membership edges (Theorem~\ref{thm:tfae}), and that no element is inductive
+(Theorem~\ref{thm:hfsat}). It also computes the power sets of all $16$ elements of $V_4$ and the
+images of all $625$ maps from those sets into $V_3$, and samples pairing, union, separation and
+finite collection.
+
+\paragraph{Definability rarity.} For nine lens configurations with $N-K$ between $0$ and $20$, the
+fraction of $2\times10^5$ sampled predicates that are definable matches $2^{-(N-K)}$ within a
+statistical gate wherever the expected count is large enough to test, and the fraction that
+splits every non-singleton block matches the exact product formula of Theorem~\ref{thm:counting}
+(Figure~\ref{fig:diagnostics}).
+
+\paragraph{Finite Cohen bridge.} An exhaustive enumeration over the empty lens and all
+surjective labelled lenses on at most five points ($634$ lenses) confirms the meeting equivalences
+and density defects of Lemma~\ref{lem:meeting} and Theorem~\ref{thm:densitydefect} on every
+instance, together with the counts $2^K$ and the splitting product. A scaling experiment confirms
+that the probability of meeting every disagreement family is $1-2^{-(N-K)}$. As explained in
+\S\ref{ssec:category}, this is a finite picture of novelty, not of Cohen genericity.
+
+\input{figures/fig_diagnostics}

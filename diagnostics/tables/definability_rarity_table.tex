@@ -1,0 +1,42 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Definability rarity: empirical fractions versus the exact finite-forcing prediction.}
+\label{tab:definability-rarity}
+\begin{tabular}{@{}lllllllll@{}}
+\toprule
+Config & N & K & N-K & M & Pred. & Emp. & z & Gate \\
+\midrule
+identity\_8\_8 & 8 & 8 & 0 & 200000 & 1.000000 & 1.000000 & 0 & exact \\
+balanced\_8\_4 & 8 & 4 & 4 & 200000 & 0.062500 & 0.062390 & -0.203227 & z \\
+balanced\_10\_5 & 10 & 5 & 5 & 200000 & 0.031250 & 0.031110 & -0.359842 & z \\
+balanced\_12\_4 & 12 & 4 & 8 & 200000 & 0.003906 & 0.004000 & 0.672134 & z \\
+uneven\_12\_4 & 12 & 4 & 8 & 200000 & 0.003906 & 0.003625 & -2.016403 & z \\
+singleton\_mixed\_12\_6 & 12 & 6 & 6 & 200000 & 0.015625 & 0.015580 & -0.162270 & z \\
+balanced\_16\_4 & 16 & 4 & 12 & 200000 & 2.441e-04 & 2.450e-04 & 0.024600 & z \\
+singleton\_mixed\_18\_9 & 18 & 9 & 9 & 200000 & 0.001953 & 0.001805 & -1.500386 & z \\
+tiny\_balanced\_24\_4 & 24 & 4 & 20 & 200000 & 9.537e-07 & 0 & -0.436732 & observational\_low\_expected \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[t]
+\centering
+\small
+\caption{Nothing-Stays-Constant companion: splitting every non-singleton block.}
+\label{tab:definability-rarity-splitting}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+Config & Blocks & Min block & Emp. split & Exact split & UB lower \\
+\midrule
+identity\_8\_8 & [1, 1, 1, 1, 1, 1, 1, 1] & None & 1.000000 & 1.000000 & 1.000000 \\
+balanced\_8\_4 & [2, 2, 2, 2] & 2 & 0.063705 & 0.062500 & 0 \\
+balanced\_10\_5 & [2, 2, 2, 2, 2] & 2 & 0.031405 & 0.031250 & 0 \\
+balanced\_12\_4 & [3, 3, 3, 3] & 3 & 0.316015 & 0.316406 & 0 \\
+uneven\_12\_4 & [1, 2, 4, 5] & 2 & 0.409905 & 0.410156 & 0.312500 \\
+singleton\_mixed\_12\_6 & [1, 1, 2, 2, 3, 3] & 2 & 0.141960 & 0.140625 & 0 \\
+balanced\_16\_4 & [4, 4, 4, 4] & 4 & 0.585460 & 0.586182 & 0.500000 \\
+singleton\_mixed\_18\_9 & [1, 1, 1, 1, 2, 2, 3, 3, 4] & 2 & 0.122765 & 0.123047 & 0 \\
+tiny\_balanced\_24\_4 & [6, 6, 6, 6] & 6 & 0.879070 & 0.880738 & 0.875000 \\
+\bottomrule
+\end{tabular}
+\end{table}

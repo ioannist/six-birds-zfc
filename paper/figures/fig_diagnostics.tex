@@ -1,0 +1,42 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    name=left,
+    width=0.47\textwidth, height=0.36\textwidth,
+    ymode=log, xmin=-1, xmax=21, ymin=3e-7, ymax=3,
+    xlabel={$N-K$}, ylabel={fraction definable from $f$},
+    label style={font=\small}, tick label style={font=\scriptsize},
+    legend style={font=\scriptsize, at={(0.97,0.97)}, anchor=north east, draw=none,
+                  fill=white, fill opacity=0.8, text opacity=1},
+    title={\small (a) definability rarity}, title style={yshift=-4pt}]
+  \addplot[domain=0:20, samples=41, thick, blue!60!black] {2^(-x)};
+  \addlegendentry{exact $2^{-(N-K)}$}
+  \addplot[only marks, mark=x, mark size=3pt, thick, orange!85!black,
+           unbounded coords=discard]
+    table[x=nk, y=emp] {figures/data/rarity.dat};
+  \addlegendentry{empirical ($2\times10^5$ samples)}
+\end{axis}
+\begin{axis}[
+    at={(left.east)}, anchor=west, xshift=1.6cm,
+    width=0.40\textwidth, height=0.36\textwidth,
+    xmin=0, xmax=1.02, ymin=0, ymax=1.02,
+    xlabel={exact $\prod_{|B|\ge2}(1-2^{1-|B|})$}, ylabel={empirical},
+    label style={font=\small}, tick label style={font=\scriptsize},
+    title={\small (b) splitting every block}, title style={yshift=-4pt}]
+  \addplot[domain=0:1, gray, dashed] {x};
+  \addplot[only marks, mark=*, mark size=1.8pt, blue!60!black]
+    table[x=split_exact, y=split_emp] {figures/data/rarity.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{Finite counting checks (Theorem~\ref{thm:counting}) on the nine lens configurations of
+the definability-rarity exhibit. (a) Fraction of sampled predicates that are constant on every
+block, against the exact $2^{-(N-K)}$. The two configurations with $N-K=8$ have different block
+sizes but the same theoretical value, and both empirical values pass the statistical gate. At
+$N-K=20$ the expected number of definable samples is about $0.2$ and none was observed, so no point
+is drawn in (a); that definability measurement is recorded as an observation, not a statistical
+test. (b)
+Fraction of predicates that split every block of size at least two, against the exact product
+formula. The plotted values are read from the stored diagnostic runs, not re-sampled.}
+\label{fig:diagnostics}
+\end{figure}

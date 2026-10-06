@@ -1,0 +1,39 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Finite Cohen exhaustive structural cross-checks.}
+\label{tab:finite-cohen-exhaustive}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Item & Instances & Assertion \\
+\midrule
+lenses & 634 & surjective lenses checked \\
+A1 & 300381 & meeting D iff h != g \\
+A2 & 17964 & meeting E iff h splits block \\
+A3 & 9819 & F(D\_g) = total g \\
+A4 & 596 & F(E\_x) = total constant block \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[t]
+\centering
+\small
+\caption{Finite disagreement-meeting scaling for meeting every D\_g requirement.}
+\label{tab:finite-cohen-scaling}
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+N & K & N-K & M & Pred. & Emp. & Abs. err. \\
+\midrule
+4 & 4 & 0 & 100000 & 0 & 0 & 0 \\
+6 & 4 & 2 & 100000 & 0.750000 & 0.749860 & 1.400e-04 \\
+8 & 4 & 4 & 100000 & 0.937500 & 0.937530 & 3.000e-05 \\
+10 & 4 & 6 & 100000 & 0.984375 & 0.984240 & 1.350e-04 \\
+12 & 4 & 8 & 100000 & 0.996094 & 0.996210 & 1.163e-04 \\
+14 & 4 & 10 & 100000 & 0.999023 & 0.999130 & 1.066e-04 \\
+16 & 4 & 12 & 100000 & 0.999756 & 0.999770 & 1.414e-05 \\
+18 & 4 & 14 & 100000 & 0.999939 & 0.999960 & 2.104e-05 \\
+20 & 4 & 16 & 100000 & 0.999985 & 1.000000 & 1.526e-05 \\
+24 & 4 & 20 & 100000 & 0.999999 & 1.000000 & 9.537e-07 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,200 @@
+\section{The four commitments and the conditional shadow}\label{sec:purchases}
+
+The free part stops at $\HF$. To obtain the usual universe of sets, and with it the full list of
+$\mathsf{ZFC}$ axioms, the construction must be told to continue in four places. This section
+states those four places as an explicit \emph{assumption box}, explains what each one costs, and
+proves that under the box the membership structure satisfies $\mathsf{ZF}$, or $\mathsf{ZFC}$.
+Everything infinitary enters through stated hypotheses; nothing in this section is presented as
+derived from the finite construction. This follows the practice, used elsewhere in the series, of
+stating a source of new content as a named hypothesis rather than building it into a definition
+\citep{SBTRecognition,SBTIncompleteness}.
+
+\subsection{The setting and the assumption box}\label{ssec:box}
+
+We work in an ambient metatheory satisfying $\mathsf{ZF}$ (with Choice only where stated), and
+consider a transitive class $U$, the \emph{admitted universe}. Statements ``in $U$'' are
+relativized to $U$; for a proper class $U$ this is done separately for each fixed formula, without
+a truth predicate. The \emph{structural premise} asks that the free clauses of $F$ be applied at
+every stage:
+
+\begin{description}[leftmargin=1.2em]
+\item[\textbf{(S)} Structural premise.] $U$ is transitive, $\varnothing\in U$, and for all
+$x,y\in U$ the sets $\{x,y\}$ and $\bigcup x$ belong to $U$. Moreover, for every formula $\varphi$
+with parameters in $U$ and every $x\in U$, the set $\{t\in x: (U,\in)\models\varphi(t)\}$ belongs
+to $U$.
+\end{description}
+
+The last clause is the Separation schema read as a gate at every stage. It is the infinitary form
+of the gate clause, but it is not a consequence of it: finite gates do not prove infinitary
+Separation, so (S) is assumed, not derived. The four commitments are:
+
+\begin{description}[leftmargin=1.2em]
+\item[\textbf{C-INF} (inductive-stage completion).] Some $I\in U$ is inductive: $\varnothing\in
+  I$, and $x\cup\{x\}\in I$ whenever $x\in I$. \emph{Package reading:} the limit of the successor
+  process is admitted as a completed object. \emph{Classical name:} Infinity.
+\item[\textbf{C-POW} (full subpackage completion).] For every $x\in U$ there is $p\in U$ whose
+  elements are exactly the $y\in U$ with $y\subseteq x$. \emph{Package reading:} all gates over
+  $x$ are collected into one object at the next stage. \emph{Classical name:} Power set.
+\item[\textbf{C-REPL} (unbounded transport).] For every formula $\varphi$ with parameters in $U$
+  and every $x\in U$: if each $t\in x$ has exactly one $y\in U$ with $(U,\in)\models\varphi(t,y)$,
+  then the set of these $y$ belongs to $U$. \emph{Package reading:} transport along definable maps
+  is allowed at every scale. \emph{Classical name:} Replacement.
+\item[\textbf{C-SEL} (prototype selection).] Every surjection in $U$ between elements of $U$ has
+  a section in $U$; equivalently, every partition of a set in $U$ into nonempty fibers has a
+  family of fiber representatives (\emph{prototypes}) in $U$. \emph{Classical name:} Choice.
+\end{description}
+
+Two readings deserve care. \textbf{C-POW} asks for the subsets of $x$ that lie in $U$; asking for
+every ambient subset is a stronger, separate demand. And \textbf{C-INF} asks for some inductive
+set; the least one, $\omega$, is then obtained inside $U$ by Separation.
+
+\subsection{What each commitment costs}
+
+\paragraph{C-INF is provably not free.} By Theorem~\ref{thm:nonattain}, no finitely generated
+rule reaches an inductive set. Its non-freeness is a theorem.
+
+\paragraph{C-POW exceeds its finite form.} Corollary~\ref{cor:finpow} gives power sets of finite
+sets for free. \textbf{C-POW} adds the collection of all subsets of an infinite set into one
+object, which no finite clause does.
+
+\paragraph{C-REPL exceeds its finite form.} The transport clause of $F$ gives Replacement on
+finite domains (Theorem~\ref{thm:hfsat}). \textbf{C-REPL} allows images of infinite sets under
+definable maps, with no bound on the ranks of the values.
+
+\paragraph{C-SEL is the price of sections for all surjections.} A lens is a surjection onto what
+it sees, and a choice of prototype in each fiber is a section of it. For the membership lens of
+\S\ref{sec:instrument} no choice is needed: $a\mapsto C(a)$ is an explicitly defined section.
+More generally, a surjection whose source is well-ordered has a section in $\mathsf{ZF}$, namely
+the least preimage. What \textbf{C-SEL} buys is a section for \emph{every} surjection of sets,
+with no such structure given. The resulting prototypes are ``canonical'' only in the sense that
+they are supplied; Choice provides no natural or symmetry-invariant selection.
+
+\begin{theorem}[Choice is the price of sections; finite part \inhouse, ZF equivalence standard]\label{thm:choice}
+\emph{(Finite part.)} Every surjection $f\colon Z\to X$ with $Z$ finite has a section, obtained
+without any choice principle. \emph{(Equivalence.)} Over $\mathsf{ZF}$, the following are
+equivalent: \textup{(1)} the Axiom of Choice; \textup{(2)} every surjection between sets has a
+section; \textup{(3)} every partition of a set into nonempty fibers has a family of prototypes;
+\textup{(4)} every product of a set-indexed family of nonempty sets is nonempty.
+\end{theorem}
+
+\begin{proof}
+Finite part: a finite set $Z$ admits an enumeration $z_1,\dots,z_n$; asserting that one exists and
+fixing it for this one set uses no choice principle. Let $s(x)$ be the member of $f^{-1}(x)$ with
+least index. Equivalence: $(1)\Rightarrow(2)$ by choosing from the fibers; $(2)\Rightarrow(1)$
+because, for nonempty sets $(A_i)_{i\in I}$, the projection $\{(i,a):a\in A_i\}\to I$ is a
+surjection and a section is a choice function; $(2)\Leftrightarrow(3)$ because a section is the
+same thing as a family of fiber representatives; $(1)\Leftrightarrow(4)$ is standard
+\citep{Jech1973}.
+\end{proof}
+
+\begin{corollary}[Price of C-SEL; \condg]\label{cor:choice}
+If $U$ satisfies $\mathsf{ZF}$, then \textbf{C-SEL} holds in $U$ if and only if $U$ satisfies the
+Axiom of Choice. Choice is thus the license to select prototypes for arbitrary lenses: free for
+finite lenses and for lenses that come with a well-ordering or an explicit section, and purchased
+in general.
+\end{corollary}
+
+The equivalence concerns surjections between \emph{sets}. It says nothing about surjections whose
+source or fibers are proper classes, and it is not used for them.
+
+\subsection{The conditional shadow theorem}
+
+\begin{theorem}[Conditional $\mathsf{ZF(C)}$ shadow; \condg]\label{thm:shadow}
+Work in an ambient $\mathsf{ZF}$ and let $U$ be a transitive class satisfying \textup{(S)},
+\textbf{C-INF}, \textbf{C-POW} and \textbf{C-REPL}. Then $(U,\in)$ satisfies every axiom of
+$\mathsf{ZF}$, each schema instance by instance. If $U$ also satisfies \textbf{C-SEL}, then
+$(U,\in)$ satisfies $\mathsf{ZFC}$.
+\end{theorem}
+
+\begin{proof}
+\emph{Free suppliers.} Extensionality holds because $U$ is transitive. Empty set, Pairing, Union
+and each instance of Separation are the clauses of (S). Foundation holds because a nonempty
+$x\in U$ has an $\in$-minimal element in the ambient universe, and that element lies in $U$ by
+transitivity; this uses the well-foundedness of the ambient membership relation, the infinitary
+counterpart of the rank audit. \emph{Purchased suppliers.} Because $U$ is transitive and closed
+under pairs and unions, ``$x\cup\{x\}$'' and ``inductive'' mean the same in $U$ as outside, so
+\textbf{C-INF} gives Infinity. \textbf{C-POW} gives Power set, read in $U$, and \textbf{C-REPL}
+gives each instance of Replacement. For Choice, let $x\in U$ be a set of nonempty sets. The set
+$\{(i,a): i\in x,\ a\in i\}$ is in $U$, being a definable subset of $x\times\bigcup x$, which is
+available from Power set and Separation. Its projection to $x$ is a surjection in $U$, and a
+section supplied by \textbf{C-SEL} is a choice function.
+\end{proof}
+
+Inside such a $U$, the cumulative hierarchy $V_0=\varnothing$, $V_{\alpha+1}=\powset(V_\alpha)$,
+$V_\lambda=\bigcup_{\beta<\lambda}V_\beta$ is defined by transfinite recursion \citep{Zermelo1930}
+and every set has a definable rank \citep[Ch.~6]{Jech2003}. So $(U,\in)$ is the rank-erased
+membership structure of its own staged hierarchy, the infinitary analogue of
+Theorem~\ref{thm:translation}. These classical facts are imported, not reproved.
+
+Theorem~\ref{thm:shadow} is a conditional statement about a given $U$; it does not produce one.
+In particular, nothing here implies the existence of an inaccessible cardinal, of a transitive set
+model of $\mathsf{ZF}$, or the consistency of $\mathsf{ZFC}$. For a truncated universe $V_\kappa$,
+for instance, Replacement holds only if definable images of sets in $V_\kappa$ stay of rank below
+$\kappa$, which an arbitrary cutoff does not guarantee \citep{MontagueVaught1959}.
+
+\begin{table}[tbp]\centering
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Axiom & In $\HF$ (free) & At infinite stages & Why needed \\
+\midrule
+Extensionality & lens quotient (Thm.~\ref{thm:p5}) & transitivity of $U$ & --- \\
+Empty, Pairing, Union & packaging clauses & premise (S) & --- \\
+Separation & gate clause & premise (S) & --- \\
+Foundation & rank audit (Thm.~\ref{thm:tfae}) & ambient well-foundedness & --- \\
+\midrule
+Infinity & fails (Thm.~\ref{thm:hfsat}) & \textbf{C-INF} & $\HF$; Thm.~\ref{thm:nonattain} \\
+Power set & finite sets (Cor.~\ref{cor:finpow}) & \textbf{C-POW} & $H_{\omega_1}$ \\
+Replacement & finite domains & \textbf{C-REPL} & $V_{\omega+\omega}$ \\
+Choice & finite families & \textbf{C-SEL} & symmetric models of $\mathsf{ZF}$ \\
+\bottomrule
+\end{tabular}
+\caption{The free/purchased ledger. The upper block holds in $\HF$ by finite clauses and holds at
+infinite stages by the structural premise (S), which applies the same clauses at every stage, or
+by ambient well-foundedness. The lower block is supplied at infinite stages only by the four named
+commitments; the last column names the countermodel or theorem showing that the commitment cannot
+be dropped (Proposition~\ref{prop:nonredundancy}).}
+\label{tab:factorization}
+\end{table}
+
+\subsection{Non-redundancy}\label{ssec:nonredundancy}
+
+The ledger is only meaningful if each purchase buys something the others do not.
+
+\begin{proposition}[Each commitment is needed; mixed grades]\label{prop:nonredundancy}
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Dropping \textbf{C-INF}} \inhouse. $U=\HF$ satisfies (S), \textbf{C-POW},
+\textbf{C-REPL} and \textbf{C-SEL}, and contains no inductive set (Theorem~\ref{thm:hfsat}).
+\item \emph{Dropping \textbf{C-REPL}} \condg, in ambient $\mathsf{ZFC}$. $U=V_{\omega+\omega}$
+satisfies (S), \textbf{C-INF}, \textbf{C-POW} and \textbf{C-SEL}, so it is a model of Zermelo set
+theory with Choice. \textbf{C-REPL} fails: the map $n\mapsto\omega+n$ is definable in $U$ on the
+domain $\omega\in U$, with each value in $U$, but its image has rank $\omega+\omega$ and is not an
+element of $U$ \citep[Ch.~12]{Jech2003}.
+\item \emph{Dropping \textbf{C-POW}} \condg, in ambient $\mathsf{ZFC}$. Let $U=H_{\omega_1}$, the
+hereditarily countable sets. It satisfies (S), \textbf{C-INF}, \textbf{C-REPL} (indeed the stronger
+Collection schema) and \textbf{C-SEL} \citep{GitmanHamkinsJohnstone2016}. \textbf{C-POW} fails for
+$x=\omega$: every subset of $\omega$ is hereditarily countable and hence in $U$, so a power set of
+$\omega$ in $U$ would contain all of the uncountably many reals, while every element of $U$ is
+countable.
+\item \emph{Dropping \textbf{C-SEL}} \condg, relative consistency. If $\mathsf{ZF}$ is consistent,
+so is $\mathsf{ZF}$ together with the existence of a surjection that has no section; Cohen's
+symmetric models give such models of $\mathsf{ZF}$ without atoms \citep{Cohen1966,Jech1973}. By
+Corollary~\ref{cor:choice}, \textbf{C-SEL} fails in them.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof notes]
+(i) $\HF$ is transitive and closed under the clauses of (S) by Theorem~\ref{thm:hfsat}; it
+satisfies Power set, Replacement and Choice internally by the same theorem, and these are exactly
+\textbf{C-POW}, \textbf{C-REPL} and \textbf{C-SEL} read in $U=\HF$. (ii) Finite rank increments of
+sets in $V_{\omega+\omega}$ stay below the limit $\omega+\omega$, which gives the closure
+properties; a choice function of a set in $V_{\omega+\omega}$ has only finitely larger rank. (iii)
+For Collection over a countable domain, pick one hereditarily countable witness per element using
+ambient Choice; the countable union of their countable transitive closures is countable, by the
+regularity of $\omega_1$. Each set in $U$ has a countable well-order in $U$, which gives internal
+sections.
+\end{proof}
+
+The witness in (i) matters most for the paper's claim, because it is the boundary of the free
+column itself: drop the first purchase and the remaining three are still satisfied, by $\HF$. The
+other witnesses are classical; they are recalled here, not reproved.

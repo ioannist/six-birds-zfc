@@ -1,0 +1,208 @@
+{
+  "title": "To Set a Stone with Six Birds: The Free and Purchased Parts of ZFC",
+  "description": "<p>The axioms of ZFC are usually presented as a flat list. We show that the list splits into two parts: axioms that a small finite construction supplies for free, and axioms that must be bought with explicit commitments. A set is treated as a <em>package</em>: a finite membership graph is observed only through its membership profile, and a finite Mostowski collapse replaces the part of the graph reachable from its distinguished node by a canonical representative. On finite graphs this packaging map is idempotent with exactly the hereditarily finite sets HF as its objects; closing the empty family under the empty set, pairing, union, subsets and finite images yields exactly HF; and (HF, &isin;) satisfies every axiom of ZFC except Infinity. Foundation coincides, on finite graphs, with the existence of a strictly decreasing rank, and over HF rank is first-order definable from membership, so forgetting the stages loses nothing. No finitely generated rule started from hereditarily finite sets ever produces an infinite set: Infinity is a change of rules, not a longer run of the old ones. The infinitary axioms then enter through four named commitments&mdash;Infinity, Power set, Replacement and Choice&mdash;on top of a stated structural premise; under them the membership structure satisfies ZF, or ZFC, and standard countermodels show that each commitment is needed.</p>\n<p>The second theme is forcing. A counting lemma from the Six Birds framework&mdash;a random predicate on N points is definable from a K-block partition with probability 2<sup>&minus;(N&minus;K)</sup>&mdash;counts failures of the same disagreement conditions that Cohen forcing uses. Over &omega; these conditions become dense, so a Cohen real over a countable transitive model M is new and strictly enlarges the Boolean algebra of M-coded predicates. Novelty does not suffice for genericity: we give a real that is new and splits every infinite M-coded set without being generic, and we state the exact test&mdash;a real is generic exactly when it avoids every M-coded closed nowhere dense set.</p>\n<p>Selected finite cores are verified in Lean without external libraries; an automatic audit of all project declarations finds no axioms beyond propositional extensionality and quotient soundness, so the finite results used to price Choice do not use Choice. We prove no consistency or independence theorems; every infinitary ingredient is a named hypothesis or a cited classical result.</p>\n<p>Source code, Lean development and diagnostics: <a href=\"https://github.com/ioannist/six-birds-zfc\">https://github.com/ioannist/six-birds-zfc</a></p>",
+  "publication_date": "2026-10-03",
+  "version": "v2.0",
+  "keywords": [
+    "ZFC",
+    "set theory",
+    "hereditarily finite sets",
+    "Mostowski collapse",
+    "closure operators",
+    "Cohen forcing",
+    "genericity",
+    "Boolean algebras of predicates",
+    "independence",
+    "Lean 4",
+    "emergence calculus",
+    "Six Birds Theory"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "arXiv:2602.00134",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.5281/zenodo.19201835",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.5281/zenodo.19189353",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.5281/zenodo.19672278",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.1007/BF01449999",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF01457986",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.4064/fm-16-1-29-47",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.4064/fm-47-2-219-242",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "978-1-84890-050-9",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.1007/3-540-44761-X",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.1007/BF01594179",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1305/ndjfl/1193667707",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.5169/seals-17315",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF01171122",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "978-0-937073-22-3",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.4064/fm-36-1-143-164",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.2140/pjm.1955.5.285",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1017/CBO9780511809088",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.1073/pnas.50.6.1143",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.4064/fm-37-1-193-200",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1073/pnas.24.12.556",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF01700692",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.2307/2304666",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1017/S1755020311000359",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.2307/2025204",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1090/pspum/013.2/0392570",
+      "relation": "cites",
+      "resource_type": "publication-section"
+    },
+    {
+      "identifier": "10.1093/acprof:oso/9780199269730.001.0001",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.1002/malq.201500019",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "978-0-444-10484-7",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.1007/978-3-662-07003-1",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.1007/978-1-4684-9339-9",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "https://www.jstor.org/stable/23932367",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.2307/2183530",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "978-0-465-03770-4",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.1007/978-3-030-79876-5_37",
+      "relation": "cites",
+      "resource_type": "publication-conferencepaper"
+    },
+    {
+      "identifier": "10.1145/3372885.3373824",
+      "relation": "cites",
+      "resource_type": "publication-conferencepaper"
+    },
+    {
+      "identifier": "https://github.com/digama0/lean-type-theory/releases/tag/v1.0",
+      "relation": "cites",
+      "resource_type": "publication-thesis"
+    }
+  ],
+  "notes": "Version 2. The forcing section states the relation between genericity and novelty as a one-way implication, adds an explicit real that is new and splits every infinite coded set without being generic, and adds the exact characterization of genericity by coded closed nowhere dense sets; version 1 had presented genericity as characterized by non-definability. The ground model's predicates are treated as a Boolean algebra rather than a partition lens, and category and measure are distinguished (Cohen reals are comeagre but null). The shadow theorem states its structural premise explicitly; the non-redundancy witnesses include H(omega_1) for Power set; countermodel CM-1 uses a node-counting lens; the continuum-hypothesis statements separate relative consistency from the host-model picture. The Lean development grew from five to eight modules with an automatic axiom audit of all 371 declarations. The exposition was rewritten throughout and figures were added."
+}

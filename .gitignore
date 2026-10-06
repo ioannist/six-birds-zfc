@@ -1,0 +1,60 @@
+.env
+construction/
+formal/.lake/
+diagnostics/__pycache__/
+diagnostics/.mplconfig/
+paper/.codex_review_thread_id
+
+# AI agent state, transcripts and local tool caches (never commit)
+.claude/
+.codex/
+CLAUDE.local.md
+*.jsonl
+**/.codex_*thread_id
+.env.*
+!.env.example
+__pycache__/
+.mplconfig/
+
+# Local release artifacts (uploaded to Zenodo)
+paper/submission/artifacts/
+
+# Drafting guides, outline, abstract brief and templates (kept on disk)
+/paper/notation_and_terminology.md
+/paper/OUTLINE.md
+/paper/abstract.md
+/paper/external_citation_bibliography.md
+/paper/notes/*-template.md
+/paper/submission/*-template.*
+
+# Editor / OS noise
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Local secrets and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+.pypirc
+credentials*.json
+*secret*
+*token*.txt
+
+# Further agent/session state
+**/.agents/
+**/.cursor/
+**/.aider*
+**/.continue/
+**/.specstory/
+**/.windsurf/
+/memory/
+/prompts/
+/skills/
+**/transcripts/
+**/*.transcript*
+**/.claude.json

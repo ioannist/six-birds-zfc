@@ -1,0 +1,120 @@
+\section{Introduction}\label{sec:intro}
+
+\subsection{A list, and a question}
+
+The foundations of mathematics are usually met as a list. Extensionality, empty set, pairing,
+union, power set, separation, infinity, replacement, foundation, choice: ten statements about
+membership \citep{Zermelo1908, Fraenkel1922} from which, we are told, the rest of mathematics
+follows. The list is adopted because it works. It carries analysis, algebra and topology, and it
+has not produced a contradiction.
+
+This paper asks where the list comes from. Not whether it is true or consistent, but whether its
+entries are ten independent stipulations, or whether some of them are consequences of something
+simpler, with only a few genuinely \emph{chosen}. Our answer is that the list sorts into two
+columns. Some axioms are \emph{free}: they hold automatically of anything produced by a modest
+finite construction. Others are \emph{purchased}: they mark the exact points at which that
+construction must be told to go on past where it would stop on its own. The free column is
+proved; the purchased column is stated as a small set of named hypotheses, each with a theorem
+or countermodel showing why it cannot be dropped.
+
+\subsection{The idea in brief}
+
+The organizing vocabulary comes from Six Birds Theory (\textsc{SBT})~\citep{SBTFoundationsI}, a
+framework for describing how stable objects arise when a complicated substrate is observed
+through a limited interface. We use only a small part of it, and we use it as an organizing
+instrument, not as a source of new set theory. Three roles matter here.
+\begin{itemize}[itemsep=2pt,topsep=3pt]
+\item A \emph{lens} records what an observer can see. For sets, the substrate is the class of
+finite membership graphs, and the lens records only the membership profile of the distinguished
+node: which sets are its members, which sets are theirs, and so on. Node names and duplicated
+structure are invisible.
+\item A \emph{packaging map} replaces each graph by a canonical representative of what the lens
+sees. For sets it collapses the part of the graph reachable from the distinguished node, as in
+a finite Mostowski collapse, and re-presents it canonically; its objects are exactly the
+hereditarily finite sets. Extensionality is the decision to identify graphs that the lens cannot tell apart.
+\item An \emph{audit} is a certificate that strictly decreases along the structure. For sets it
+is the rank, which decreases along membership. On finite graphs, Foundation says precisely that
+such a certificate exists.
+\end{itemize}
+Two further patterns from the framework organize the rest of the paper. A fixed finite rule,
+iterated, may keep producing new objects, but they stay of the same kind: everything it produces
+is hereditarily finite, and it never leaves $\HF$. In this sense it \emph{saturates}. An object
+of a new kind, such as an infinite set, comes only from \emph{changing the rule}, that is, from
+adjoining something the old rule cannot produce. The free axioms are what the finite rules
+already supply inside $\HF$; the purchased axioms are the named changes of rule. Figure~\ref{fig:overview} shows the resulting picture of the cumulative
+hierarchy.
+
+\input{figures/fig_overview}
+
+\subsection{Main results}
+
+We work first over the hereditarily finite sets $\HF$, where everything is finite and can be
+checked, and then pass to the infinite by explicit hypotheses.
+
+\paragraph{The free part (\S\ref{sec:free}).} On finite well-founded membership graphs, the
+packaging map is idempotent and its fixed points correspond bijectively to $\HF$
+(Theorem~\ref{thm:p5}). Closing the empty family under the finite packaging operations---empty
+set, pairing, union, subsets and finite images---gives exactly $\HF$ (Theorem~\ref{thm:hfclosure}),
+and $(\HF,\in)$ satisfies every axiom of $\mathsf{ZFC}$ except Infinity, each witnessed by a
+named clause, by finite selection, or by the rank audit (Theorem~\ref{thm:hfsat}). On finite graphs, Foundation is
+equivalent to the existence of a strictly decreasing rank function (Theorem~\ref{thm:tfae}).
+
+\paragraph{Infinity is a change of rules (\S\ref{sec:infinity}).} No finitely generated
+completion rule, iterated from hereditarily finite sets, ever produces an inductive set
+(Theorem~\ref{thm:nonattain}). An infinite set has to be admitted; it cannot be reached.
+
+\paragraph{Forgetting the stages is lossless (\S\ref{sec:shadow}).} The usual axioms mention
+only membership, while the construction is staged. Over $\HF$ rank is first-order definable from
+membership, and every sentence about the staged structure translates into an equivalent sentence
+about membership alone (Theorem~\ref{thm:translation}).
+
+\paragraph{The purchased part (\S\ref{sec:purchases}).} Infinity, Power set, Replacement and
+Choice enter as four named commitments. Infinity is provably not free
+(Theorem~\ref{thm:nonattain}). Choice is, over $\mathsf{ZF}$, exactly the statement that every
+surjection of sets has a section (Theorem~\ref{thm:choice}); the particular membership lens needs
+no choice, because its sections are given explicitly. Under a stated structural premise and the
+four commitments, the membership structure satisfies $\mathsf{ZF}$, and with Choice $\mathsf{ZFC}$
+(Theorem~\ref{thm:shadow}). Standard countermodels show that none of the four can be omitted
+(Proposition~\ref{prop:nonredundancy}). Table~\ref{tab:factorization} records the resulting
+ledger.
+
+\paragraph{Forcing (\S\ref{sec:forcing}).} The Six Birds framework contains a counting
+lemma---informally called the ``finite forcing lemma''~\citep{SBTFoundationsI}---stating that a
+random predicate on $N$ points is constant on every block of a $K$-block partition with
+probability $2^{-(N-K)}$. We show that this lemma counts the failures of the same disagreement
+conditions that Cohen forcing uses~\citep{Cohen1963, Cohen1966}, and we compute exactly which
+finite conditions have no extension meeting them (Theorem~\ref{thm:densitydefect}). Over
+$\omega$ the failures disappear. As a consequence, a Cohen-generic real over a countable
+transitive model $M$ lies outside $M$ and splits every infinite set coded in $M$
+(Theorem~\ref{thm:novelty}), and adjoining it strictly enlarges the Boolean algebra of
+$M$-coded predicates (Theorem~\ref{thm:strict}). The implication runs one way only: a real can
+be new and split every infinite coded set without being generic
+(Proposition~\ref{prop:converse}). The exact condition is that the real avoid every $M$-coded
+closed nowhere dense set (Theorem~\ref{thm:recognition}). Cohen reals form a comeagre set of
+measure zero, so the finite probability $1-2^{-(N-K)}$ describes novelty, not genericity
+(\S\ref{ssec:category}). The continuum hypothesis appears as a question the ground model does
+not settle (\S\ref{sec:ch}).
+
+\paragraph{Guards and verification (\S\S\ref{sec:atlas}--\ref{sec:mech}).} Eight countermodels
+block the most tempting overstatements, such as ``extensionality is forced'' or ``Foundation is
+free without staging.'' Selected finite cores are verified in Lean~4 without external libraries.
+An automatic audit, run on every build, checks that each of the 371 project declarations depends
+on no axiom other than propositional extensionality and quotient soundness; in particular, the
+finite lift used to price Choice is verified without Choice. Reproducible numerical exhibits
+accompany the counting results.
+
+\subsection{Scope and grades}
+
+We do \emph{not} derive $\mathsf{ZF}$ or $\mathsf{ZFC}$ from finite principles: the infinitary
+content enters only through named hypotheses. We prove no consistency statement beyond the
+classical results we cite, and no new independence result; the forcing section reorganizes
+classical facts and adds finite and structural statements about them. We do not claim that
+$\mathsf{ZFC}$ is the unique or most natural set theory. The interpretive reading in
+\S\ref{sec:discussion} comes after the theorems and is never used to prove them.
+
+Because the paper mixes statements of different strength, every numbered result carries a tag.
+\inhouse{} marks a result proved here without set-theoretic hypotheses beyond the ambient
+metatheory; some of these have Lean-verified cores. \condg{} marks a result proved under named
+hypotheses or cited classical imports. \modelg{} marks a statement about specific models obtained
+from cited results. \guardg{} marks a countermodel. \metag{} marks an interpretive reading that is
+deliberately not a theorem. Section~\ref{sec:scope} collects the boundaries in one place.

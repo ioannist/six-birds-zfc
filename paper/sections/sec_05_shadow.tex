@@ -1,0 +1,98 @@
+\section{The rank-erased shadow}\label{sec:shadow}
+
+The construction so far carries two kinds of data: sets, and the stages at which they appear.
+This is the \emph{iterative conception} of set in explicitly staged form
+\citep{Boolos1971,Scott1974,Potter2004}. The axioms of $\mathsf{ZFC}$, by contrast, speak of a
+single relation $\in$ and never mention stages. A natural worry is that the flat presentation
+forgets the staging on which our reading of the axioms rests. This section shows that, over
+$\HF$, nothing is forgotten: the stages are recoverable from membership alone.
+
+\subsection{The staged structure and its shadow}
+
+\begin{definition}[Staged structure and rank-erasure]\label{def:staged}
+Let $L_2$ be the two-sorted language with sorts $\mathrm{SET}$ and $\mathrm{STAGE}$, a relation
+$\in$ on sets, a relation $<$ on stages, and a function symbol $\mathrm{st}\colon\mathrm{SET}\to
+\mathrm{STAGE}$. The canonical finite staged structure is
+\[
+  M_2:=(\HF;\ \Ord_{\mathrm{fin}};\ \in;\ <;\ \mathrm{st}=\rank),
+\]
+where $\Ord_{\mathrm{fin}}$ is the set of finite von Neumann ordinals, $<$ is membership between
+ordinals, and $\mathrm{st}(x)=\rank(x)$. Its \emph{rank-erasure} is the one-sorted structure
+$M_1:=(\HF,\in)$.
+\end{definition}
+
+\subsection{Rank is first-order recoverable}
+
+\begin{lemma}[Finite ordinals are definable; \inhouse]\label{lem:orddef}
+The formula $\mathrm{Ord}(u):\equiv\mathrm{Trans}(u)\wedge\mathrm{Lin}_\in(u)$, stating that $u$
+is transitive and that any two distinct elements of $u$ are $\in$-comparable, defines over
+$(\HF,\in)$ exactly the finite von Neumann ordinals.
+\end{lemma}
+
+\begin{proof}
+Every finite ordinal is transitive and $\in$-linear. Conversely, induct on $|u|$. Because $\HF$ has
+no membership cycles (Theorem~\ref{thm:tfae}), $\in$ is irreflexive on $u$, and it is transitive
+on $u$: if $x\in y\in z$ in $u$, linearity leaves $x\in z$, $x=z$ or $z\in x$, and the last two
+would create a cycle. So $\in$ is a strict linear order on the finite set $u$. If $u\ne\varnothing$,
+let $m$ be its largest element. Every other element of $u$ lies in $m$, and $m\subseteq u$ by
+transitivity of $u$, so $u=m\cup\{m\}$. Moreover $m$ is transitive (if $y\in x\in m$, then $y\in
+u$ and $y\in m$ by transitivity of the order) and $\in$-linear, so by induction $m$ is a finite
+ordinal and so is $u$.
+\end{proof}
+
+\begin{theorem}[Rank is definable; \inhouse]\label{thm:rankdef}
+There is an $\{\in\}$-formula $R(x,r)$ such that, over $(\HF,\in)$, $R(x,r)$ holds iff
+$r=\rank(x)$.
+\end{theorem}
+
+\begin{proof}
+The witnesses of a rank computation are themselves hereditarily finite, so the recursion can be
+quantified inside $\HF$. Write, as $\{\in\}$-formulas, Kuratowski pairs, functions and domains.
+Call $(T,g)$ a \emph{rank attestation} for $x$ if $T$ is a transitive set with $x\in T$, $g$ is a
+function with domain $T$, and
+\[
+  g(y)=\textstyle\bigcup_{z\in y}\bigl(g(z)\cup\{g(z)\}\bigr)\qquad\text{for all }y\in T.
+\]
+Let $R(x,r):\equiv\exists T\,\exists g\,\bigl((T,g)\text{ is a rank attestation for }x\wedge
+g(x)=r\bigr)$. For existence take $T=\TC(\{x\})$ and $g=\rank\restr T$, both in $\HF$; an empty $y$
+gets rank $0$. For uniqueness, any attestation satisfies $g(y)=\rank(y)$ for all $y\in T$, by
+induction on rank. Hence $R(x,r)$ holds exactly when $r=\rank(x)$.
+\end{proof}
+
+\subsection{Lossless erasure}
+
+\begin{theorem}[Rank-erasure translation; \inhouse]\label{thm:translation}
+There is an effective translation $\Phi\mapsto\Phi^\flat$ from $L_2$-sentences to
+$\{\in\}$-sentences such that
+\[
+  M_2\models\Phi\quad\Longleftrightarrow\quad M_1\models\Phi^\flat.
+\]
+Consequently the shadow $(\HF,\in)$ determines the stage sort, the stage order and the rank map.
+\end{theorem}
+
+\begin{proof}
+First unnest locally at atoms: an atomic formula $\psi$ containing a term $\mathrm{st}(x)$ is
+replaced by $\exists\alpha\,(\mathrm{st}(x)=\alpha\wedge\psi[\alpha/\mathrm{st}(x)])$ with $\alpha$
+fresh. Because $\mathrm{st}$ is total and single-valued, this is equivalent to the atom, and since
+the replacement happens inside each atom it commutes with negation and the other connectives. On
+unnested formulas translate by recursion: $\mathrm{SET}$ variables and $\in$ are kept,
+$\mathrm{STAGE}$ quantifiers are relativized to $\mathrm{Ord}$ (Lemma~\ref{lem:orddef}),
+$(\alpha<\beta)^\flat:\equiv\alpha\in\beta$, $(\alpha=\beta)^\flat:\equiv\alpha=\beta$, and
+$(\mathrm{st}(x)=\alpha)^\flat:\equiv R(x,\alpha)$ (Theorem~\ref{thm:rankdef}). An induction on
+formulas, carrying variable assignments, shows that each formula and its translation agree; the
+atomic cases are the two lemmas, and $\mathrm{STAGE}$ quantifiers range over the finite ordinals on
+both sides.
+\end{proof}
+
+\begin{remark}[Scope of losslessness]\label{rem:translation}
+Theorem~\ref{thm:translation} licenses the one-sorted bookkeeping of the rest of the paper: when
+we say that the membership structure ``satisfies $\mathsf{ZF}$,'' no staging content has been
+silently dropped. The infinitary analogue, the definability of the von Neumann rank in
+$\mathsf{ZF}$, is standard \citep[Ch.~6]{Jech2003}, and deriving the axioms from the stage picture
+is the classical complement of this recovery \citep{Scott1974,Boolos1971}.
+
+Losslessness is a property of the canonical rank labeling, not of arbitrary stage labelings.
+There are only countably many formulas, even with finitely many parameters from $\HF$, but
+uncountably many maps $\HF\to\Ord_{\mathrm{fin}}$, so most labelings are not definable and would
+be lost under erasure. The set-theoretic staging is exactly one that is not.
+\end{remark}

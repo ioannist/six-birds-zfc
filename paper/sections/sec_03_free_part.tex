@@ -1,0 +1,238 @@
+\section{The free part: \texorpdfstring{$\HF$}{HF} and the auditable axioms}\label{sec:free}
+
+We now run the instrument from nothing and read off what it supplies. Three results carry the
+section: the packaging map is an idempotent whose objects are the hereditarily finite sets
+(\S\ref{ssec:p5}); closing the empty family under the finite packaging operations gives exactly
+$\HF$, which satisfies every axiom of $\mathsf{ZFC}$ except Infinity (\S\ref{ssec:hf}); and on
+finite graphs Foundation is the same as the existence of a rank audit (\S\ref{ssec:foundation}).
+Table~\ref{tab:freepart} summarizes the outcome.
+
+\subsection{The set universe as a packaging quotient}\label{ssec:p5}
+
+\begin{theorem}[Mostowski collapse is packaging; \inhouse]\label{thm:p5}
+The packaging map $E\colon Z\to Z$ of Definition~\ref{def:E} is idempotent, and
+\[
+  \Fix(E)\;=\;\im(E)\;=\;\{C(a): a\in\HF\}.
+\]
+The restricted lens $f\restr\Fix(E)\colon \Fix(E)\to\HF$ is a bijection with inverse $a\mapsto
+C(a)$. With $i\colon\Fix(E)\hookrightarrow Z$ the inclusion and $r\colon Z\to\Fix(E)$,
+$r(P):=E(P)$,
+\[
+  r\circ i=\mathrm{id}_{\Fix(E)},\qquad i\circ r=E,
+\]
+so $\Fix(E)$ is a system of representatives for the lens quotient $Z/{\sim}$.
+\end{theorem}
+
+\begin{proof}
+Since $f(C(a))=a$ (Lemma~\ref{lem:L2}), $E(E(P))=C(f(C(f(P))))=C(f(P))=E(P)$. Idempotence gives
+$\im(E)\subseteq\Fix(E)$, the reverse inclusion is trivial, and $\im(E)=\{C(a):a\in\HF\}$ by
+definition. The restricted lens is surjective because $f(C(a))=a$ and injective because $P=E(P)=
+C(f(P))$ on $\Fix(E)$. The splitting equations are immediate, and $[P]\mapsto E(P)$ is a
+bijection from $Z/{\sim}$ onto $\Fix(E)$ because $E(P)\sim P$. This is the framework's
+``idempotents split'' lemma~\citep{SBTFoundationsI} for the membership instrument; the
+underlying collapse of a well-founded extensional relation onto a transitive set is the Mostowski
+lemma~\citep{Mostowski1949}.
+\end{proof}
+
+\begin{remark}[The construction already in use]\label{rem:mathlib}
+Theorem~\ref{thm:p5} describes how the universe of sets is commonly built in proof assistants.
+The \texttt{PSet}/\texttt{ZFSet} development of \citet{Mathlib2020} defines a pre-set as a
+type-indexed family of pre-sets---a well-founded membership tree with arbitrary branching---and a
+set as a class of pre-sets under extensional equivalence. That is the quotient of presentations
+by the lens relation $\sim$, and Theorem~\ref{thm:p5} is its finite, well-founded instance. The
+Lean development accompanying this paper builds the finite version from scratch, as a quotient of
+finite membership trees, without choosing representatives (\S\ref{sec:mech}).
+\end{remark}
+
+\begin{remark}[Finite Mostowski collapse]\label{rem:finitemostowski}
+On rooted extensional presentations $E$ is an isomorphism (Lemma~\ref{lem:L2}); in general it
+collapses. In Figure~\ref{fig:packaging} a five-node presentation is packaged to the three-node
+canonical presentation of $2$. Nodes that cannot be reached from the point do not affect its
+decoration and are discarded by $E$; on the part reachable from the point, $E$ is the finite case
+of the Mostowski collapse. The infinitary statement is classical and is neither reproved nor used
+here.
+\end{remark}
+
+\subsection{Closing from nothing yields exactly \texorpdfstring{$\HF$}{HF}}\label{ssec:hf}
+
+By Theorem~\ref{thm:p5} we may work directly with the packaged objects, the elements of $\HF$. We
+write the basic operations on $\HF$ as packaging clauses and show that closing the empty family
+under them produces all of $\HF$.
+
+\begin{definition}[The finite packaging operator]\label{def:F}
+For $A\subseteq\HF$ let
+\[
+  \begin{aligned}
+  F(A):={}&\{\varnothing\}\cup A
+  \;\cup\;\underbrace{\{\{a,b\}:a,b\in A\}}_{\text{pairing (P5)}}
+  \;\cup\;\underbrace{\{\textstyle\bigcup a:a\in A\}}_{\text{union (P5)}}\\
+  &\cup\;\underbrace{\{S:S\subseteq a,\ a\in A\}}_{\text{gating (P2)}}
+  \;\cup\;\underbrace{\{h[a]:a\in A,\ h\colon a\to A\}}_{\text{transport (P1)}},
+  \end{aligned}
+\]
+where $h[a]=\{h(t):t\in a\}$. Because every $a\in\HF$ is finite, every subset $S\subseteq a$ and
+every function $h\colon a\to A$ is admitted; no definability restriction is needed at this level.
+Definability restrictions reappear, and matter, in the forcing section (\S\ref{sec:forcing}).
+\end{definition}
+
+\begin{lemma}[$\clF$ is a closure operator; \inhouse]\label{lem:closure}
+$F$ is extensive and monotone, and $\HF$ is $F$-closed. Hence for each $A\subseteq\HF$ the least
+$F$-closed superset $\clF(A)=\bigcap\{B: A\subseteq B\subseteq\HF,\ F(B)\subseteq B\}$ exists,
+and $\clF$ is a closure operator: extensive, monotone and idempotent
+\citep{DaveyPriestley2002,Tarski1955}.
+\end{lemma}
+
+\begin{proof}
+Extensivity is built in. For monotonicity, if $A\subseteq B$ then every output of a clause applied
+to $A$ is an output of the same clause applied to $B$; in particular a map $h\colon a\to A$ is
+also a map into $B$. $\HF$ is closed clause by clause, since each clause outputs a finite set of
+hereditarily finite sets. The intersection of $F$-closed families containing $A$ is again
+$F$-closed, by monotonicity, and the closure properties follow.
+\end{proof}
+
+\noindent Although $\HF$ is countable, the lattice $\powset(\HF)$ in which this intersection is
+taken is uncountable. Forming the intersection uses the ambient set-theoretic metatheory (with no
+choice principle), not a finite computation. The same is true of every statement below about
+$\HF$ as a whole: each object and each operation is finite, but the global statements are
+statements of the metatheory.
+
+\begin{lemma}[Finite collection; \inhouse]\label{lem:collection}
+If $A$ is $F$-closed and $a_1,\dots,a_n\in A$, then $\{a_1,\dots,a_n\}\in A$.
+\end{lemma}
+
+\begin{proof}
+Induction on $n$, using $x\cup\{y\}=\bigcup\{x,\{y\}\}$: the cases $n\le 1$ use the empty-set
+and pairing clauses, and the inductive step pairs $\{a_1,\dots,a_n\}$ with $\{a_{n+1}\}$ and takes
+the union.
+\end{proof}
+
+\noindent Finite collection is thus \emph{derived} from pairing and union, not assumed.
+
+\begin{theorem}[$\HF$ is the saturation point of finite packaging; \inhouse]\label{thm:hfclosure}
+$\clF(\varnothing)=\HF$.
+\end{theorem}
+
+\begin{proof}
+$\clF(\varnothing)\subseteq\HF$ because $\HF$ is $F$-closed. For the reverse inclusion, let
+$C=\clF(\varnothing)$ and induct on rank: $\varnothing\in C$, and if every member of $a\in\HF$ lies
+in $C$, then $a=\{t_1,\dots,t_n\}$ is a finite collection of elements of $C$, so $a\in C$ by
+Lemma~\ref{lem:collection}.
+\end{proof}
+
+\begin{corollary}[Finite power sets are reachable; \inhouse]\label{cor:finpow}
+For $a\in\HF$, $\powset(a)\in\clF(\varnothing)$: each $S\subseteq a$ enters by the gate clause,
+and $\powset(a)$, a finite collection of such sets, enters by Lemma~\ref{lem:collection}.
+\end{corollary}
+
+\noindent Corollary~\ref{cor:finpow} marks the boundary on which the paper turns. \emph{Finite}
+power sets are free, a consequence of gating and finite collection. Collecting \emph{all}
+subsets of an infinite set into one object is a different act, and it must be purchased
+(\S\ref{sec:purchases}).
+
+\begin{theorem}[$(\HF,\in)$ satisfies $\mathsf{ZFC}$ without Infinity; \inhouse]\label{thm:hfsat}
+The structure $(\HF,\in)$ satisfies Extensionality, Empty set, Pairing, Union, Power set, every
+instance of the Separation and Replacement schemas, Foundation and Choice, and it satisfies the
+negation of Infinity.
+\end{theorem}
+
+\begin{proof}
+$\HF$ is transitive, so for $a,b\in\HF$ the statements ``$a\in b$'' and ``$a\subseteq b$'' mean
+the same inside $(\HF,\in)$ as outside, and every subset of an element of $\HF$ is again in
+$\HF$. Extensionality follows from transitivity. Empty set, Pairing, Union and Power set are
+supplied by the corresponding clauses of $F$ and by Corollary~\ref{cor:finpow}.
+\emph{Separation:} for $a\in\HF$ and a formula $\varphi$ with parameters in $\HF$, the set
+$\{x\in a:(\HF,\in)\models\varphi(x)\}$ is a subset of the finite set $a$, hence in $\HF$ by the
+gate clause. Only truth in $(\HF,\in)$ is used; no absoluteness of unbounded formulas is needed.
+\emph{Replacement:} if $\varphi$ defines in $(\HF,\in)$ a function on $a\in\HF$, its unique values
+form a finite function $h\colon a\to\HF$, and $h[a]\in\HF$ by the transport clause.
+\emph{Foundation:} a nonempty $a\in\HF$ is finite, so it has an element of minimal rank, which is
+$\in$-minimal by Lemma~\ref{lem:L3}. \emph{Choice:} a finite family of nonempty sets in $\HF$ has
+a choice function in $\HF$; picking the member with the least Ackermann code is one explicit
+choice, and the resulting finite set of ordered pairs is in $\HF$. \emph{Infinity fails:} let
+$a\in\HF$ contain $\varnothing$, and let $x\in a$ have maximal rank. Then $x\cup\{x\}$ has rank
+$\rank(x)+1$, so it is not in $a$, and $a$ is not inductive.
+\end{proof}
+
+\begin{remark}[Arithmetic]\label{rem:ackermann}
+$(\HF,\in)$ is the classical model $\Vfin$ of $\mathsf{ZF}$ with Infinity replaced by its
+negation \citep{Kunen2011}. Ackermann's coding \citep{Ackermann1937} gives mutually
+inverse interpretations between $(\HF,\in)$ and the standard model of arithmetic. At the level of
+theories, bi-interpretability with Peano arithmetic requires finite set theory to include, besides
+the negation of Infinity, the statement that every set has a transitive closure
+\citep{KayeWong2007}; $\HF$ satisfies that statement, so the remark applies to the model
+studied here.
+\end{remark}
+
+\subsection{Foundation is rank-audit exactness}\label{ssec:foundation}
+
+The axiom of Foundation goes back to the well-foundedness analyses of \citet{Mirimanoff1917} and
+\citet{VonNeumann1928}. On finite graphs it is equivalent to the existence of an audit.
+
+\begin{theorem}[Finite rank-audit equivalence; \inhouse]\label{thm:tfae}
+For a finite directed graph $G=(V,\to)$ the following are equivalent:
+\begin{enumerate}\itemsep0pt
+  \item $G$ is acyclic (it has no directed cycle, and in particular no self-loop);
+  \item there is an audit $\rho\colon V\to\mathbb N$ that strictly decreases along edges:
+  $u\to w$ implies $\rho(w)<\rho(u)$;
+  \item every nonempty $S\subseteq V$ has a $\to$-minimal element.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$(1)\Rightarrow(2)$: in an acyclic graph every path has at most $|V|-1$ edges, so the height
+of Lemma~\ref{lem:L1} (the length of the longest path from a node) is defined and strictly
+decreases along edges. $(2)\Rightarrow(1)$: a cycle $u_0\to\cdots\to u_{k-1}\to u_0$ would give
+$\rho(u_0)<\rho(u_0)$; a self-loop is the case $k=1$. $(2)\Rightarrow(3)$: an element of $S$
+with least $\rho$-value is $\to$-minimal. $(3)\Rightarrow(1)$: the node set of a cycle is a
+nonempty set without a $\to$-minimal element.
+\end{proof}
+
+\noindent Natural-number ranks always suffice for finite acyclic graphs. Infinite well-founded
+relations may require ordinal-valued ranks.
+
+\begin{corollary}[\inhouse]\label{cor:foundation}
+On a canonical presentation $C(a)$ the rank is a strictly decreasing audit (Lemma~\ref{lem:L3}),
+so by Theorem~\ref{thm:tfae} every nonempty $b\subseteq\TC(\{a\})$ has an $\in$-minimal element.
+Conversely, any finite presentation that admits a strictly decreasing audit is acyclic.
+\end{corollary}
+
+\begin{remark}[Foundation as a certificate]\label{rem:foundation}
+Theorem~\ref{thm:tfae} reads the prohibition of membership cycles as a certificate that a
+staging discipline is in force. Membership graphs with cycles---the self-loop $x=\{x\}$, the
+two-cycle $x=\{y\}$, $y=\{x\}$---are perfectly coherent finite objects. They are excluded by
+\emph{this} instrument because they carry no audit; anti-foundation \citep{Aczel1988} admits them.
+This is countermodel \textbf{CM-2} (\S\ref{sec:atlas}).
+\end{remark}
+
+\subsection{The free-part ledger}
+
+\begin{table}[tbp]\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Axiom in $(\HF,\in)$ & Supplier & Role \\
+\midrule
+Extensionality & lens quotient (Theorem~\ref{thm:p5}) & packaging boundary \\
+Empty set & seed clause $\{\varnothing\}$ & P5 \\
+Pairing & pairing clause & P5 \\
+Union & union clause & P5 \\
+Separation & gate clause & P2 \\
+Power set (of finite sets) & gates $+$ finite collection (Corollary~\ref{cor:finpow}) & P2 $+$ P5 \\
+Replacement (on finite domains) & transport clause & P1 \\
+Choice (for finite families) & least-code selection & --- \\
+Foundation & rank audit (Theorem~\ref{thm:tfae}) & P6 \\
+$\neg\,$Infinity & every element is finite (Theorem~\ref{thm:hfsat}) & boundary \\
+\bottomrule
+\end{tabular}
+\caption{The free part. Each axiom holds in $(\HF,\in)$ and is witnessed by a named clause of the
+finite packaging operator $F$, by finite selection, or by the rank audit; the closure of the
+empty family under these clauses is exactly $\HF$ (Theorem~\ref{thm:hfclosure}). All objects and
+operations are finite; global statements about $\HF$ are made in the ambient metatheory.}
+\label{tab:freepart}
+\end{table}
+
+Every entry of Table~\ref{tab:freepart} is proved here, and several finite cores behind the
+entries are verified in Lean; the schema-level satisfaction statements remain on paper
+(\S\ref{sec:mech}). The next two sections show that the boundary of this column is sharp:
+Infinity cannot be reached from inside it (\S\ref{sec:infinity}), and forgetting the staging
+loses nothing (\S\ref{sec:shadow}).

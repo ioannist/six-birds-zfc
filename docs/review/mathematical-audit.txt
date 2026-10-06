@@ -1,0 +1,581 @@
+Mathematical review and repair record — 2026-10-03
+=================================================
+
+Scope and provenance
+--------------------
+The pre-review worktree was committed as 0bb29e6, including its existing
+deletions of tracked Lean build artifacts. The review reads the five original
+Lean modules, all manuscript sections and appendices, the flattened manuscript,
+the specification/claim inventory, all three numerical diagnostics, and the
+relevant lens/counting definitions in Foundations of Emergence Calculus.
+No manuscript source or file under paper/ is edited. This record supplies the
+correct mathematical statements and proofs for the later editorial phase.
+The inventory's historical acceptance labels are not fresh verification.
+This is one reviewer's review, followed by a distinct adversarial self-review;
+it is not an independent multi-reviewer certification.
+
+Verdict
+-------
+The existing Lean declarations are correct for their represented statements.
+The finite packaging, HF closure, HF model, non-attainment, finite rank-audit,
+finite Cohen density/counting, rank translation, finite selection, and standard
+arbitrary-set AC equivalence retain their mathematical strength.
+
+The forcing section's numbered genericity theorem proves a valid implication.
+Its title and prose overstate that implication as a characterization. Neither
+novelty alone nor novelty plus every ground-coded infinite-block splitting
+requirement characterizes Cohen genericity. This converse cannot be restored
+with a better proof: there is a counterexample below. Ground coding is also
+not the full fiber-predicate family of a lens on omega. Finally, the probability
+one novelty statement is not probability one Cohen genericity.
+
+The central free/purchased title and the valid forward forcing and strict
+extension results can be retained. Both repairs are adopted:
+retain the forward implication and strict predicate-algebra extension as the
+main explanation, and supply the exact dense-set/closed-obstruction
+characterization as supporting mathematics. Use a restricted ground-coded
+Boolean algebra as the infinite expressive layer. The characterization
+requires ALL ground-coded dense sets; it does not make non-groundness
+sufficient. The material scope decision is resolved; the manuscript remains
+unchanged for the separate editorial phase.
+
+Exact forcing repairs
+---------------------
+F1. Under J1, let M be a countable transitive model of ZFC. Its countability
+is EXTERNAL; M itself believes its set of reals is uncountable. For every
+Cohen generic G over M, union(G) is total, outside M, and splits every infinite
+M-coded subset of omega. The paper's proof via T_n, D_y, E_A establishes this
+under J1 alone. J2 is used only to identify the resulting model M[G].
+Use full ZFC for J1 unless the exact fragment and all required schemas for J2
+have been specified; "a sufficiently large finite fragment" is not a precise
+alternative hypothesis for all conclusions.
+
+F2. Strong counterexample to the converse. Take a Cohen real r over M and set
+x(2n)=x(2n+1)=r(n). If x belonged to M, the definable even-coordinate extraction
+would put r in M, a contradiction. For infinite A in M, the set
+B={floor(a/2): a in A} lies in M and is infinite: the inverse image of a finite
+B has at most 2|B| elements. Since r splits B, x splits A. Thus x is outside M
+and splits EVERY infinite ground-coded A.
+
+Nevertheless the following ground-coded family is dense and open in Cohen
+forcing:
+  D*={p: some n has both 2n,2n+1 in dom(p), with unequal assigned bits}.
+Given a finite p, choose a pair above its support and assign 0,1. Every
+restriction of x misses D*. Hence x is not Cohen generic over M. This argument
+uses J1 and Rasiowa–Sikorski for r, not J2. CohenBoundary.lean checks the actual
+infinite density of D* and the fact that every duplicated-bit real misses it;
+the CTM/generic-real existence and ground-model closure parts remain this
+explicit mathematical proof, not a claimed mechanization.
+
+F3. Why the ground-coded family is not a full partition lens. If the visible
+predicates of f:omega->X include every singleton predicate, equal f-values at
+m,n force the singleton of m to have equal values at m,n, so m=n. Then f is
+injective, and EVERY Boolean predicate is constant on its fibers. A transitive
+ZF model contains every singleton of omega but omits some external reals.
+Therefore P(omega) intersect M cannot equal the full fiber-invariant family of
+any f on omega. It is a Boolean algebra closed under the unions coded in M,
+not an externally countably complete sigma-algebra: external arbitrary unions
+of its singleton sets already give all external subsets of omega.
+CohenBoundary.singleton_visibility_forces_injective and
+singleton_visibility_forces_all formalize this obstruction.
+
+F4. A precise replacement preserving strict extension. Let
+B_M=P(omega) intersect M, using subsets or their Boolean characteristic
+functions consistently. It contains 0,1 and is closed under finite Boolean
+operations. For any x, let B_M[x] be the Boolean algebra generated by B_M and
+x. Then B_M is contained in B_M[x], and containment is strict iff x is not in
+B_M: in the forward direction x in B_M would make every generated expression
+already lie in B_M; in the reverse direction x is a new element. For a Cohen
+real, B_M[x] is contained in P(omega) intersect M[G], since finite Boolean
+operations on ground parameters and x exist in that extension. Thus the
+extension of the expressive algebra is genuinely strict on the SAME domain.
+CohenBoundary.adjoining_strict_iff_novel checks the algebraic equivalence for
+an explicit BooleanClosed input; it does not assume that input from a name.
+
+F5. The original non-factorization theorem is correct as stated: two generics
+deciding coordinate 0 differently have the same CONSTANT map G |-> M and
+different real readouts. A function through a constant map would be constant.
+This is a coarse, deliberately chosen projection; it does not establish that
+all ground observations fail to distinguish generics. The Boolean-algebra
+strict extension in F4 supplies the substantive expressive-content bridge.
+Strict observational extension also must not be confused with inclusion of
+complete first-order theories: M and M[G] may disagree on old-language
+sentences such as CH, so Th(M) need not be contained in Th(M[G]).
+
+F6. Category and probability. Cohen reals over fixed countable M form a
+comeagre set: enumerate its dense sets and take the intersection of their
+dense open cylinder unions. They have fair-coin measure ZERO, not one.
+Here is a direct null cover coded in M. Enumerate all finite binary strings
+(s_i) by a fixed arithmetic enumeration. For each k,i let t_{k,i} be s_i
+padded with zeroes to length max(|s_i|,k+i+1). This prescription, including
+its whole sequence for each k, is defined in M without a choice principle.
+The open union
+  U_k = union_i [t_{k,i}]
+is dense and has measure at most sum_i 2^(-k-i-1)=2^(-k).
+The conditions extending some t_{k,i} form an M-coded dense family, so every
+Cohen real is in every U_k. Their intersection has measure zero. In contrast,
+the complement of the externally countable ground reals has measure one;
+splitting every infinite ground-coded A also has measure one, by countable
+intersection. The finite 1-2^(-(N-K)) limit models DISAGREEMENT-MEETING novelty,
+not the measure of full Cohen genericity. The diagnostic caption is corrected.
+
+F7. The adopted supporting exact characterization. For a total real x,
+G_x is Cohen generic over M iff x avoids every ground-CODED closed nowhere
+dense subset of Cantor space (the code is interpreted externally; it does
+not merely mean the old set of ground reals constituting its internal points).
+Proof: for such a closed set F, conditions whose cylinders miss F form a
+ground-coded dense family, so genericity supplies a cylinder containing x
+and disjoint from F. Conversely, for any dense D in M the open cylinder union
+U_D={x: some p in D is a restriction of x} is dense and ground-coded.
+Its complement is closed nowhere dense. Avoiding that complement gives a
+condition in G_x intersect D. Thus all dense sets are met. The singleton
+ground-real obstructions and the block-constancy obstructions are only a
+proper subfamily of these closed nowhere dense tests; D* supplies a missing
+one. This strengthens the recognition vocabulary, not the false converse
+"outside M implies generic", and prices its full family of tests explicitly.
+
+Claim-by-claim reconstruction
+----------------------------
+D-ZF-01, decoration L1/L2/L3: correct for finite acyclic graphs. Height supplies
+unique recursion, child decorations are HF, and membership lowers rank.
+For extensionality/injectivity of decoration, induct simultaneously over two
+nodes' heights: equal decorations match children, the inductive hypothesis
+identifies matching nodes, and extensionality identifies the parents. Rootedness
+then makes the decoration image exactly TC({profile}), giving the isomorphism.
+One scope correction: each graph is finite, but the collection Z of all such
+graphs is infinite (and needs an encoding convention if node names range over
+an unrestricted universe). It is not a finite carrier in Foundations I's
+A_FIN sense. Restrict presentations to finite initial-segment node labels or
+use finite rooted trees; then Z is a countable set. Invoke finite-graph arguments
+locally, not a finite-carrier theorem for the global Z. New HFSets uses the
+actual inductive type of finite trees and never claims its whole type is finite.
+
+T-ZF-00: f(C(a))=a by membership induction. Then E^2=E,
+Fix(E)=im(E)=C[HF], the lens on Fix(E) is a bijection, and the retraction
+equations follow. The original Packaging module proves the structural
+idempotent pattern, NOT the graph construction or Mostowski collapse. Its
+Fin3 collapse is an idempotent witness, not a graph-decoration theorem.
+HFSets adds the extensional quotient of finite trees, with no representative
+selection. It still does not mechanize the DAG-to-canonical-graph isomorphism.
+
+T-ZF-01, closure/collection/finite powerset/HF satisfaction: correct. F is
+monotone as well as extensive: any old transport h:a->A remains admissible
+as a map into a larger family. Empty/pair/union closure derives collection.
+Every HF set is a finite collection of lower-rank HF sets, giving induction.
+Finite powersets are finite collections of finite gates. Relative Separation
+uses the truth of the chosen formula in (HF,in), not ambient truth of an
+unbounded formula. Relative Replacement collects its UNIQUE HF-valued outputs
+over a finite domain; finite recursion needs no choice. Transitivity identifies
+internal elements and subsets. Foundation is minimal rank. Infinity fails.
+No assumption that arbitrary formulas are absolute is needed or valid.
+
+Nearly-free strengthening: (HF,in) satisfies AC too. Any finite family of
+nonempty HF sets has a finite choice graph; choosing least Ackermann code is
+one explicit realization, and all its ordered pairs and the finite graph are
+HF. Thus HF also witnesses dropping C-INF while retaining C-POW, C-REPL and
+C-SEL interpreted INTERNALLY. This strengthens the non-redundancy witness.
+
+The Ackermann remark needs a model/theory distinction. Standard HF and
+standard natural-number arithmetic have the familiar inverse codings. For
+theory-level bi-interpretability with PA, use ZF-minus-Infinity plus its
+negation AND transitive containment, or the corresponding membership-induction
+presentation. Bare finite ZF with the ordinary single Foundation axiom does
+not supply that extra principle. HF itself satisfies transitive containment,
+so this qualification does not weaken the proved HF model or rank recovery.
+Primary reference: Kaye–Wong, sections 5–6, especially Proposition 14:
+https://bpb-us-w2.wpmucdn.com/blog.nus.edu.sg/dist/4/10956/files/2019/01/finitesettheory-1i2tx5t.pdf
+
+The closure lattice P(HF) is UNCOUNTABLE, though HF is countable. The original
+closure lemma's phrase "countable lattice P(HF)" is false. Intersection of
+closed supersets is legitimate in the declared ambient set-theoretic
+metatheory, without a choice axiom. It is not a finite computation. Likewise
+constructing the global HF model is infinitary metamathematics even though
+every represented object and every local operation is finite. Do not read
+"nothing infinitary appears" as a foundational derivation without Infinity.
+
+New HFClosure proves extensionality iff matching members, constructor
+congruence, derived collection equivalence, extensional-family closure
+generating all HF presentations, and no inductive HF object. HFSets proves
+these on the quotient: Extensionality, Empty, Pairing, Union, decidable
+Separation, rank decrease and no inductive object. Its Bool gates are genuinely
+decidable; it does NOT formalize full formula-schema satisfaction or arbitrary
+Prop gates. A raw gate must respect Equiv; a raw transport must also respect
+Equiv to descend. HFSets gates are supplied on the quotient so this condition
+is proved automatically. No quotient representatives are chosen.
+
+T-ZF-02: correct for the stated finitely generated rule class. If A is a family
+of HF sets, all members of TC(a) are HF. A newly added finite set with such
+members is HF. Induction proves every A_n subset HF; their omega-union also
+is a family of HF sets, not a new element omega. No inductive element appears.
+With limit stages defined as unions the same stability even holds through
+transfinite iteration; this does not require adding such a claim to the paper.
+Clause (2)'s conclusion follows from idempotence; calling the rule a "closure
+operator" additionally requires monotonicity, which was not assumed for G.
+Admitting an infinite element violates the explicit finite-output requirement.
+This is an object-boundary theorem, not a proof that arbitrary finite syntax,
+finite rules or sufficiently expressive formal theories cannot prove Infinity.
+
+T-ZF-03: correct finite TFAE. Acyclicity bounds path length by |V|-1; longest
+path yields a potential. Potentials exclude cycles and provide minimal
+elements. A cycle's vertex set has no minimal element, giving the converse.
+Empty graph and empty subsets pose no exceptions: nonemptiness is explicit.
+The original RankAudit Lean checks potential => no cycle and list minima;
+acyclic => potential and the full TFAE remain mathematical proofs, not exports.
+General well-founded ranks are ordinal-valued, not necessarily Nat-valued.
+
+T-ZF-04a, ordinal definability: valid in HF. Transitivity and membership
+linearity, with well-foundedness, identify the finite von Neumann ordinals.
+The maximal member argument must exclude membership cycles when establishing
+that the maximal member is itself transitive; the rank audit supplies this.
+Rank definability: quantify a finite transitive domain T containing x and
+the finite graph f on T. Require for each y in T that f(y) is the union of
+the successors of f(z) for z in y. Existence follows from rank recursion;
+uniqueness is induction on rank. T can be TC({x}), defined as the least
+transitive set CONTAINING x AS AN ELEMENT, not merely containing every member
+of x. The graph and ordered-pair witnesses are HF. Empty y gives rank 0.
+Translation: unnest stage terms locally at atoms, translate stage equality
+as equality, order as membership, rank atoms by R, and relativize stage
+quantifiers to Ord. Induction on formulas, including assignments, proves the
+sentence result. The negation case needs local atomic unnesting, not pulling
+fresh existential quantifiers outside arbitrary negations. This is lossless
+for the canonical rank expansion, not arbitrary stage labelings.
+
+T-ZF-06: valid finite section search and valid ZF equivalence of AC, sections,
+prototype families and nonempty indexed products. Arbitrary finite sets need
+an enumeration, but existence of an enumeration for one finite set requires
+no AC. An enumeration of a finite SOURCE is important; a finite target alone
+does not make arbitrary infinite fibers effectively searchable.
+The particular membership-profile lens already has the explicitly defined
+section C(a), even for the analogous infinite set presentations when admitted.
+It does not need AC. C-SEL prices sections for ALL surjections of sets, not
+this particular canonical membership packaging map. More generally any lens
+with a well-ordered source admits a least-preimage section in ZF, even with
+infinitely many fibers. "Canonical" here means supplied prototypes; AC gives
+no natural or automorphism-invariant choice of prototypes.
+The arbitrary-lens equivalence requires SET-sized sources, fibers and indices;
+it must not silently be applied to arbitrary proper-class surjections.
+
+C-INF/C-POW/C-REPL/C-SEL, T-ZF-04: valid only as an explicitly conditional
+supplier ledger. The commitments are Infinity/Power/Replacement/Choice in
+package terminology; they alone do not imply the free axioms in an arbitrary
+undefined layer. The manuscript openly imports INFINITARY stagewise axiom
+verification, including Separation. Finite gates do not prove infinite
+Separation. A precise sufficient hypothesis, preserving the ZF conclusion:
+  U is a transitive admitted universe with empty set, pairs of all admitted
+  objects, unions of all admitted objects, and every relatively definable
+  subset of every admitted object. Assume an admitted inductive set, an
+  internal powerset of every admitted object, and every relatively definable
+  functional image of an admitted set. Then (U,in) satisfies ZF.
+Proof: transitivity gives Extensionality; the first closures give Empty,
+Pairing, Union and each Separation instance; ambient rank well-foundedness
+gives Foundation; the three latter hypotheses give Infinity, Power and each
+Replacement instance. Add sections of every INTERNAL surjection to obtain
+AC by the standard projection argument. Foundation here uses the declared
+ambient well-founded metatheory, not a finite-graph theorem applied globally.
+For a proper class U, relative truth is interpreted separately for each fixed
+formula, not via an assumed set-valued uniform truth predicate.
+
+Internal powerset means all y IN U that are subsets of x, with quantifiers
+relativized to U. Requiring every AMBIENT subset is stronger and must be
+separately declared. Infinity supplies some inductive I; identify the least
+inductive subset as omega using Separation, rather than assuming every
+inductive witness named "omega" is literally omega. The hierarchy recursion
+and any limit-stage completion are imported infinitary structural content.
+For truncated V_kappa, Replacement needs rank-bounded functional images;
+an arbitrary cutoff is insufficient. No inaccessible cardinal existence,
+transitive-model existence, or full ZFC consistency follows from this ledger.
+
+Non-redundancy: the HF witness improves as above. In ambient ZFC,
+V_(omega+omega) is transitive and satisfies Zermelo+Choice: finite rank
+increments stay below its limit cutoff; subsets preserve bounds and internal
+choice graphs have bounded finite additional rank. The image of the definable
+map n |-> omega+n has rank omega+omega, hence is not an ELEMENT of this V;
+its domain omega and graph values are internally available. Replacement fails.
+
+The Power-set guard can be made concrete, rather than left as an unnamed
+"hereditarily-smaller universe": in ambient ZFC let U=H_(omega_1), the
+hereditarily countable sets. All internal reals are precisely ALL ambient
+subsets of omega, since each is hereditarily countable. Any candidate powerset
+in U would be countable and contain all these reals, contradicting Cantor.
+U satisfies the other ZFC axioms, including Collection: for a countable domain
+select one hereditary-countable witness per element externally using ambient
+AC, and the countable union of their countable transitive closures is countable.
+Separation, Pairing, Union, Foundation and Infinity are inherited by closure.
+Replacement follows by taking unique witnesses; internally every admitted
+set has a countable well-order, whose relation graph is again hereditary
+countable, so internal AC and all internal sections hold. This uses ambient
+ZFC and regularity of omega_1, and is not a ZF proof that arbitrary H_kappa
+works. The Collection/Replacement distinction does not invalidate this witness.
+Primary source: Gitman–Hamkins–Johnstone, introduction pp.1–3, explicitly
+identifies H_kappa for uncountable regular kappa as models of the stronger
+Collection version: https://victoriagitman.github.io/files/ZFC-.pdf
+The no-choice guard remains the standard relative-consistency result for
+pure ZF, not an untransferred permutation model with atoms.
+
+T-ZF-05f meeting/density/counting: correct, including degenerate empty
+N=K=0, provided K counts NONEMPTY fibers. D_g meeting is exactly h!=g.
+E_x meeting is exactly splitting; its constant-total defect characterization
+requires |B_x|>=2. Empty/singleton blocks have no possible split and E_x is
+empty, so every condition fails density; do not omit the HasTwo guard.
+The density proof's phrase "not extending g" must be "not a restriction
+of g": every non-total restriction also fails to extend total g.
+If the block has no assigned bits, choose two free bits and assign 0,1;
+one free bit suffices only when a previously assigned bit exists.
+There are exactly 2^K fiber predicates among 2^N total predicates.
+The block-splitting formula can be strengthened for disjoint blocks to
+  P(splits every non-singleton block)=product_(|B|>=2)(1-2^(1-|B|)),
+by independence. The sum bound remains valid. Distinguish any strict
+refinement from refinement on every block. At K=N no predicate strictly
+refines, though splitting every non-singleton block is vacuous.
+In the ACTUAL finite forcing poset every total condition is maximal, so
+any dense subset must contain every total condition. Thus every total h
+meets every genuinely dense family. D_g is not dense at g. Non-definability
+is a statement about meeting the displayed DEFECTIVE families, not finite
+forcing genericity. FiniteCohen.every_total_meets_dense and
+disagreement_not_dense check this boundary directly.
+
+T-ZF-05 infinite contrast: correct. Any finite condition has a free
+coordinate on an infinite index; an infinite block has two free coordinates.
+CohenBoundary uses actual bounded finite conditions on Nat, proves D_g and
+infinite-block E_A dense, and the meeting iff a DISAGREEMENT WITNESS exists.
+For infinite functions, deriving a witness just from function inequality is
+a classical logical step. The new Lean lemma states the constructive witness
+form so that no Classical.choice is imported via infinite excluded middle.
+
+T-ZF-05, RS: correct under J1. Dense families in a countable M are externally
+countable. With fixed enumerations of M and the countable poset, choose the
+least extension at each step; this diagonal recursion uses no selection axiom.
+Transitivity and M's correct omega identify its finite conditions with the
+external poset, making the density facts absolute. Totality densities T_n and
+the filter's compatibility identify G with the restrictions of union(G).
+The forcing novelty theorem, nonfactor theorem and strict algebra extension
+hold with F1–F5's precise readings. No converse genericity theorem holds.
+
+T-ZF-05c CH: the cited relative-consistency statements are correct.
+Con(ZF) yields Con(ZFC+CH) by constructibility and Con(ZFC+not CH) by the
+classical forcing result. This does not produce a CTM from Con(ZF), nor
+automatically put two models on a common literal carrier. To make the
+same-ground host picture precise, separately assume a CTM of ZFC+GCH, and
+compare it with its extension adding aleph_2^M many Cohen reals. ccc preserves
+its cardinals, and distinct coordinates give at least aleph_2^M reals, so
+CH becomes false. Ground and extension have the same ordinals, not the same
+set domains. The single-real forcing theorem alone does not change CH.
+
+CM-1: the given presentations witness that the membership lens is not
+injective, but do not witness a failure of Extensionality in its quotient.
+Aczel AFA retains Extensionality and still merges duplicated childless nodes;
+its changed axiom is Foundation. A concrete alternative that actually separates
+the proposed pair is f'(P)=(f(P),|V(P)|), or the raw pointed-graph isomorphism
+type. Packaging can be the identity for this instrument. This choice supports
+the intended no-forced-instrument conclusion without attributing a false
+property to AFA or asserting Lawvere's theory retains graph multiplicities.
+Primary corroboration of AFA/extensionality distinction:
+https://users.math.cas.cz/~jerabek/papers/dghj.pdf (introduction on AFA and
+bisimulation). The explicit f' counterexample itself needs no external import.
+CM-2/3: valid cycles/no-potential and HF stability witnesses.
+CM-4/5: valid with the relative/ambient scopes just specified.
+CM-6: valid; adding an already fiber-definable g retains precisely the same
+partition. It misses D_g by h=g. This is an observational, not syntactic,
+strictness criterion.
+
+Discussion/import scope: the incompleteness comparison must retain effective
+axiomatization, consistency and enough arithmetic (with the usual provability
+conditions for the second theorem). Arbitrary consistent expressive complete
+theories, such as true arithmetic, need not be effectively axiomatized.
+Statements about independent SENTENCES are not equivalent to missing real
+PREDICATES; an imported incompleteness theorem provides no such equivalence.
+These distinctions repair the discussion's mathematical assertions without
+promoting its structural metaphor to a new theorem. Likewise the P6 audit
+actually proved here is rank decrease along MEMBERSHIP; it is not a theorem
+of rank monotonicity under every arbitrary coarse-graining lens.
+
+Prop axioms, computations and reproducibility
+--------------------------------------------
+Fresh lake build succeeds on the pinned 4.28.0 toolchain with no external
+Lean dependency. formal/AxiomAudit.lean checks every SetStone declaration,
+including generated helpers, using Lean's transitive collectAxioms traversal,
+and rejects anything outside {propext, Quot.sound}. This is stronger coverage
+than the old hand-selected 29-theorem audit. Audit tools import Lean elaborator
+code for inspection; it is not a proof dependency of the SetStone library.
+No choice, sorryAx, or project axioms are allowed in the checked library.
+The audit is now a default Lake target, so ordinary lake build enforces it.
+
+Diagnostics: finite Cohen structurally enumerates all SURJECTIVE labeled
+lenses for 1<=N<=5 plus the empty lens; it is not a test of all nonsurjective
+codomain presentations. The D/E checks are exhaustive within this scope.
+The new exact-count checks test 2^K and the independent block-splitting count.
+HF slices are rank<=n = V_(n+1), NOT V_n: V_0 is empty, V_1 has size 1.
+Metadata now gives both rank bound and cumulative stage. C1 used to test
+uniqueness of already unique Python frozensets; it now cross-checks every
+element against independent Ackermann bit coding and decoding. C2/C3/C4/C5
+are sampled. C6 checks every membership edge and C7 every inductive candidate
+in the rank<=4 universe (65,536 elements). New C8 tests powersets for all
+16 rank<=3 source sets, and C9 exhausts every map from those domains to the
+four rank<=2 target sets. These are bounded exhibits, not HF schema proofs.
+The scaling experiment previously only gated monotonicity of its predicted
+curve; it now checks empirical binomial residuals. The rarity companion now
+checks the empirical all-block splitting count against the exact product.
+Rare cases explicitly marked observational_low_expected are observations,
+not statistical falsification gates; all_passed does not prove a theorem.
+Pinned numpy/matplotlib dependencies are recorded for reproducible reruns.
+
+Remaining editorial work (deferred to the editorial phase)
+---------------------------------------------------------
+Apply F1–F6 to the abstract, introduction, forcing headings/prose, diagnostic
+interpretation and discussion; specify the global presentation encoding and
+local A_FIN scope; correct P(HF)'s cardinality and V-stage indexing; separate
+canonical membership packaging from arbitrary AC-costed lifts; give the precise
+infinitary structural premises and internal/ambient quantifiers; name the
+H_(omega_1) powerset witness; replace CM-1's incorrect AFA attribution; make
+the CH host comparison explicit. These are documented mathematical repairs,
+not changes to the manuscript during this phase.
+
+First review checkpoint verification receipt (da649f1)
+----------------------------------------------------
+Commands executed successfully in this review:
+  cd formal && lake clean && lake build && lake env lean AxiomAudit.lean
+  [after making AxiomAudit a default target] cd formal && lake build
+  python diagnostics/finite_cohen.py        (pinned diagnostics/requirements.txt)
+  python diagnostics/definability_rarity.py
+  python diagnostics/hf_slice.py
+That checkpoint's audit checks 332 project declarations, of which 166 are theorems
+(including generated declarations). Only propext and Quot.sound occur.
+Negative controls independently injected a project axiom, sorryAx and
+Classical.choice into temporary audit files; each was rejected for the
+expected forbidden axiom. No such control is present in project sources.
+Diagnostic controls force wrong scaling and rarity frequencies, a missing
+powerset, and correlated blocks whose definability marginal is EXACTLY right
+but all-block splitting frequency is wrong; each actual gate rejects them.
+
+Finite Cohen: 634 lenses, including one empty lens; 634 exact counting checks;
+all structural and applicable statistical gates pass. HF: 65,536 round trips,
+524,288 membership edges, 65,536 non-inductivity tests, 16 powersets and 625
+maps, plus the declared closure samples, all pass. Rarity: all nine configs
+pass their applicable gates; the maximum absolute all-block-splitting z-score
+is about 2.302. Low-expectation observations retain their explicit status.
+git diff --check passes. git diff --name-only -- paper/ [flattened manuscript]
+is empty. Mathematical review notes, Lean code and diagnostic artifacts are
+the deliverables; manuscript reconciliation is deferred to the editorial phase.
+
+Continuation: mechanized exact recognition option
+-------------------------------------------------
+This continuation starts from the clean da649f1 worktree, which committed
+the repaired code and mathematical evidence. With the forcing scope decision
+still open, work continued by implementing formal/SetStone/CohenRecognition.lean and exporting it from
+the normal SetStone library.
+
+The new module derives the closed-code recognition bridge rather than
+assuming it in a populated record. For an actual family D of finite
+conditions define
+  OpenCover(D,p) iff some q restricted by p belongs to D,
+  Obstruction(D,p) iff not OpenCover(D,p).
+The obstruction code is downward closed. Every dense D gives, above any
+finite assignment, an extension whose whole cylinder misses all branches of
+Obstruction(D). The definition of branches over all finite restrictions is
+proved equivalent to the usual condition on every finite initial prefix.
+Hence these are closed nowhere dense obstructions in Cantor space, not
+arbitrary types relabeled as closed sets.
+
+Constructively, Branch(Obstruction(D),h) iff h does not meet D. With the
+explicit classical dichotomy "h meets D or h does not meet D", its negation
+is equivalent to meeting D. The per-family theorem quantifies that dichotomy
+over all the supplied indices. This is classical LOGIC as a visible premise,
+not an implicit choice axiom or a computational decision procedure for
+ground-coded dense-set membership. The genericity interpretation additionally
+requires the supplied family to cover ALL ground-model dense sets; the Lean
+module does not prove ground-model membership, enumeration or that coverage.
+For each actually dense family the nowhere-density proof is separately
+derived from its density hypothesis. The equivalence itself also holds for
+nondense requirement families; this does not make them genericity tests.
+
+The module also proves that every duplicated-bit real lies in the actual
+closed nowhere dense obstruction for PairMismatch. Thus the stronger option
+detects the precise counterexample to novelty-only recognition. It cannot
+restore the false equivalence with non-groundness or splitting alone.
+
+Adversarial self-review checked: extension direction, interpretation of bound
+representations of finite assignments, arbitrary finite restrictions versus
+initial prefixes, logical double negation in the converse, exact requirement
+family quantifiers, and whether the counterexample exercises this same
+recognition mechanism. No independent reviewer was involved at this stage.
+
+Fresh default lake build succeeds and audits 356 project declarations,
+including 183 theorems, allowing only propext and Quot.sound. No diagnostic
+source changed in this continuation; its earlier computations retain the same
+scope and artifacts. git diff --check passes, and no paper source is changed.
+At this checkpoint the substantive direction choice remained pending; both the forward implication
+with strict predicate-algebra extension and the stronger dense-set recognition
+option now have explicit mathematical support and Lean cores.
+
+Adopted theorem scope
+---------------------
+Both routes are adopted, and the open scope decision is resolved. The simpler
+forward novelty/strict-extension result is the primary explanation. The exact
+recognition characterization is additional supporting mathematics, with the
+complete recognition family visible. Neither route retains the false converse
+from mere novelty, and neither turns the finite probability limit into a
+measure-one assertion about Cohen generics.
+
+CohenRecognition.GenericRelative now specifies meeting every dense condition
+family in an explicit coded register. generic_iff_meets_complete_family proves
+that an indexed list can replace this full register only when its entries
+are coded and dense AND every coded dense family occurs in that list.
+The code-membership and completeness bridges for an actual M remain external
+inputs, justified mathematically under J1 by M's definability closures and
+external enumeration. They are not inferred from a small sampled test family.
+
+generic_implies_novel derives novelty when each disagreement family for a
+ground predicate is coded. generic_implies_strict_extension then derives
+strictness of its adjoined predicate algebra from proved novelty and the
+explicit Boolean closure hypothesis. forcing_repair_both assembles:
+  (a) derived nowhere-density of all the associated obstruction codes;
+  (b) genericity relative to the complete coded register iff avoidance of
+      every associated obstruction, under the visible classical dichotomies;
+  (c) genericity implies strict predicate-algebra extension.
+These are mathematical compositions of proved lemmas with separately listed
+inputs, not declarations that assume novelty or strictness as their premises.
+registered_pairMismatch_excludes_duplicate verifies that the complete-register
+interpretation actually rejects the duplicated-bit counterexample as soon as
+the true ground-coded PairMismatch family is registered.
+
+The library still does not mechanize construction or existence of a CTM,
+M[G], imported infinitary set theory, or full formula-schema satisfaction.
+Their conditional and mathematical scopes remain exactly as recorded above.
+All earlier corrections and explicit grade boundaries remain in force. No
+manuscript edit was made at this stage.
+
+Final completion audit and verification receipt
+----------------------------------------------
+The pre-review repository state was committed as 0bb29e6 before mathematical
+changes. The original mathematics, exported Lean statements and diagnostic
+interpretations have been reviewed, with defects, counterexamples and repairs
+recorded in this file. Valid finite claims were retained and strengthened
+where the proofs supported it. Both repaired routes for the material forcing
+correction were adopted; no direction choice remains pending. The resulting forward theorem and complete-register characterization
+are exported together as forcing_repair_both.
+
+The final ordinary `cd formal && lake build` succeeds (13 jobs). Its default
+axiom audit checks all 362 project declarations, including 188 theorems and
+generated helpers. Only propext and Quot.sound are permitted; no unfinished
+proof, project axiom or Classical.choice is accepted. Adversarial self-review
+of the final composition checked the two-way coverage requirements, coded
+disagreement families, Boolean closure, explicit classical logic, genuinely
+derived novelty/strictness, and registered PairMismatch counterexample.
+
+No diagnostic source changed after the successful computations and negative
+controls recorded at the first checkpoint, so those bounded validation
+results retain their stated scope. `git diff --check` passes. Comparing the
+paper directory and flattened manuscript against 0bb29e6 produces no changes.
+The mathematical and Lean review phase is complete. The documented manuscript
+corrections belong to the later editorial phase; this completion does not assert that the unchanged prose is corrected.
+
+Addendum (editorial phase, 2026-10-03): axiom-audit coverage
+-------------------------------------------------------------
+The namespace filter used above (`SetStone` name prefix) omitted nine private
+compiler-generated declarations in HFClosure, so "every SetStone declaration"
+overstated its coverage; the 362/188 counts describe the namespace-filtered
+subset. formal/AxiomAudit.lean now selects declarations by defining module.
+The default `lake build` audits 371 declarations (194 theorems, 9 private),
+again allowing only propext and Quot.sound. Negative controls injecting a
+project axiom, sorryAx and Classical.choice were re-run against the same check
+and each was rejected. No mathematical statement changes.

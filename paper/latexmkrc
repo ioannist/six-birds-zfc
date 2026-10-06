@@ -1,0 +1,9 @@
+$pdflatex = 'pdflatex -interaction=nonstopmode -file-line-error %O %S';
+$pdf_mode = 1;
+$out_dir = 'build';
+$aux_dir = 'build';
+$bibtex_use = 2;
+$cleanup_includes_cusdep_generated = 1;
+
+# After successful build, flatten .tex into a single file in build/
+$success_cmd = 'latexpand %S -o %Y/%R_flat.tex';

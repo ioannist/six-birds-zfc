@@ -1,0 +1,64 @@
+\section{Scope and non-claims}\label{sec:scope}
+
+The results of this paper differ sharply in strength, and their value depends on keeping them
+apart. This section collects the boundaries.
+
+\paragraph{Proved here (\inhouse).} The finite tier: the packaging quotient and its
+identification with $\HF$ (Theorem~\ref{thm:p5}); the closure theorem and the satisfaction of
+every $\mathsf{ZFC}$ axiom except Infinity by $(\HF,\in)$ (Theorems~\ref{thm:hfclosure},
+\ref{thm:hfsat}); the rank-audit equivalence (Theorem~\ref{thm:tfae}); non-attainment of
+inductive sets by finitely generated rules (Theorem~\ref{thm:nonattain}); the rank-erasure
+translation (Theorem~\ref{thm:translation}); the finite Cohen bridge, its density defects and the
+counting lemma (Lemma~\ref{lem:meeting}, Theorems~\ref{thm:densitydefect} and \ref{thm:counting});
+the infinite-index density facts (Corollary~\ref{cor:infinitecontrast}); the fact that a map on
+$\omega$ under which all singletons are visible is injective (Proposition~\ref{prop:nolens}, whose
+consequence for $\mathcal B_M$ uses \textbf{J1}); the algebraic strictness
+criterion (Theorem~\ref{thm:strict}(1)); and the finite sections together with the standard
+$\mathsf{ZF}$ equivalences used to price Choice (Theorem~\ref{thm:choice}). Global statements about
+$\HF$ are made in the ambient set-theoretic metatheory. The Lean development verifies selected
+cores of these results, listed in \S\ref{sec:mech}.
+
+\paragraph{Proved under named hypotheses (\condg).} The shadow theorem
+(Theorem~\ref{thm:shadow}) assumes the structural premise (S) and the commitments
+\textbf{C-INF}, \textbf{C-POW}, \textbf{C-REPL} and, for Choice, \textbf{C-SEL}. The forcing
+results (Theorems~\ref{thm:novelty}, \ref{thm:recognition}, \ref{thm:strict}(2),
+\ref{thm:nonfactor}, Propositions~\ref{prop:converse} and \ref{prop:category}) assume \textbf{J1};
+\textbf{J2} is used only to identify the extension $M[G]$. The non-redundancy witnesses
+(Proposition~\ref{prop:nonredundancy}(ii)--(iv)) are classical and are used in ambient
+$\mathsf{ZFC}$ or in relative-consistency form. Removing these hypotheses removes precisely the
+conditional results and leaves the free part standing.
+
+\paragraph{Statements about specific models (\modelg).} The continuum-hypothesis statements
+(Theorem~\ref{thm:ch}) are cited classical facts; part (b) needs its own hypothesis of a countable
+transitive model of $\mathsf{ZFC}+\mathsf{GCH}$.
+
+\paragraph{What we do \emph{not} claim.}
+\begin{enumerate}\itemsep1pt
+  \item We do not derive $\mathsf{ZF}$ or $\mathsf{ZFC}$ from finite principles. The infinitary
+  content enters through the structural premise and the four commitments, which are hypotheses.
+  \item We prove no consistency statement beyond the classical results cited. Nothing here
+  implies the existence of a countable transitive model, of an inaccessible cardinal, or the
+  consistency of $\mathsf{ZFC}$.
+  \item We claim no new independence result. The forcing section reorganizes classical facts and
+  adds finite and structural statements about them.
+  \item We do not claim that Cohen genericity is the same as non-definability from the ground
+  model. Genericity implies novelty and splitting; the converse is false
+  (Proposition~\ref{prop:converse}), and genericity is characterized only by the full family of
+  coded closed nowhere dense tests (Theorem~\ref{thm:recognition}).
+  \item We do not claim that the finite probabilities measure Cohen genericity. They describe
+  novelty; Cohen reals have measure zero (Proposition~\ref{prop:category}).
+  \item We do not claim that $\mathsf{ZFC}$ is the unique or most natural set theory; the
+  continuum-hypothesis statements point the other way.
+  \item We make no metaphysical claim about a universe of sets. ``Set'' is used as a package and
+  ``$\in$'' as a lens; the readings are structural.
+  \item The reading of all this as an account of where the axioms come from
+  (\S\ref{sec:discussion}) is interpretation (\metag). It comes after the theorems and is never a
+  premise for any of them.
+\end{enumerate}
+
+\paragraph{On the G\"odel--Cohen comparison.} The recurring reading of incompleteness and
+independence as the saturation and extension faces of one discipline
+(Remarks~\ref{rem:saturation} and \ref{rem:notunique}, \S\ref{sec:discussion}) is structural
+framing, marked \metag. Each half is backed by theorems---saturation by
+Theorem~\ref{thm:nonattain}, extension by Theorems~\ref{thm:novelty} and \ref{thm:strict}---but
+the unification of the two is a way of seeing, not a further theorem.
